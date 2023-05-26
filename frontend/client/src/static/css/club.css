@@ -1,0 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital@1&family=Roboto+Slab:wght@400;500;800&family=Ubuntu&family=Work+Sans:wght@300;400&display=swap');
+
+.club_page_body {
+    background-color: rgb(9, 12, 14);
+    height: 190vh;
+    scroll-snap-type: y mandatory;
+    color: whitesmoke;
+}
+
+.club_section_title {
+    font-family: 'Roboto Slab', serif;
+    font-size: 2vh;
+    margin-left: 0.5vw;
+    padding-bottom: 1vh;
+}
+
+.club_section_title_secondary {
+    font-family: 'Roboto Slab', serif;
+    color:rgb(125, 125, 144);
+    font-size: 2vh;
+    margin-left: 0.5vw;
+    padding-bottom: 1vh;
+}
+
+.club_section_title_link {
+    font-family: 'Roboto Slab', serif;
+    color:rgb(84, 84, 233);
+    font-size: 2vh;
+    margin-left: 0.5vw;
+    padding-bottom: 1vh;
+}
+
+
+.club_length_counter {
+    font-family: 'Roboto Slab', serif;
+    font-size: 2vh;
+    text-align: right;
+    color: rgb(125, 125, 144)
+
+}
+
+@media only screen and (max-width: 1000px){
+    .club_length_counter {
+        font-size: 1vh;
+    }
+}
+
+.club_small_secondary {
+    color: rgb(125, 125, 144);
+    
+}
+
+.side_by_side_wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-gap: 1vw;
+}
+
+.center {
+    text-align: center;
+    margin-left: 45%;
+}
+
+.checkbox_wrapper {
+    display: grid;
+    grid-template-columns: 0.25fr 4fr;
+    grid-gap: 1vw;
+}
+
+.triple_wrapper{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 1vw;
+}
+
+textarea {
+    resize: none;
+ }
+
+ .f-s-edit {
+    color: rgb(108,117,125)
+ }
+
+ .btn-stretch {
+    width: 100%;
+ }

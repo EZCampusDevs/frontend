@@ -1,0 +1,122 @@
+################################################################################
+# Project specific / langauge unspecific section of the .gitignore
+################################################################################
+
+# Backend ics file cache directory, updated: 2022/06/30
+backend/app/cache/
+
+# Backend Google OAuth client file.
+client_secret_*
+
+# dotenv
+.env
+*.env
+
+# logs
+.log
+*.log
+*.log.*
+
+################################################################################
+# Python section of the .gitignore
+# This section was made based of the GitHub Python .gitignore: https://github.com/github/gitignore/blob/main/Python.gitignore
+################################################################################
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Distribution / packaging
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other infos into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# Translations
+*.mo
+*.pot
+
+# pyenv
+#   For a library or package, you might want to ignore these files since the code is
+#   intended to run in multiple environments; otherwise, check them in:
+# .python-version
+
+# PEP 582; used by e.g. github.com/David-OConnor/pyflow and github.com/pdm-project/pdm
+__pypackages__/
+
+# virtualenv
+venv/
+.venv
+ENV/
+env.bak/`
+venv.bak/
+
+# PyCharm
+#  JetBrains specific template is maintained in a separate JetBrains.gitignore that can
+#  be found at https://github.com/github/gitignore/blob/main/Global/JetBrains.gitignore
+#  and can be added to the global gitignore or merged into this file.  For a more nuclear
+#  option (not recommended) you can uncomment the following to ignore the entire idea folder.
+.idea/
+
+################################################################################
+# React's section of the .gitignore
+################################################################################
+
+# dependencies
+frontend/client/node_modules
+frontend/client/build
+frontend/client/.pnp
+
+# npm-debug.log*
+# yarn-debug.log*
+# yarn-error.log*
+
+
+################################################################################
+Frontend Exclusive Ignore
+################################################################################
+
+backend

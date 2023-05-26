@@ -1,0 +1,9 @@
+# https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Basic structure:
+# file/directory/pattern @code_owner_1 @code_owner_2
+# file/directory/pattern @github_org/org_team
+
+/frontend/ @jasonmzx
+
+/backend/ @danielljeon

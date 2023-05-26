@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=PT+Serif:ital@1&family=Roboto+Slab:wght@400;500;800&family=Rubik&family=Ubuntu&family=Work+Sans:wght@300;400&display=swap');
+
+:root {
+    --vh_constant : 2vh;
+    --vh_constant_double : 4vh;
+}
+
+/* Optimize Row container */
+
+.oc_row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr;  
+}
+
+.oc_select_cell {
+    height: var(--vh_constant_double);
+    border-top :  solid;
+    border-right: solid;
+}
+
+.oc_subliminal_border {
+    height: var(--vh_constant_double);
+}
+
+/* SELECTED CELL BLOCKS */
+
+.oc_select {
+    height: var(--vh_constant_double); 
+    background-color: rgb(55, 89, 202);
+    border-top: solid;
+    border-color: rgb(71, 24, 198);
+    width: 15.4%;
+    margin-left: 0.1vw;
+    position: absolute;
+    z-index: 10;
+}
+
+.oc_top_radius {
+    border-top-left-radius: 25px;
+    border-top-right-radius: 25px;  
+    margin-top: 0.3vh;
+}
+
+.oc_bottom_radius {
+    border-bottom-left-radius: 25px;
+    border-bottom-right-radius: 25px; 
+}
+
+.oc_full_radius {
+    border-radius: 25px;
+}
+
+/* BACKGROUND CELL: */
+
+.oc_select_bg_cell {
+    height: var(--vh_constant_double);
+    border-top : solid;
+    border-right:solid;
+    color: gray;
+}
+
+/* FAKE BACKGROUND CELL */
+
+.oc_select_invis{
+    height: var(--vh_constant_double);
+    color: gray;
+    width: 15.65%;
+    z-index: 10;
+    position: absolute;
+}
+
+.oc_time {
+    height : var(--vh_constant_double);
+    z-index: 0;
+    text-align: center;
+    background-color: black;
+    color: white;
+    font-family: 'Roboto Slab', serif;
+    padding-top: 0.5vh;
+}
+
+.oc_top_cell {
+    margin-left: 0.2vw;
+    height : var(--vh_constant);
+    z-index: 0;
+    border-top : solid;
+    border-left:solid;
+    border-right:solid;
+    text-align: center;
+}
+
+.oc_bottom_cell {
+    margin-left: 0.2vw;
+    height: var(--vh_constant);
+    z-index: 0;
+    border-left: solid;
+    border-top : dotted;
+    border-right:solid;
+    text-align: center;
+    border-top-color: rgb(230, 230, 230);
+}
+
+.oc_text {
+    size: var(--vh_constant);
+}

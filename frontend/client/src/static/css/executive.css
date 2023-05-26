@@ -1,0 +1,515 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;700&family=Josefin+Sans:ital,wght@1,500&family=Martian+Mono:wght@300&display=swap');
+:root {
+    --vh_constant : 2vh;
+    --vh_constant_double : 4vh;
+    --primary_color : hwb(0 97% 3%);
+    --secondary_color : rgb(185, 185, 185);
+    --third_color : rgb(60, 60, 60);
+    
+    --main_font : 'Martian Mono', monospace;
+    --secondary_font : 'Inter Tight', sans-serif;
+}
+
+/*Advanced Properties section */
+
+body {
+    background-color: rgb(222,243,255);
+}
+
+.adv_prop {
+    margin-left:  0;
+    padding-left: 4%;
+    padding-right: 3%;
+    margin-right: 10%;
+}
+
+.adv_prop_desc {
+    padding-top: 1.5vh;
+    color: var(--third_color);
+    font-size: 9pt;
+}
+
+.longie {
+    width: 80%;
+    text-align: center;
+    margin-left: 1.5vw;
+}
+
+.adv_prop_cc_single {
+    padding-top: 1.5vh; padding-bottom: 1.5vh; border-radius: 1rem;
+    padding-left: 1vw;
+    color: rgb(80, 80, 80);
+    background-color: var(--primary_color);
+
+    display: grid;
+    grid-template-columns: 3.5fr 1fr;
+    padding-right: 1vw;
+    margin-top: 1vh;
+    box-shadow: 2px 7px 10px #888888;
+}
+
+.executive_sm_text {
+    font-family: var(--main_font);
+    padding-left: 2vw;
+    padding-top: 1.25vh;
+    padding-bottom: 1vh;
+}
+
+.executive_intro_text {
+    font-family: var(--secondary_font); 
+    padding-left: 2vw;
+}
+
+/*options menu*/
+.options_menu {
+    padding-top: 1.5vh;
+    background-color: rgb(41,46,52);
+    margin-top: 1.25vh;
+    margin-left: 0.5vw;
+    border-radius: 1rem;
+}
+
+.option_entry {
+    font-family: var(--main_font);
+    color: rgb(172, 179, 188);
+    text-align: left;
+    margin-bottom: 1vh;
+    cursor: pointer;
+}
+
+
+.error_message_exec{
+    color: red;
+    font-family: var(--main_font);
+    padding-bottom: 0.5vh;
+    padding-left: 0.25vw;
+    font-size: 11pt;
+}
+
+.error_message_exec_h {
+    margin-top: 0.5vh;
+    font-family: var(--main_font);
+    color:rgb(185, 185, 185);
+    text-align: center;
+    font-weight: bold;
+}
+
+.fullwidth_minimize {
+    width: 99%;
+    text-align: center;
+    margin-left: 0.5%;
+    margin-top: 0.75vh;
+    color: white;
+    font-family: var(--main_font);
+}
+
+.selected_option_entry {
+    font-family: var(--main_font);
+    background-color: rgb(31, 34, 37);
+    color: whitesmoke;
+
+    padding-top: 0.3vh;
+    padding-bottom: 0.3vh;
+
+    margin-left: 0.5vw;
+    margin-right: 0.35vw;
+    margin-bottom: 1.2vh;
+    
+    border-radius: 1rem;
+    text-align: left;
+    cursor: default;
+}
+
+
+/*General Executive Page CSS*/
+
+.executive_side_by_side {
+
+    font-family: var(--main_font);
+
+        /* Grid Definition */
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        margin-left: 5%;
+        margin-right: 5%;
+        grid-gap: 2.5%;
+        margin-bottom: 1vh;
+}
+
+.executive_calendar_column_wrapper {
+    display: grid;
+    grid-template-columns: 1fr 15fr 1fr;
+}
+
+.executive_calendar_btn {
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    padding-top: 11vh;
+    width: 3vw;
+    margin: auto;
+}
+
+.carousel-control-next-icon,
+.carousel-control-prev-icon /*, .carousel-indicators */ {
+    filter: invert(100%);
+}
+
+.carousel-control-next-icon {
+    margin-left: 0.5vw;
+}
+
+.carousel-control-next-icon:hover,
+.carousel-control-prev-icon:hover /*, .carousel-indicators */ {
+    filter: invert(55%);
+}
+
+
+.executive_calendar_btn:hover {
+    border: solid 2px;
+    border-radius: 1rem;
+}
+
+.executive_search_side_by_side {
+
+    font-family: var(--main_font);
+
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-right: 5%;
+    margin-bottom: 1vh;
+}
+
+.simple_side_by_side {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-gap: 5%;
+}
+
+.property_name {
+    font-weight: bold;
+    font-style: oblique;
+    padding-bottom: 1vh;
+}
+
+.executive_course_code_badge {
+    background-color: rgb(228, 228, 228);
+    padding: 0.5vh 1.2vw 0.5vh 0.5vw;
+    margin-bottom: 1vh;
+    border-radius: 1rem;
+    text-align: right;
+    height: 6vh;
+
+}
+
+.abstracted {
+    height: 100%;
+}
+
+.bz {
+    font-family: var(--secondary_font);
+}
+
+.executive_course_code_badge_wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    grid-gap: 0.6vw;
+}
+
+.executive_search_left_side {
+    color: rgb(195, 195, 195);
+    font-size: 11pt;
+}
+
+
+.executive_white_text {
+    font-family: var(--main_font);
+    color: rgb(242, 242, 242);
+    margin-left: 10%;
+    font-style: italic;
+}
+
+.executive_program_map_entry{
+    background-color: var(--third_color);
+    
+    margin-bottom:  2vh;
+    margin-left:    3%;
+    margin-right:   3%;
+    
+    border-radius: 1vh;
+
+    padding-left:   2%;
+    padding-top:    1%;
+    padding-bottom: 1%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+.executive_page_main_wrapper {
+    background-color: rgb(222,243,255);
+}
+
+.executive_option_wrapper {
+    background-color: var(--primary_color);
+    margin-left: 0.75vw;
+    margin-right: 1.5vw;
+    margin-top: 1.25vh;
+
+    border-radius: 1rem;   
+}
+
+/* Used for current selection */
+.executive_secondary_container {
+    background-color: var(--secondary_color);
+    padding-top: 2%;
+    padding-bottom: 2%;
+    margin-left: 10%;
+    margin-right: 10%;
+    border-radius: 2vh;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+}
+
+
+.executive_search_container {
+    background-color: var(--secondary_color);
+    padding-top: 2%;
+    padding-bottom: 2%;
+    border-radius: 1vh;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+    margin-left: 2.5%;
+    margin-right: 2.5%;
+
+    overflow: scroll;
+    overflow-x: hidden;
+    height: 75vh;
+}
+
+/*When the program maps search results are empty*/
+.executive_crop {
+    height: 20vh;
+}
+
+.executive_jumbotron_btn {
+    margin-left: 3vw;
+    margin-top:  1vw;
+}
+
+.executive_jumbotron {
+    margin-left: 2.5vw;
+    margin-right: 2.5vw;
+    border-radius: 1rem;
+}
+
+.executive_page_count {
+    color: var(--third_color);
+    text-align: right;
+}
+
+#results_for_term {
+    margin-left: 2vw;
+    margin-bottom: 1vh;
+}
+
+.executive_cent {
+    margin-left: 37.5%;
+}
+
+.executive_selected_program_map_entry {
+    background-color: var(--third_color);
+
+    padding-top: 0.5%;
+    padding-bottom: 0.5%;
+    padding-left: 1%;
+    padding-right: 1%;
+
+    margin-left: 5%;
+    margin-right: 10%;
+    margin-bottom: 1vh;
+
+    border-radius: 1vh;
+
+    /* Grid Definition */
+    display: grid;
+    grid-template-columns: 4fr 1fr 1fr 1fr;
+
+    /* Text styling: */
+    font-family: var(--main_font);
+    color: rgb(210, 210, 210);
+}
+
+
+
+.executive_pmap_title {
+    margin-top: 1.5vh;
+    padding-bottom: 0;
+    font-family: var(--main_font);
+    font-size: 15pt;
+    text-align: center;
+}
+
+.executive_date_title {
+    text-align: left;
+    margin-left: 2vw;
+}
+
+.executive_date_picker {
+    font-family: var(--main_font); 
+}
+
+
+.executive_search_bar_container {
+    width: 90%;
+    margin: auto;
+    font-family: var(--secondary_font);
+}
+
+.executive_config_select {
+    font-family: var(--main_font);
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+
+.properties_wrapper {
+    display: grid;
+    grid-template-columns: 1fr 5fr; 
+}
+
+.error_message {
+    text-align: center;
+    color: red;
+    font-size: 12pt;
+}
+
+.option_menu_button {
+    width: 95%;
+    margin-bottom: 1vh;
+    color: white;
+}
+
+.option_render_button {
+    width: 95%;
+    font-family: var(--main_font);
+    margin-left:  0.5vw;
+    margin-bottom: 1vh;
+    border-radius: 3rem;
+}
+
+
+/* Actual Executive Calendar CSS */
+
+.primary_calendar_container {
+    width: 100%;
+    margin: 0;
+    
+    
+    /* padding-left: 0.5vw;
+    padding-right: 0.5vw;
+    background-color: white; */
+}
+
+.primary_calendar_container:focus {
+    border-style:dotted;
+    border-radius: 2rem;
+    border-width: 1px;
+}
+
+.columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;    
+    border: inset #000000 0.45vw;
+    border-radius: 0.75rem;
+}
+
+
+.regular_cell {
+    border-left: 2px solid black;
+    border-top: 2px solid black;
+    font-family: 'Inter Tight', sans-serif;
+    text-align: center;
+}
+
+.dotted_cell {
+    border-left: 2px solid black;
+    border-top: 2px dotted black;
+    font-family: 'Inter Tight', sans-serif;
+    text-align: center;
+}
+
+.regular_cell:hover {
+    font-style: italic;
+    font-weight: 700;
+}
+
+.dotted_cell:hover {
+    font-style: italic;
+    font-weight: 700;
+}
+
+.selected_timeframe_cell {
+    border-left: 2px solid black;
+    border-top: 2px solid black;
+    background-color: rgb(186, 186, 200);
+    font-weight: 700;
+    font-style: italic;
+    text-align: center;
+}
+
+.time_cell {
+    z-index: 0;
+    text-align: center;
+    background-color: black;
+    color: white;
+    font-family: 'Roboto Slab', serif;
+    padding-top: 0.5vh;
+    height : 6vh;
+    width: 100%;
+}
+
+/*Scroll bar*/
+
+ #style-1::-webkit-scrollbar-track
+ {
+     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+     border-radius: 10px;
+     background-color: #F5F5F5;
+ }
+ 
+ #style-1::-webkit-scrollbar
+ {
+     width: 12px;
+     background-color: #F5F5F5;
+ }
+ 
+ #style-1::-webkit-scrollbar-thumb
+ {
+     border-radius: 10px;
+     -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+     background-color: rgb(180,209,254);
+ }
+
+.executive_maximize_btn {
+    text-align: center;
+    margin: auto;
+    width: 15%;
+    height: 4vh;
+    margin-top: 1.5vh;
+    margin-left: calc(85%/2);
+}
+
+.executive_intro_embed_link {
+    font-family: var(--main_font);
+    font-size: 14pt;
+    text-align: left;
+    padding-left: 15vw;
+}
+
+.executive_intro_embed_link_a {
+    color: blue;
+    padding-left: 0.5vw;
+}
+
+.executive_intro_embed_link_a:hover {
+    color: rgb(0, 96, 61);
+    font-style: bold;
+    cursor:pointer;
+}

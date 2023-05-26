@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@500&family=PT+Serif:ital@1&family=Roboto+Slab:wght@400;500;800&family=Rubik&family=Ubuntu&family=Work+Sans:wght@300;400&display=swap');
+@keyframes event_default_anim {
+    0% { width: 2vw;}
+    100% {width: 10.3vw;}
+}
+
+/*Variable Declaration: */
+
+:root {
+    --vh_constant : 2vh;
+}
+
+/* var(--vh_constant); */
+
+/*Event CSS*/
+
+.event_default {
+    margin-left: 0.2vw; 
+    position: absolute;
+    font-family: 'Roboto Slab', serif;
+    width: 10.3vw;
+    font-size: 1.5vh;
+    opacity: 0.8;
+    color: black;
+    /* height : 3.8vh; */
+    /* margin-top: -31.3333333vh; */
+    z-index: 10;
+    border-radius: 1vh;
+    animation-name: event_default_anim;
+    animation-duration: 0.1s;
+}
+
+/* Primary Calendar container*/
+
+.primary_calendar_container_nula {
+    width: 100%;
+    margin: 0;
+    padding-left: 0.5vw;
+    padding-right: 0.5vw;
+    background-color: white;
+
+}
+
+.row {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+}
+
+.mobile_calendar_title {
+    font-size: 3.5vw;
+    font-family: 'Kanit', 'serif';
+    
+}
+
+/* Header & Time Cells */
+
+.header_cell {
+    font-family: 'Roboto Slab', serif;
+    text-align: center;
+    color: white;
+    background-color: rgb(30, 43, 51);
+    height: 3vh;
+}
+
+
+.zero_marpad {
+    padding : 0; 
+    margin : 0;
+}
+
+.time_text {
+    z-index: 10;
+    size: 2vh;
+    padding-top: 0;
+    font-weight: bold;
+    font-family: 'Roboto Slab', serif;
+    
+}
+
+.time_cell_nula {
+    margin-left: 0.2vw;
+    height : var(--vh_constant);
+    z-index: 0;
+    border-top : solid;
+    border-left:solid;
+    border-right:solid;
+    text-align: center;
+}
+
+.bottom_time_cell {
+    margin-left: 0.2vw;
+    height: var(--vh_constant);; 
+    z-index: 0;
+    border-left: solid;
+    border-top : dotted;
+    border-right:solid;
+    text-align: center;
+    border-top-color: rgb(230, 230, 230);
+}
+
+
+/* Background grid display */
+
+/*Top Div (Hour)*/ 
+.bg_top_div {
+    height : var(--vh_constant);; 
+    border-top : solid;
+    border-left:solid;    
+    border-color: rgb(222,222,222);
+    border-top-color: rgb(189, 189, 189);
+    z-index : 0;
+}
+
+/*Bottom-attached div (Hour + half)*/
+.bg_bottom_div {
+    height: var(--vh_constant);;
+    border-left:solid; 
+    border-top : dotted; 
+    border-color: rgb(222, 222, 222);
+    z-index : 0;
+}
+
+/* Footer */
+
+.footer_cell {
+    font-family: 'Roboto Slab', serif;
+    text-align: center;
+    color: black;
+    background-color: black;
+    height: 0.0vh;
+}
+
+/* Media queries */
+
+
+@media only screen and (max-width: 620px) {
+    .col {
+        width: 10%;
+    }
+
+    .header_cell {
+        font-size: 10px;
+    }
+    
+    .primary_calendar_container{
+        padding-left: 2vw;
+        padding-right: 2vw;
+    }
+
+
+    /* TIME CELL MOBILE SCALING */
+
+    .time_text {
+        font-size: 2vh;
+    }
+
+    .time_cell {
+        border-top : solid;
+        border-left: none;
+    }
+
+    .bottom_time_cell {
+        border-left: none;
+        border-top : none;
+    }
+}
+
+@media only screen and (max-width: 820px) {
+    
+    .primary_calendar_container{
+        padding-left: 0.8vw;
+        padding-right: 1.5vw;
+    }
+}
+
+@media only screen and (min-width: 910px) {
+    .mobile_calendar_title {
+        font-size: 3vw;
+    }
+}
+
+@media only screen and (min-width: 1020px) {
+    .mobile_calendar_title {
+        font-size: 2.5vw;
+    }
+}
+
+/*TODO: Still looks bad on mobile, fix the CSS MORE !*/

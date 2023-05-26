@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@500&family=PT+Serif:ital@1&family=Roboto+Slab:wght@400;500;800&family=Rubik&family=Ubuntu&family=Work+Sans:wght@300;400&display=swap');
+
+.search_header_block {
+    background-color: rgb(9, 12, 14);
+    color: whitesmoke;
+    height: 30vh;
+}
+
+.club_entry {
+    border-radius: 1vh;
+    width: 87.5%;
+    margin: auto;
+    margin-top: 2vh;
+    height: 25vh;
+    transition: all 0.5s;
+}
+
+.club_entry_inner {
+    background-color: white;
+    border-radius: 1vw;
+    color: black;
+    margin-left: 1vw;
+    margin-right: 1vw;
+    height: 13vh;
+    margin-top: 1vh;
+}
+
+.club_category {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: large;
+    font-weight: 600;
+}
+.club_description {
+    font-weight: 400;
+}
+.club_s_count {
+
+    margin-left: 1vw;
+    font-family: "Rubik" , "sans-serif";
+}
+
+.club_entry:hover {
+    cursor: pointer;
+    box-shadow: inset 2em 12.5vh 0em 0em #007ba7,
+      inset 0 -12.5vh 0em 2em #007ba7;
+    border-color: #ffffff;
+    color: #ffffff;
+}
+
+.club_entry_title {
+    font-family: 'Ubuntu', sans-serif;
+    padding-top: 0.5vh;
+    padding-left: 1vw;
+}
+
+.club_entry_info {
+    font-family: 'Ubuntu', sans-serif;
+    padding-left: 1.2vw;
+    color: lightgray;
+}
+
+.club_entry_grid {
+    display: grid;
+    grid-template-columns: 33% 33% 33% ;
+    grid-template-rows: auto;
+}
+
+.search {
+    width: 95%;
+    margin-left: 1.9%;
+    margin-bottom: 3%;
+}
+
+@media only screen and (max-width: 620px) {
+    .club_entry_grid {
+        display: grid;
+        grid-template-columns: 100% ;
+        grid-template-rows: auto;
+    }
+
+    .club_entry {
+        height: 20%;
+    }
+
+    .club_entry_inner {
+        height: 40vh;
+    }
+}
+
+@media only screen and (max-width: 820px) {
+    
+
+}
+
+@media only screen and (min-width: 910px) {
+
+}
+
+@media only screen and (min-width: 1020px) {
+
+}
