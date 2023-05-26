@@ -7,6 +7,8 @@ import findCookie from '../../util/findCookie';
 import logout from '../../util/logout';
 
 import PageHeaderPopUp from './PageHeaderPopUp';
+import PageHeaderDropDown from './PageHeaderDropDown';
+
 
 //hooks
 
@@ -15,8 +17,12 @@ import useScript from '../../util/hooks/useScript';
 
 const PageHeader = ({ selectedElement, slotOneJSX, slotTwoJSX, slotThreeJSX }) => {
 
+  //React State & Hooks
+
   const [isDropped, setDrop] = React.useState(false);
-  const { height, width } = useWindowDimensions();
+  const [ headerDropdown, setHeaderDropdown ] = React.useState(<></>);
+
+  const { height, width } = useWindowDimensions(); 
 
   //This value is an integer but should be thought about as pixels..
   const MOBILE_SWITCH = 1200 ;
@@ -48,18 +54,26 @@ const PageHeader = ({ selectedElement, slotOneJSX, slotTwoJSX, slotThreeJSX }) =
 
     }
 
+  const closeDropdown = () => {setHeaderDropdown(<></>);}  
+
+  const HeaderDropdownBuilder = () => {
+    setHeaderDropdown(<PageHeaderDropDown closeHook={closeDropdown}/>)
+  } 
 
   const Desktop = () => {
     return (
+      <>
+      {headerDropdown}
       <div className="box_shadow header_container">
         <img src={logo} alt="ezcampus" width="50" height="50" className='logo_style'/>
-          <a className="header_text" href="/about/us">Our Team</a> 
+          <a className="header_text" onClick={ () => {HeaderDropdownBuilder();} }>Tools</a> 
           <a className="header_text" href='/executive'>Executive Planner</a> 
           <a className="header_text" href='/ics'>(.ics) Download Calendar</a>
           <a className="header_text" href='/optimize'>Optimizer</a>
           <div></div>
           {cookieCheck()}
       </div>
+      </>
     )
   }
 
