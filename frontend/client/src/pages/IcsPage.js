@@ -8,6 +8,8 @@ import SavedCourseEntry from '../components/course_entry/SavedCourseEntry';
 
 import SearchAddCourseEntry from '../components/course_entry/SearchAddCourseEntry';
 
+import CourseSearchWidget from '../components/course_search/CourseSearchWidget';
+
 //Redux
 import { useSelector, useDispatch } from 'react-redux';
 import { assertPush, assertDelete } from '../redux/features/courseEntrySlice';
@@ -250,11 +252,12 @@ const IcsPage = () => {
   }
 
 
+
   return (
     <>
     <PageHeader/>
     <br/><br/>
-    <div className="flex ml-48 mr-48">
+    <div className="flex ml-48">
     
 
       <div className="">
@@ -269,16 +272,16 @@ const IcsPage = () => {
           <br/><br/>
           {/* Config Selection */}
           <div className="r_font">
-            <SchoolConfigSelect/>
-            <SearchAddCourseEntry/>
           </div>
 
           <br/>
           <br/>
         <div className="r_font text-3xl font-bold">Step 2. Add your courses:</div> 
-        
-            {renderSavedCourses(saved_entries)}
-            {addCourses.length === 0 ? <div className="">You haven't added any courses yet...</div> : addCourses}
+
+        {addCourses.length === 0 ? <div className="">You haven't added any courses yet...</div> : addCourses}
+
+        <CourseSearchWidget/>
+
         <br/>
 
     {/* ADD COURSE BUTTON  */}

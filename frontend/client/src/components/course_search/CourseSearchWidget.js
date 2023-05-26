@@ -122,8 +122,11 @@ const CourseSearchWidget = () => {
 
     <div>     
 
-     {results} {/* <-- SEARCH RESULTS */}
-    
+    <div className="overflow-y-scroll scrollbar-thumb-blue-500 scrollbar-track-blue-200 height_cap" >
+            {results} {/* <-- SEARCH RESULTS */}
+    </div>
+
+
     </div>
     </>
   )
