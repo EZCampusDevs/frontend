@@ -46,8 +46,8 @@ const CourseSearchWidget = () => {
     
 
     //TODO: Put this in API.js and get it working...
-    const SEARCH_ENDPOINT = `http://localhost:8080/searchIndex-1.0-SNAPSHOT/`;
-
+    //const SEARCH_ENDPOINT = `http://localhost:8080/searchIndex-1.0-SNAPSHOT/`;
+    const SEARCH_ENDPOINT = `http://172.105.18.31:8080/searchIndex/`;
 
 
     //JSX builders
