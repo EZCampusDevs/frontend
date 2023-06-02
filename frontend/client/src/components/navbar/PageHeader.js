@@ -8,7 +8,7 @@ import logout from '../../util/logout';
 
 import PageHeaderPopUp from './PageHeaderPopUp';
 import PageHeaderDropDown from './PageHeaderDropDown';
-
+import PageHeaderDropDownSection from './PageHeaderDropDownSection';
 
 //hooks
 
@@ -54,11 +54,33 @@ const PageHeader = ({ selectedElement, slotOneJSX, slotTwoJSX, slotThreeJSX }) =
 
     }
 
+  // ************* Header Sub Sections *************  
+  
+  const Tools = [
+    <PageHeaderDropDownSection title={"ICS Download"} desc={"Download your calendar as .ics format!"} hrefProp="/ics"/>,
+    <PageHeaderDropDownSection title={"Optimizer"} desc={"Get a personalized schedule in a matter of seconds!"} hrefProp="/optimizer"/>,
+    <PageHeaderDropDownSection title={"Executive Planner"} desc={"This tool requires an elevated permission level..."} hrefProp="/executive"/>,
+  //  <PageHeaderDropDownSection title={"Test #4th"} desc={"This tool requires an elevated permission level..."}/>
+  ]
+
+  const Events = [
+    <PageHeaderDropDownSection title={"My Calendar"} desc={"Requires Auth"} hrefProp="/calendar"/>, 
+    <PageHeaderDropDownSection title={"My Subscriptions"} desc={"Requires Auth"} hrefProp="/calendar"/>,
+    <PageHeaderDropDownSection title={"Explore Events Corpus"} desc={"Requires Auth"} hrefProp="/calendar"/>,  
+    <PageHeaderDropDownSection title={"Edit my Custom Calendars"} desc={"Requires Auth"} hrefProp="/calendar"/>, 
+  ]
+
+  // ^^^^^^^^^^^^^ Header Sub Sections ^^^^^^^^^^^^^
+
+
   const closeDropdown = () => {setHeaderDropdown(<></>);}  
 
-  const HeaderDropdownBuilder = () => {
-    setHeaderDropdown(<PageHeaderDropDown closeHook={closeDropdown}/>)
-  } 
+  const HeaderDropdownBuilder = (content) => {
+    setHeaderDropdown(<PageHeaderDropDown closeHook={closeDropdown} sections={content}/>)
+  }
+  
+
+
 
   const Desktop = () => {
     return (
@@ -66,10 +88,9 @@ const PageHeader = ({ selectedElement, slotOneJSX, slotTwoJSX, slotThreeJSX }) =
       {headerDropdown}
       <div className="box_shadow header_container">
         <img src={logo} alt="ezcampus" width="50" height="50" className='logo_style'/>
-          <a className="header_text" onClick={ () => {HeaderDropdownBuilder();} }>Tools</a> 
-          <a className="header_text" href='/executive'>Executive Planner</a> 
-          <a className="header_text" href='/ics'>(.ics) Download Calendar</a>
-          <a className="header_text" href='/optimize'>Optimizer</a>
+          <a className="header_text" onClick={ () => {HeaderDropdownBuilder(Tools);} }>Tools</a> 
+          <a className="header_text" onClick={ () => {HeaderDropdownBuilder(Events);} }>Events</a> 
+          <span/> <span/>
           <div></div>
           {cookieCheck()}
       </div>
