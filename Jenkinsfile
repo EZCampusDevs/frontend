@@ -13,6 +13,8 @@ pipeline {
 cd ~/frontend
 chmod +x ./build.sh
 ./build.sh
+chmod +x ./deploy.sh
+./deploy.sh
 ''', 
 execTimeout: 120000, flatten: false,
                                 makeEmptyDirs: true, noDefaultExcludes: false, patternSeparator: '[, ]+',
