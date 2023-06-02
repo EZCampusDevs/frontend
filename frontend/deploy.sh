@@ -13,7 +13,7 @@ echo "Stopping container..."
 
 docker stop $container_name || true
 
-while [ "$(docker inspect -f '{{.State.Running}}' "$container_name" 2>/dev/null)" == "true" ]; do
+while [ "$(docker inspect -f '{{.State.Running}}' "$container_name" 2>/dev/null)" = "true" ]; do
     echo "Waiting for container to stop..."
     sleep 1
 done
