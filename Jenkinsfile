@@ -5,7 +5,7 @@ pipeline {
 
         stage('Remote Deploy Repository') {
             steps {
-                dir('frontend') {
+
                     sshPublisher(publishers: [
                         sshPublisherDesc(configName: '2GB_Glassfish_VPS', transfers: [
                             sshTransfer(
@@ -23,7 +23,7 @@ execTimeout: 120000, flatten: false,
                 }
 
                 echo 'Repository copied'
-            }
+
         }
     }
 }
