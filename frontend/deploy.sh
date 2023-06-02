@@ -2,10 +2,21 @@
 
 exec 3>&1 4>&2
 trap 'exec 2>&4 1>&3' 0 1 2 3
-exec 1>frontend-dockerrun-log.out 2>&1
+exec 1>frontend-docker-run-log.out 2>&1
 
-docker stop frontend_prod || true
+container_name="frontend_prod"
 
-sleep 2
+echo "Stopping container..."
 
-docker run -itd --rm -p 3000:3000 --network EZnet --name frontend_prod node_frontend
+docker stop $container_name || true
+
+while [ "$(docker inspect -f '{{.State.Running}}' "$container_name" 2>/dev/null)" == "true" ]; do
+    echo "Waiting for container to stop..."
+    sleep 1
+done
+
+echo "Running build..."
+
+docker run -itd --rm -p 3000:3000 --network EZnet --name $container_name node_frontend
+
+echo "Deploy done."
