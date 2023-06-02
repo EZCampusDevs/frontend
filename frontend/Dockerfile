@@ -5,9 +5,9 @@ ARG DIR="/opt/app"
 WORKDIR $DIR
 
 # Install dependencies
-COPY frontend $DIR/frontend
+COPY client $DIR/frontend
 
-WORKDIR $DIR/frontend/client
+WORKDIR $DIR/frontend
 
 RUN npm install
 
