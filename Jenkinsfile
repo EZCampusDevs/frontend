@@ -22,8 +22,6 @@ execTimeout: 120000, flatten: false,
                     ])
                 }
 
-                echo 'Repository copied'
-
         }
     }
 }
