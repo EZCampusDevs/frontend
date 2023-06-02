@@ -1,6 +1,6 @@
 #!/bin/sh
 
-log_dir="~/log/jenkins-ssh"
+log_dir="$HOME/log/jenkins-ssh"
 mkdir -p $log_dir
 
 log_file="$log_dir/frontend-dockerbuild-log.out"
