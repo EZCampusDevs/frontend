@@ -27,9 +27,11 @@ import CourseSearchWidget from './components/course_search/CourseSearchWidget';
 //React & Lib imports:
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-
+import { LSLoadSchool } from './util/browserUtil';
 
 export default function App() {
+
+  LSLoadSchool()
   return (
     <Router>
       <Routes>

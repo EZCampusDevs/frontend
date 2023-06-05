@@ -7,8 +7,9 @@ import AddCourseEntry from '../components/course_entry/AddCourseEntry';
 import SavedCourseEntry from '../components/course_entry/SavedCourseEntry';
 
 import SearchAddCourseEntry from '../components/course_entry/SearchAddCourseEntry';
-
+import TermSelect from '../components/util/TermSelect';
 import CourseSearchWidget from '../components/course_search/CourseSearchWidget';
+
 
 //Redux
 import { useSelector, useDispatch } from 'react-redux';
@@ -23,7 +24,7 @@ import '../static/css/main_ui.css';
 import useWindowDimensions from '../util/hooks/useWindowDimensions';
 
 import ENDPOINT from '../util/API';
-import SchoolConfigSelect from '../components/util/SchoolConfigSelect';
+
 
 const IcsPage = () => {
   document.title = app_name + " | Event Planner Heatmap"
@@ -270,8 +271,10 @@ const IcsPage = () => {
           <span className="r_font text-3xl font-bold">Step 1. Select a semester:</span> 
           {/* <p className="ics_p">* Select the <i>term/semester</i> you're generating this calendar file for, don't worry about <b>future terms</b> since we'll update this selection as time goes on.</p> */}
           <br/><br/>
+
           {/* Config Selection */}
           <div className="r_font">
+              <TermSelect/>
           </div>
 
           <br/>

@@ -4,7 +4,7 @@ import React from 'react';
 import '../../static/css/main_ui.css';
 import logo from "../../static/images/logo.png";
 import findCookie from '../../util/findCookie';
-import logout from '../../util/logout';
+import { logout } from '../../util/browserUtil';
 
 import PageHeaderPopUp from './PageHeaderPopUp';
 import PageHeaderDropDown from './PageHeaderDropDown';

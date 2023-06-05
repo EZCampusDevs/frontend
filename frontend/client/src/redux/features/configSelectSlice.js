@@ -3,7 +3,6 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
     selected_school : null,
     selected_term : null,
-    schools : [], 
     terms : []
 }
 
@@ -15,9 +14,6 @@ const switchPush = (reference, state, payload) => {
         case 'selected_term' : 
             state.selected_term = payload;
             break;  
-        case 'schools' : 
-            state.schools = payload;
-            break;
         case 'terms' :
             state.terms = payload;
             break;     

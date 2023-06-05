@@ -4,7 +4,7 @@ import React from 'react'
 import '../../static/css/main_ui.css'
 
 //Local functions
-import logout from '../../util/logout';
+import { logout } from '../../util/browserUtil'
 
 const LogoutTemplate = () => {
 

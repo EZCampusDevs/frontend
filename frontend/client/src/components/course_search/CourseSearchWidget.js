@@ -5,6 +5,7 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { loadIn } from '../../redux/features/courseSearchSlice';
 import { debounce } from 'lodash';
+import { SchoolTermRequest } from '../../util/requests';
 
 //TODO: Get that callback add thing that propagates out of CourseSearchWidget component
 
@@ -40,14 +41,14 @@ const CourseSearchWidget = () => {
             console.log(ResponseJSON);
             reduxLoadIn(ResponseJSON);
 
-        
+            SchoolTermRequest()
       }, 300); // Specify the debounce delay (in milliseconds)
 
     
 
     //TODO: Put this in API.js and get it working...
-    //const SEARCH_ENDPOINT = `http://localhost:8080/searchIndex-1.0-SNAPSHOT/`;
-    const SEARCH_ENDPOINT = `https://search.ezcampus.org/searchIndex/`;
+    const SEARCH_ENDPOINT = `http://localhost:8080/searchIndex-1.0-SNAPSHOT/`;
+    //const SEARCH_ENDPOINT = `https://search.ezcampus.org/searchIndex/`;
 
 
     //JSX builders
