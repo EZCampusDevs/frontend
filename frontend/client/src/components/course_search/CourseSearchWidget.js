@@ -40,8 +40,7 @@ const CourseSearchWidget = () => {
             let ResponseJSON = await RESPONSE.json();
             console.log(ResponseJSON);
             reduxLoadIn(ResponseJSON);
-
-            SchoolTermRequest()
+            
       }, 300); // Specify the debounce delay (in milliseconds)
 
     

@@ -40,16 +40,15 @@ export async function InitRequest() {
 
 const SEARCH_ENDPOINT = `http://localhost:8080/searchIndex-1.0-SNAPSHOT/`;
 
-//export async function SchoolTermRequest(identifier, callback) {
+export async function SchoolTermRequest(redux_identifier, body, callback) {
 
-export async function SchoolTermRequest() {
+//export async function SchoolTermRequest() {
     const RESPONSE = await fetch(SEARCH_ENDPOINT + 'school/term', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ "school_name" : "University of Victory - Canada", "school_id" : null })
+      body: JSON.stringify(body)
     });
-
-      let ResponseJSON = await RESPONSE.json();
-      //callback(identifier, ResponseJSON);
+      const ResponseJSON = await RESPONSE.json();
+      callback(redux_identifier, ResponseJSON); // Redux Callback
       return;
 }
