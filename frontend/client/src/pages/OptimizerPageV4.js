@@ -4,8 +4,6 @@ import React from 'react'
 import PageHeader from '../components/navbar/PageHeader';
 import SchoolConfigSelect from '../components/util/SchoolConfigSelect';
 
-import AddCourseEntry from '../components/course_entry/AddCourseEntry';
-import SavedCourseEntry from '../components/course_entry/SavedCourseEntry';
 import Calendar from '../components/calendar/Calendar';
 
 // Optimizer Specific components:
@@ -148,11 +146,11 @@ const OptimizerPageV4 = () => {
 
           <h6>Selected Courses:</h6>
 
-          {renderSavedCourses(saved_entries)}
+          {"add rendering of added courses here"}
           {addCourses.length === 0 ? <div className="ics_ng">You haven't added any courses yet...</div> : addCourses}
 
           <br/>
-            <button className='btn btn-outline-dark ics_big_btn' onClick={addCourse}> Add Course </button>
+            <button className='btn btn-outline-dark ics_big_btn' onClick={()=>{/*Add Course */}}> Add Course </button>
           <br/><br/>
         </div>
 
@@ -214,41 +212,6 @@ const OptimizerPageV4 = () => {
   
   //* JSX rendering for Redux Course Entry Data:
 
-    const addCourse = () => {
-      //spreading the old addCourses React state, along with adding that 1 new elm
-      setAC(
-          [...addCourses, <AddCourseEntry 
-            callback={addCourseCallback} 
-            index={getIndex(savedCourses, addCourses)} 
-            configName={configName}
-            singleton={"cc"}
-            flavor={"cc_single"}
-            cssExtra={{
-              wrapper : "ics_course_wrapper",
-              button :  "ics_btn"
-            }}
-          />]
-        );
-    }
-
-    const renderSavedCourses = (entries) => {
-
-      let dump = [];
-
-      for(const [index, saved] of entries.entries()){
-        dump.push(
-        <SavedCourseEntry 
-          cc={saved.cc} 
-          crn={saved.crn} 
-          index={index} 
-          callback={deleteCourseCallback} 
-          flavor={"cc_single"}
-        />
-        );
-      }
-
-      return dump;
-    }
 
 
 

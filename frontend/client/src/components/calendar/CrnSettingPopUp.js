@@ -13,8 +13,7 @@ import SchoolConfigSelect from '../util/SchoolConfigSelect';
 import PopUpPadding from '../util/PopUpPadding';
 
   //Course Entry Components:
-import SavedCourseEntry from '../course_entry/SavedCourseEntry';
-import AddCourseEntry from '../course_entry/AddCourseEntry';
+  //TODO: switch to course search
 
 //Redux
 import { useSelector, useDispatch } from 'react-redux';
@@ -64,35 +63,6 @@ const CrnSettingPopUp = ({trigger, setTrigger, reload}) => {
 
     const getIndex = (sC , aC) => {
       return parseInt(sC.length + aC.length);
-    }
-
-    //Stateful course adding:
-    const addCourse = () => {
-      setAC(
-          [...addCourses, <AddCourseEntry 
-                callback={addCourseCallback} 
-                index={getIndex( saved_entries , addCourses )} 
-                configName={configName}
-          /> ]
-        );
-    }
-
-    const buildLiveDisplay = () => {
-
-        //? Input Breakdown: [ 0: Username , 1: CRN , 2: Config Name , 3: Course Title]
-
-        let live = [];
-
-        // FIRST , Generate corresponding configName courses that are already registered:
-
-        for(const [index , saved] of saved_entries.entries()){
-          live.push(
-            <SavedCourseEntry cc={saved.cc} crn={saved.crn} index={index} callback={deleteCourseCallback}/>
-          )
-        }
-
-        setLiveCourses(live);
-
     }
 
     const statusDisplay = (state) => {
@@ -248,7 +218,6 @@ const CrnSettingPopUp = ({trigger, setTrigger, reload}) => {
     
     React.useEffect(
       () => {
-        buildLiveDisplay();
       } , [saved_entries]
     )
 
@@ -272,7 +241,7 @@ const CrnSettingPopUp = ({trigger, setTrigger, reload}) => {
         <SchoolConfigSelect/>
         {liveCourses}
         {addCourses}
-        <button className="btn btn-outline-success" onClick={addCourse}>Add CRN</button>
+        <button className="btn btn-outline-success">Add CRN</button>
         {statusDisplay(status)}
         <br/>
 

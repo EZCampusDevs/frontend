@@ -71,7 +71,7 @@ const TermSelect = () => {
 
     return(<>
         <div className="flex items-center">
-        <span className="sub_title"> Select Term for <span className="font-semibold">{selectedSchool} :</span> </span>   
+        <span className="sub_title dark:text-white"> Select Term for <span className="font-semibold">{selectedSchool} :</span> </span>   
     </div>   
 
     <select

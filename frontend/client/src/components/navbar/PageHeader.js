@@ -35,19 +35,10 @@ const PageHeader = ({ selectedElement, slotOneJSX, slotTwoJSX, slotThreeJSX }) =
 /* Logged in*/ 
       if( findCookie('access_token', document.cookie) && findCookie('token_type', document.cookie) ){
           
-          return (
-          <div className="header_text">Welcome, You're logged in. 
-            <button className="btn btn-warning ht_l_btn" onClick={()=>{logout();}}> Logout? </button>
-          </div> );
-
+          //do
       } else { /*Not logged in */
           
-          return <div className="header_text">You're logged out, 
-          <button
-            className="btn btn-info ht_l_btn"
-            onClick={() => {
-            window.location.href = "/login";
-          }}> Login? </button> </div>
+        //else
       }
 
     }
@@ -78,6 +69,28 @@ const PageHeader = ({ selectedElement, slotOneJSX, slotTwoJSX, slotThreeJSX }) =
   }
   
 
+  const toggleDarkMode = () => {
+    // Step 1: Check if 'theme' exists in localStorage
+    if (!localStorage.getItem('theme')) {
+      // If 'theme' doesn't exist, create it and set the value to 'light'
+      localStorage.setItem('theme', 'light');
+    }
+  
+    // Step 2: Toggle between 'light' and 'dark' themes
+    const currentTheme = localStorage.getItem('theme');
+    const updatedTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    localStorage.setItem('theme', updatedTheme);
+  
+    // Step 3: Add or remove the 'dark' class based on the updated theme
+    if (updatedTheme === 'dark') { 
+      document.documentElement.classList.add('dark');
+      document.body.style.backgroundColor = 'black';
+    } else {
+      document.documentElement.classList.remove('dark');
+      document.body.style.backgroundColor = 'white';
+    }
+  }
+  
 
 
   const Desktop = () => {
@@ -102,7 +115,7 @@ const PageHeader = ({ selectedElement, slotOneJSX, slotTwoJSX, slotThreeJSX }) =
 
   {/* DARKMODE ICON */}
 
-  <svg class="w-9 h-9 ml-5 text-indigo-50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <svg class="w-9 h-9 ml-5 text-indigo-50" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" onClick={() => {toggleDarkMode()}}>
     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
       <path stroke-linecap="round" stroke-linejoin="round" d="M21.752 15.002A9.718 9.718 0 0118 15.75c-5.385 0-9.75-4.365-9.75-9.75 0-1.33.266-2.597.748-3.752A9.753 9.753 0 003 11.25C3 16.635 7.365 21 12.75 21a9.753 9.753 0 009.002-5.998z" />
     </svg>

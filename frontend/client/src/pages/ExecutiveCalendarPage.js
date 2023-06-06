@@ -29,8 +29,6 @@ import PageHeader from '../components/navbar/PageHeader';
 import ExecutiveCalendar from '../components/executive/ExecutiveCalendar'
 import ExecutiveProgramMaps from '../components/executive/ExecutiveProgramMaps';
 
-import SavedCourseEntry from '../components/course_entry/SavedCourseEntry';
-import AddCourseEntry from '../components/course_entry/AddCourseEntry';
 
 import DeniedTemplate from '../components/state_template/DeniedTemplate';
 
@@ -91,24 +89,6 @@ const ExecutiveCalendarPage = () => {
     const activeProgramMaps = useSelector((state) => state.executiveEdit.program_maps_active);
 
 
-    //Course & cc functions
-    const addCourseCallback = (params) => {
-
-      //Decoding the object send from AddCourseEntry to pass over to redux
-      dispatch(assertPush({
-        crn : params["crn"] , 
-        cc : params["cc"] ,
-        type : false ,
-        reference : params["reference"] //reference to state-used by this component
-      }));
-  
-    }
-  
-    const deleteCourseCallback = (params) => {
-      dispatch(assertDelete({
-        index: params["index"], reference : params["reference"] 
-      }));
-    }
 
     //Executive request body modifers
     const setRequestBodyParameter = (param, value) => {
@@ -132,22 +112,6 @@ const ExecutiveCalendarPage = () => {
       return parseInt(sC.length + aC.length);
     }
   
-    const addCourse = (setter, addState, savedState, reference, singletonRestriction) => {
-      setter(
-          [...addState, <AddCourseEntry callback={addCourseCallback} 
-                                        index={getIndex(savedState, addState)} 
-                                        configName={exec_request_body.config_name} 
-                                        singleton={singletonRestriction}
-                                        reference={reference}
-                                        cssExtra={{
-                                          wrapper : "", 
-                                          cc : "longie" , 
-                                          crn : "", 
-                                          button : "" 
-                                        }}
-          />] 
-        );
-    }
   
     const renderSavedCourses = (entries, ref) => {
   
@@ -157,13 +121,6 @@ const ExecutiveCalendarPage = () => {
 
 
       let dump = [];
-  
-      for(const [index, saved] of entries.entries()){
-        console.log(saved);
-        dump.push(
-          <SavedCourseEntry cc={saved.cc} crn={saved.crn} index={index} callback={deleteCourseCallback} reduxRef={ref} flavor={"cc_single"}/>
-        )
-      }
   
       return dump;
     }
@@ -459,7 +416,7 @@ This parameter determines the amount of time points the availability calendar wi
       <div>
       {renderSavedCourses(saved_cc_entries, "executive_calendar_cc_singleton")}
       {add_CC_Singleton}
-      <button className='btn btn-outline-success bt_centre' onClick={() => {addCourse(setACC, add_CC_Singleton, saved_cc_entries, "executive_calendar_cc_singleton", "cc");} } >Add Course Code</button>
+      <button className='btn btn-outline-success bt_centre'  >Add Course Code</button>
       </div>
 
     </div>

@@ -10,6 +10,10 @@
         @apply text-xl text-gray-800;   
     }
 
+    .step_title {
+        @apply text-3xl font-bold dark:text-white;
+    }
+
     .large_text_field {
         @apply shadow block w-full p-4 text-gray-900 border border-gray-300 rounded-lg 
         bg-gray-50 focus:ring-blue-500 focus:border-blue-500;

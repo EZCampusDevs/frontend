@@ -12,9 +12,6 @@
 
 /*Advanced Properties section */
 
-body {
-    background-color: rgb(222,243,255);
-}
 
 .adv_prop {
     margin-left:  0;
@@ -243,9 +240,7 @@ body {
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
 }
 
-.executive_page_main_wrapper {
-    background-color: rgb(222,243,255);
-}
+
 
 .executive_option_wrapper {
     background-color: var(--primary_color);
