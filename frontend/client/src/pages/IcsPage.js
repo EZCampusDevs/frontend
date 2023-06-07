@@ -8,7 +8,7 @@ import PageHeader from '../components/navbar/PageHeader';
 
 
 import TermSelect from '../components/util/TermSelect';
-import CourseSearchWidget from '../components/course_search/CourseSearchWidget';
+import CourseEntry from '../components/course_entry/CourseEntry';
 
 
 //Redux
@@ -201,7 +201,7 @@ const IcsPage = () => {
     <div>
     <PageHeader/>
     <br/><br/>
-    <div className="flex ml-48">
+    <div className="mr-64 ml-64">
     
 
       <div className="">
@@ -222,21 +222,15 @@ const IcsPage = () => {
 
           <br/>
           <br/>
-        <div className="step_title r_font">Step 2. Add your courses:</div> 
-
-        {addCourses.length === 0 ? <div className="">You haven't added any courses yet...</div> : addCourses}
-
-        <CourseSearchWidget/>
+        <div className="step_title r_font">Step 2. Add your courses:</div>  
+        
+        {/* Entire Course Selection Widget */}
+        
+        <CourseEntry reduxKeyRef="ics_dl"/>
 
         <br/>
 
     {/* ADD COURSE BUTTON  */}
-    <button className="ml-6 w-72 flex items-center px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" 
-         >
-
-      <svg clip-rule="evenodd" fill="#FFFFFF" className="w-6" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m12.002 2c5.518 0 9.998 4.48 9.998 9.998 0 5.517-4.48 9.997-9.998 9.997-5.517 0-9.997-4.48-9.997-9.997 0-5.518 4.48-9.998 9.997-9.998zm-.747 9.25h-3.5c-.414 0-.75.336-.75.75s.336.75.75.75h3.5v3.5c0 .414.336.75.75.75s.75-.336.75-.75v-3.5h3.5c.414 0 .75-.336.75-.75s-.336-.75-.75-.75h-3.5v-3.5c0-.414-.336-.75-.75-.75s-.75.336-.75.75z" fill-rule="nonzero"/></svg>
-      <span className="ml-3">Add Course</span>
-    </button>
 
         <br/>
         <br/>

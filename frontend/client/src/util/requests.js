@@ -38,7 +38,9 @@ export async function InitRequest() {
 
 }
 
-const SEARCH_ENDPOINT = `http://localhost:8080/searchIndex-1.0-SNAPSHOT/`;
+//const SEARCH_ENDPOINT = `http://localhost:8080/searchIndex-1.0-SNAPSHOT/`;
+const SEARCH_ENDPOINT = `https://search.ezcampus.org/searchIndex/`
+
 
 export async function SchoolTermRequest(redux_identifier, body, callback) {
 
@@ -51,4 +53,18 @@ export async function SchoolTermRequest(redux_identifier, body, callback) {
       const ResponseJSON = await RESPONSE.json();
       callback(redux_identifier, ResponseJSON); // Redux Callback
       return;
+}
+
+export async function SearchCoursesByTerm(searchTerm, termId, callback) {
+
+  const RESPONSE = await fetch(SEARCH_ENDPOINT + 'search', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ "search_term": searchTerm , "page": 1, "results_per_page": 5, "term_id": 202305 }) 
+                        //TODO: use term_id and another identifier instead of HArdcode also figure out page and results per page thing
+  });
+
+    let ResponseJSON = await RESPONSE.json();
+    callback(ResponseJSON);
+    return;
 }

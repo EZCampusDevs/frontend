@@ -87,7 +87,7 @@ const PageHeader = ({ selectedElement, slotOneJSX, slotTwoJSX, slotThreeJSX }) =
       document.body.style.backgroundColor = 'black';
     } else {
       document.documentElement.classList.remove('dark');
-      document.body.style.backgroundColor = 'white';
+      document.body.style.backgroundColor = 'rgb(222,243,255)';
     }
   }
   

@@ -5,11 +5,11 @@ import React from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { loadIn } from '../../redux/features/courseSearchSlice';
 import { debounce } from 'lodash';
-import { SchoolTermRequest } from '../../util/requests';
+import { SchoolTermRequest, SearchCoursesByTerm } from '../../util/requests';
 
 //TODO: Get that callback add thing that propagates out of CourseSearchWidget component
 
-const CourseSearchWidget = () => {
+const CourseSearchWidget = ({AddCourseCallback}) => {
 
     //React State:
     const [results,setResults] = React.useState("Results are empty..."); //Search Results
@@ -30,25 +30,9 @@ const CourseSearchWidget = () => {
 
     //POST Request
     const keystrokeSearchPOST = debounce(async () => {
-
-          const RESPONSE = await fetch(SEARCH_ENDPOINT + 'search', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ "search_term": searchTerm.current.value , "page": 1, "results_per_page": 5, "term_id": 202305 })
-          });
-      
-            let ResponseJSON = await RESPONSE.json();
-            console.log(ResponseJSON);
-            reduxLoadIn(ResponseJSON);
-            
-      }, 300); // Specify the debounce delay (in milliseconds)
-
-    
-
-    //TODO: Put this in API.js and get it working...
-    const SEARCH_ENDPOINT = `http://localhost:8080/searchIndex-1.0-SNAPSHOT/`;
-    //const SEARCH_ENDPOINT = `https://search.ezcampus.org/searchIndex/`;
-
+        SearchCoursesByTerm(searchTerm.current.value, 0, reduxLoadIn); //API POST
+    }, 300); 
+    // Specify the debounce delay (in milliseconds)
 
     //JSX builders
 
@@ -78,7 +62,13 @@ const CourseSearchWidget = () => {
     <p class="text-lg mb-2">{entry.course_desc}</p>
     <p class="text-lg mb-2">N/A</p>
 
-    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mt-4" >Add Course</button>
+
+    <button className="ml-6 w-72 flex items-center px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" 
+    onClick={() => {AddCourseCallback(entry)}} 
+    >
+      <svg clip-rule="evenodd" fill="#FFFFFF" className="w-6" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m12.002 2c5.518 0 9.998 4.48 9.998 9.998 0 5.517-4.48 9.997-9.998 9.997-5.517 0-9.997-4.48-9.997-9.997 0-5.518 4.48-9.998 9.997-9.998zm-.747 9.25h-3.5c-.414 0-.75.336-.75.75s.336.75.75.75h3.5v3.5c0 .414.336.75.75.75s.75-.336.75-.75v-3.5h3.5c.414 0 .75-.336.75-.75s-.336-.75-.75-.75h-3.5v-3.5c0-.414-.336-.75-.75-.75s-.75.336-.75.75z" fill-rule="nonzero"/></svg>
+      <span className="ml-3">Add Course</span>
+    </button>
 </div>
 
 
@@ -88,7 +78,7 @@ const CourseSearchWidget = () => {
 
         setResults(dump);
 
-    }
+    } //endof search builder 
 
 
   //Once the search Entries change, rebuild the Search Results List

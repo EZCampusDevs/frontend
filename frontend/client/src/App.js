@@ -22,7 +22,7 @@ import NewHomePage from './pages/NewHomePage';
 import SchoolConfigSelect from './components/util/SchoolConfigSelect';
 
 
-import CourseSearchWidget from './components/course_search/CourseSearchWidget';
+import CourseSearchWidget from './components/course_entry/CourseSearchWidget';
 
 //React & Lib imports:
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
