@@ -1,21 +1,10 @@
 import findCookie from "./findCookie";
-import ENDPOINT from "./API";
 
-export async function tryExecutiveAuth () {
-    
-        //Grab the Cookie:
-        const token = findCookie('access_token', document.cookie);  
-    
-        //Make The Request:
-        const RESPONSE = await fetch(ENDPOINT + 'user/check_exec_auth', {
-            method: 'GET' , 
-            headers: {'Content-Type' : 'application/json', 'Authorization' : 'Bearer '+token }
-            }
-        );
+//ENDPOINT DEFINITIONS
 
-        return RESPONSE.status;
-    
-}
+const ENDPOINT = "http://localhost:8000/"
+const SEARCH_ENDPOINT = `http://localhost:8080/searchIndex-1.0-SNAPSHOT/`;
+//const SEARCH_ENDPOINT = `https://search.ezcampus.org/searchIndex/`
 
 export async function InitRequest() {
 
@@ -38,10 +27,6 @@ export async function InitRequest() {
 
 }
 
-//const SEARCH_ENDPOINT = `http://localhost:8080/searchIndex-1.0-SNAPSHOT/`;
-const SEARCH_ENDPOINT = `https://search.ezcampus.org/searchIndex/`
-
-
 export async function SchoolTermRequest(redux_identifier, body, callback) {
 
 //export async function SchoolTermRequest() {
@@ -57,14 +42,95 @@ export async function SchoolTermRequest(redux_identifier, body, callback) {
 
 export async function SearchCoursesByTerm(searchTerm, termId, callback) {
 
+  console.log(termId)
+
   const RESPONSE = await fetch(SEARCH_ENDPOINT + 'search', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ "search_term": searchTerm , "page": 1, "results_per_page": 5, "term_id": 202305 }) 
-                        //TODO: use term_id and another identifier instead of HArdcode also figure out page and results per page thing
+    body: JSON.stringify({ "search_term": searchTerm , "page": 1, "results_per_page": 5, "term_id": termId }) 
+                        //TODO: Figure out page and results per page thing (Also fix the Java Micro-Service for this)
   });
 
     let ResponseJSON = await RESPONSE.json();
+    console.log(ResponseJSON)
     callback(ResponseJSON);
     return;
+}
+
+
+// ######################### ICS Requests #########################
+
+
+export function Sync_ICS_Post(setBlobURL_callback, setBlobSize_callback, setErrMsg_callback, render) {
+      
+  setBlobURL_callback(1);
+
+  //* API Request for Download
+  
+  fetch(ENDPOINT+'download/ics/courses?' , 
+
+  //Request Parameters
+      {
+      method: 'POST',
+      headers: {
+      'Content-Type': 'application/json',
+      },
+
+  //Post Body to API
+      body: JSON.stringify({"course_data_ids": [1,2]}),
+
+  }).then(response => {  //& .then #1, Save the response as a file BLOB
+
+    //If response is OK, assume it's a File response
+    if(response.status == 200){
+      return response.blob(); //*Propagates to the next .then 
+    } 
+
+    if(response.status == 406){
+      response.json().then(respJSON =>
+        setErrMsg_callback(respJSON.detail)
+      );
+      return null;
+
+  }}).then(data => {   //& .then #2 Once it's converted into file blob, set download link via HREF url object
+
+      if(data == null){
+        setBlobURL_callback('');
+        return;
+      }
+
+      const href = window.URL.createObjectURL(data);
+      setBlobSize_callback(data.size); //For Display purposes
+
+      //Clear error if there was any
+      setErrMsg_callback('');
+
+      return setBlobURL_callback(href);
+
+  }).then( //& .then #3 Render Callback once everything has been set
+      () => {render();}
+  )
+  .catch((error) => {
+      console.error('Error:', error);
+  });  
+
+
+}
+
+// ######################### Executive Requests #########################
+
+export async function tryExecutiveAuth () {
+    
+  //Grab the Cookie:
+  const token = findCookie('access_token', document.cookie);  
+
+  //Make The Request:
+  const RESPONSE = await fetch(ENDPOINT + 'user/check_exec_auth', {
+      method: 'GET' , 
+      headers: {'Content-Type' : 'application/json', 'Authorization' : 'Bearer '+token }
+      }
+  );
+
+  return RESPONSE.status;
+
 }

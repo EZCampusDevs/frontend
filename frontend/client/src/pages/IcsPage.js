@@ -17,8 +17,11 @@ import { assertPush, assertDelete } from '../redux/features/courseEntrySlice';
 
 //Local 
 import { app_name } from '../util/constant';
+import { Sync_ICS_Post } from '../util/requests';
 
 import '../static/css/main_ui.css';
+
+
 
 //Hooks
 import useWindowDimensions from '../util/hooks/useWindowDimensions';
@@ -54,96 +57,6 @@ const IcsPage = () => {
     return parseInt(sC.length + aC.length);
   }
 
-
-
-  const handleSubmit = (configName, entries) => {
-    
-    setBlobURL(1);
-
-    console.log("RECIEVED : "+configName);
-
-    let reqBody = {
-      "course_codes": [],
-      "crn_list": [],
-      "config_name" : configName
-    }
-
-    //&Populate req body 
-
-    for(const entry of entries){
-      
-      //Filter CC to make sure duplicate with different caps/whitespace doesn't get thru
-      let ccFilted = entry.cc.trim().toUpperCase();
-
-      if(reqBody["course_codes"].includes(ccFilted) == false){
-        reqBody["course_codes"].push(ccFilted);
-      }
-
-      if(reqBody["crn_list"].includes(entry.crn) == false && !isNaN(entry.crn) ) {
-        reqBody["crn_list"].push(entry.crn);
-      }
-
-    }
-
-    //* API Request for Download
-    
-    fetch(ENDPOINT+'download/courses?' , 
-
-    //Request Parameters
-        {
-        method: 'POST',
-        headers: {
-        'Content-Type': 'application/json',
-        },
-
-    //Post Body to API
-        body: JSON.stringify(reqBody),
-    })
-    
-    //Save the response as a file BLOB
-    .then(response => {
-      console.log(response);
-
-      //If response is OK, assume it's a file response
-      if(response.status == 200){
-        return response.blob(); 
-      } 
-
-      if(response.status == 406){
-        response.json().then(respJSON =>
-          setErrMsg(respJSON.detail)
-        );
-        return null;
-      }
-
-      })
-    
-    //Once it's converted into file blob, set download link via HREF url object
-    .then(data => {
-
-        if(data == null){
-          setBlobURL('');
-          return;
-        }
-        console.log("GETS HERE?")
-        const href = window.URL.createObjectURL(data);
-        setBlobSize(data.size);
-
-        //Clear error if there was any
-        setErrMsg('');
-
-        return setBlobURL(href);
-    }).then(
-        () => {RenderLink();}
-    )
-    .catch((error) => {
-        console.error('Error:', error);
-    });  
-
-    console.log(reqBody)
-
-  }
-
   function RenderLink() {
 
     if(blobURL == 1){
@@ -165,7 +78,7 @@ const IcsPage = () => {
           <br/>
           <a href={blobURL} className="ics_download_link" download="calendar.ics">CLICK TO DOWNLOAD ({blobSize} bytes)</a>
           <br/><br/>
-          <button className="btn btn-primary ics_big_btn" onClick={() => {handleSubmit(configName, saved_entries)}}>
+          <button className="btn btn-primary ics_big_btn" onClick={() => {Sync_ICS_Post(setBlobURL, setBlobSize, setErrMsg, RenderLink )}}>
         Re-Generate My Calendar File
       </button>
         </>
@@ -174,7 +87,7 @@ const IcsPage = () => {
       return (
         <>
         <br/>
-        <button className="btn-primary btn-lg ics_big_btn" onClick={() => {handleSubmit(configName, saved_entries)}}>
+        <button className="btn-primary btn-lg ics_big_btn" onClick={() => {Sync_ICS_Post(setBlobURL, setBlobSize, setErrMsg, RenderLink )}}>
         Generate My Calendar file 
       </button>
       </>

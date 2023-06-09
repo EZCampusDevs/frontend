@@ -17,6 +17,7 @@ const CourseSearchWidget = ({AddCourseCallback}) => {
 
     //Redux State:
     const search_entries = useSelector((state) => state.courseSearch.ics_search_entries);
+    const term_id = useSelector((state) => state.configSelect.selected_term);
     const dispatch = useDispatch();
 
     // Search Reset (Reload new data) function
@@ -30,7 +31,8 @@ const CourseSearchWidget = ({AddCourseCallback}) => {
 
     //POST Request
     const keystrokeSearchPOST = debounce(async () => {
-        SearchCoursesByTerm(searchTerm.current.value, 0, reduxLoadIn); //API POST
+                        //* Search Term, Term Id (int), Redux Callback
+        SearchCoursesByTerm(searchTerm.current.value, parseInt(term_id), reduxLoadIn); //API POST
     }, 300); 
     // Specify the debounce delay (in milliseconds)
 
@@ -41,6 +43,7 @@ const CourseSearchWidget = ({AddCourseCallback}) => {
     const searchEntryBuilder = (payload) => {
 
         if(payload.length === 0){
+            setResults(<p>No results found...</p>)
             return;
         }
 
