@@ -7,7 +7,7 @@
     /** TITLES & TEXT STYLINGS */
 
     .sub_title {
-        @apply text-xl text-gray-800;   
+        @apply text-xl text-gray-800 dark:text-white;   
     }
 
     .step_title {
@@ -19,6 +19,10 @@
         bg-gray-50 focus:ring-blue-500 focus:border-blue-500;
     }
 
+    .error_text {
+        @apply text-red-500 sm:text-lg dark:text-red-200;
+    }
+
     /** DROP DOWNS, SELECTIONS, INPUTS */
 
     .large_select_field {
@@ -26,14 +30,37 @@
         focus:ring-blue-500 focus:border-blue-500;
     }
 
+    .dark .large_select_field {
+        @apply shadow-sm w-full p-2 border border-gray-700 rounded-lg bg-gray-800 text-white sm:text-lg 
+        focus:ring-blue-500 focus:border-blue-500;
+      }
+
     .medium_search_bar {
-        @apply w-full pl-10 pr-4 py-2 rounded-lg border-gray-300;
+        @apply w-full pl-10 pr-4 py-2 rounded-lg border-gray-300 sm:text-lg;
+    }
+
+    .dark .medium_search_bar {
+        @apply  border-gray-700 rounded-lg bg-gray-800 text-white;
+    }
+
+    .icon_styling {
+        @apply text-black w-6 h-6 dark:text-white;
     }
 
     /** BUTTONS */
 
     .large_blue_btn {
         @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded;
+    }
+
+    /** SEARCH ENTRIES */
+
+    .search_entry {
+        @apply bg-white border border-black rounded-lg p-4 w-full mb-5;
+    }
+    
+    .dark .search_entry {
+        @apply bg-gray-900 text-white;
     }
 }
 

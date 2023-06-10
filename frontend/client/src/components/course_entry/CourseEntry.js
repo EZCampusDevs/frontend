@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { assertPush, assertDelete } from '../../redux/features/courseEntrySlice';
 
 
-const CourseEntry = ({reduxKeyRef}) => {
+const CourseEntry = ({reduxKeyRef: reduxReference}) => {
   
     //& reduxKeyRef Refers to the specific sub-section of a slice i'm talking about, 
     //* This is to seperate different states using the same Reducers & Functionalities
@@ -18,14 +18,14 @@ const CourseEntry = ({reduxKeyRef}) => {
     const ReduxAddCourse = (object) => {
         dispatch(assertPush({
           payload : object,
-          reference : reduxKeyRef //Example: ics_dl, or executive page
+          reference : reduxReference //Example: ics_dl, or executive page
         }))
     } 
 
     const ReduxDeleteCourse = (int_id) => {
         dispatch(assertDelete({
           course_data_id : int_id,
-          reference : reduxKeyRef //Example: ics_dl, or executive page
+          reference : reduxReference //Example: ics_dl, or executive page
         }))
     }
 

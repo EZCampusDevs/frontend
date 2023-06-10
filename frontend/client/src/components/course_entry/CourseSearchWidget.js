@@ -7,6 +7,9 @@ import { loadIn } from '../../redux/features/courseSearchSlice';
 import { debounce } from 'lodash';
 import { SchoolTermRequest, SearchCoursesByTerm } from '../../util/requests';
 
+import '../../static/css/main_ui.css';
+
+
 //TODO: Get that callback add thing that propagates out of CourseSearchWidget component
 
 const CourseSearchWidget = ({AddCourseCallback}) => {
@@ -57,10 +60,10 @@ const CourseSearchWidget = ({AddCourseCallback}) => {
 
         //TODO: Make the stylings here better
         
-<div class="bg-white border border-black rounded-lg p-4 w-full mb-5">
+<div className="search_entry">
     <p class="text-xl font-bold mb-2">{entry.course_code}</p>
     <p class="text-2xl font-semibold mb-2">{entry.course_title}</p>
-    <p class="text-lg mb-2">{entry.course_crn}</p>
+    <p class="text-lg mb-2">CRN : {entry.course_crn}</p>
     <p class="text-lg mb-2">{entry.course_data_id}</p>
     <p class="text-lg mb-2">{entry.course_desc}</p>
     <p class="text-lg mb-2">N/A</p>
@@ -76,7 +79,6 @@ const CourseSearchWidget = ({AddCourseCallback}) => {
 
 
             );
-            
         }
 
         setResults(dump);
@@ -98,13 +100,13 @@ const CourseSearchWidget = ({AddCourseCallback}) => {
 
         {/* actual input box for search */}
 
-        <input type="text" onChange={keystrokeSearchPOST} ref={searchTerm} placeholder="Search Course Codes, CRNs, Prof names" class="medium_search_bar" />
+        <input type="text" onChange={keystrokeSearchPOST} ref={searchTerm} placeholder="Search Course Codes, CRNs, Prof names" class="medium_search_bar r_font" />
 
         <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
 
             {/* Magnifying Glass Icon for Search Bar */}
             
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="icon_styling">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
             </svg>
 

@@ -60,8 +60,9 @@ export async function SearchCoursesByTerm(searchTerm, termId, callback) {
 
 // ######################### ICS Requests #########################
 
+                              // fn , fn , fn , fn , Array<int>
 
-export function Sync_ICS_Post(setBlobURL_callback, setBlobSize_callback, setErrMsg_callback, render) {
+export function Sync_ICS_Post(setBlobURL_callback, setBlobSize_callback, setErrMsg_callback, render, courseDataIds) {
       
   setBlobURL_callback(1);
 
@@ -77,7 +78,7 @@ export function Sync_ICS_Post(setBlobURL_callback, setBlobSize_callback, setErrM
       },
 
   //Post Body to API
-      body: JSON.stringify({"course_data_ids": [1,2]}),
+      body: JSON.stringify({"course_data_ids": courseDataIds}),
 
   }).then(response => {  //& .then #1, Save the response as a file BLOB
 

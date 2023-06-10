@@ -5,12 +5,10 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setParameter } from '../../redux/features/configSelectSlice';
 import { SchoolTermRequest } from '../../util/requests';
 
-
 const TermSelect = () => {
 
     //Redux String State Variables:
     const selectedSchool = useSelector((state) => state.configSelect.selected_school);
-    const selectedTerm = useSelector((state) => state.configSelect.selected_term);
 
     //Redux Array<Objects> State Variables:
     const terms = useSelector((state) => state.configSelect.terms);    
@@ -28,6 +26,8 @@ const TermSelect = () => {
     
     
     //Term Options Builder
+
+    //TODO: Improve the building of terms, CSS and UI improvemnts
 
     const buildTerms = (termsArray) => {
       let dump = [];
@@ -59,19 +59,23 @@ const TermSelect = () => {
           { "school_name" : schoolUniqueName, "school_id" : null }, //API Request POST body
           setReduxParameter //callback
         );
-        
-    }, []
-    );
+    }, [] );
   
+    //Reset Default Term upon change of Terms list
     React.useEffect(
       () => {
-        //Load in terms
-      }, [terms]
-    )
+        //If terms list isn't empty, select the latest term as default selection
 
-    return(<>
-        <div className="flex items-center">
-        <span className="sub_title dark:text-white"> Select Term for <span className="font-semibold">{selectedSchool} :</span> </span>   
+        if(terms.length){
+          setReduxParameter("selected_term", terms[terms.length-1].termId, false);
+        }
+      }, [terms]
+    );
+
+    //! RETURN FN.
+return(<> 
+    <div className="flex items-center">
+        <span className="sub_title"> Select Term for <span className="font-semibold">{selectedSchool} :</span> </span>   
     </div>   
 
     <select
@@ -83,8 +87,7 @@ const TermSelect = () => {
         {buildTerms(terms)}
     </select>
     </>
-  );
-
+); //! END OF RETURN
 
 }
 
