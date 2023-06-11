@@ -30,7 +30,7 @@ VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=bradlc.
 ```
 
 
-<p style="color: red;"> Get this React Snippets Library if you're working on Functional or Q/A Frontend Developement instead of UI</p>
+<p> Get this React Snippets Library if you're working on Functional or Q/A Frontend Developement instead of UI</p>
 ```
 Name: ES7+ React/Redux/React-Native snippets
 Id: dsznajder.es7-react-js-snippets
