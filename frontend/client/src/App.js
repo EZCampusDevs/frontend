@@ -20,8 +20,6 @@ import ExecutiveCalendarPage from './pages/ExecutiveCalendarPage';
 import NewHomePage from './pages/NewHomePage';
 
 import SchoolConfigSelect from './components/util/SchoolConfigSelect';
-
-
 import CourseSearchWidget from './components/course_entry/CourseSearchWidget';
 
 //React & Lib imports:
