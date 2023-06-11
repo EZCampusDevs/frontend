@@ -31,14 +31,8 @@ VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=bradlc.
 
 
 <p> Get this React Snippets Library if you're working on Functional or Q/A Frontend Developement instead of UI</p>
-```
-Name: ES7+ React/Redux/React-Native snippets
-Id: dsznajder.es7-react-js-snippets
-Description: Extensions for React, React-Native and Redux in JS/TS with ES7+ syntax. Customizable. Built-in integration with prettier.
-Version: 4.4.3
-Publisher: dsznajder
-VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=dsznajder.es7-react-js-snippets
-```
+Name: ES7+ React/Redux/React-Native snippets (Search it up on VSCODE)
+
 
 <h2>Section 2:</h2>
 
