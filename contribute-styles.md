@@ -36,7 +36,7 @@ Name: ES7+ React/Redux/React-Native snippets (Search it up on VSCODE)
 
 <h2>Section 2:</h2>
 
-  <a href="https://www.youtube.com/embed/ZnsgHqdxeKg">Full Video Explaination ; <b>18 minutes </b> </a
+  <a href="https://www.youtube.com/embed/ZnsgHqdxeKg">Full Video Explaination ; <b>18 minutes </b> </a>
   <br>
   <ul>
     <li><a href="https://youtu.be/ZnsgHqdxeKg?t=120">Jump to Example #1 ( 2:00 )</a></li>
