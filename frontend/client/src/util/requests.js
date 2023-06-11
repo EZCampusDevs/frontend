@@ -4,18 +4,17 @@ import findCookie from "./findCookie";
 let ENDPOINT = "https://api.ezcampus.org/"
 let SEARCH_ENDPOINT = `https://search.ezcampus.org/`;
 
+
 const API_Switch = () => {
   var currentDomain = window.location.hostname;
-  
-  //Example #1: https://api.domain.com/wdfkoewf -> Clean it too: `domain.com` 
-  //Example #2: https://srchg.domain.com/13l/feeewf -> Clean it too: `domain.com` 
 
-  var cleanDomain = currentDomain.replace(/^.*?([^.]+\.[^.]+)(?:$|\/.*)$/, "$1");
 
-  if (cleanDomain !== "ezcampus.org") {
+  var checkForLocalhost_Regex = /^(https?:\/\/)?localhost/i;
+  const isLocalhost = checkForLocalhost_Regex.test(currentDomain);
+
+  if (isLocalhost) {
     ENDPOINT = "http://localhost:8000/";
     SEARCH_ENDPOINT = `http://localhost:8080/searchIndex-1.0-SNAPSHOT/`;
-    console.log("Request API URLS set to local...")
   }
 }
 
