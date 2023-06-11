@@ -10,8 +10,6 @@ This document will cover guidance on styling & making UI design modifications fo
 
 <hr>
 <h2>Section 1:</h2>
-<br></br>
-
 <h3>Doc-esque Ressources:</h3>
 
 <span>Official Docs</span> <a href="https://tailwindui.com/components">Tailwind CSS</a>
@@ -44,9 +42,9 @@ VS Marketplace Link: https://marketplace.visualstudio.com/items?itemName=dsznajd
 
 <h2>Section 2:</h2>
 
-  <iframe width="560" height="315" src="https://www.youtube.com/embed/ZnsgHqdxeKg" frameborder="0" allowfullscreen></iframe>
+  <a href="https://www.youtube.com/embed/ZnsgHqdxeKg">Full Video Explaination ; <b>18 minutes </b> </a
   <br>
   <ul>
-    <li><a href="https://youtu.be/ZnsgHqdxeKg?t=120">Jump to Example #1</a></li>
-    <li><a href="https://youtu.be/ZnsgHqdxeKg?t=593">Jump to Example #2</a></li>
+    <li><a href="https://youtu.be/ZnsgHqdxeKg?t=120">Jump to Example #1 ( 2:00 )</a></li>
+    <li><a href="https://youtu.be/ZnsgHqdxeKg?t=593">Jump to Example #2 ( 9:50 )</a></li>
   </ul>
