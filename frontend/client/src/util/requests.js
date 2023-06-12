@@ -7,15 +7,17 @@ let SEARCH_ENDPOINT = `https://search.ezcampus.org/`;
 
 const API_Switch = () => {
   var currentDomain = window.location.hostname;
-
+  console.log(currentDomain);
 
   var checkForLocalhost_Regex = /^(https?:\/\/)?localhost/i;
   const isLocalhost = checkForLocalhost_Regex.test(currentDomain);
 
-  if (isLocalhost) {
+  if (isLocalhost === true) {
+    console.log("IS LOCAL...");
     ENDPOINT = "http://localhost:8000/";
     SEARCH_ENDPOINT = `http://localhost:8080/searchIndex-1.0-SNAPSHOT/`;
   }
+  
 }
 
 API_Switch();

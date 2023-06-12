@@ -29,7 +29,7 @@ export function logout() {
 
 const SUBDOMAIN_KEYS = {
     "otu" : "Ontario Tech University - Canada",
-    "uvic" : "University of Victory - Canada"
+    "uvic" : "University of Victoria - Canada"
 }
 
 export function LSLoadSchool() {

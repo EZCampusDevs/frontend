@@ -118,8 +118,8 @@ const PageHeader = ({ selectedElement, slotOneJSX, slotTwoJSX, slotThreeJSX }) =
       {headerDropdown}
       <div className="box_shadow header_container">
         <img src={logo} alt="ezcampus" width="50" height="50" className='logo_style'/>
-          <a className="header_text" onClick={ () => {HeaderDropdownBuilder(Tools);} }>Tools</a> 
-          <a className="header_text" onClick={ () => {HeaderDropdownBuilder(Events);} }>Events</a> 
+          <a className="header_text" onClick={ () => {HeaderDropdownBuilder(Tools);} } style={{ cursor: 'pointer' }}>Tools</a> 
+          <a className="header_text" onClick={ () => {HeaderDropdownBuilder(Events);} } style={{ cursor: 'pointer' }}>Events</a> 
           <span/> <span/>
           <div></div>
           <div class="pl-10 flex">
