@@ -2,11 +2,18 @@ import findCookie from "./findCookie";
 
 //ENDPOINT DEFINITIONS
 let ENDPOINT = "https://api.ezcampus.org/"
-let SEARCH_ENDPOINT = `https://search.ezcampus.org/`;
+let SEARCH_ENDPOINT = `https://search.ezcampus.org/searchIndex`;
 
+// Requests Console Logger
+const reqPrint = (string) => {
+  console.log('%c [ requests.js ] : '+string, 'background: #222; color: #bada55')
+}
+
+//Function that switches based on Hostname, either to our production endpoints or localhost stuff
 
 const API_Switch = () => {
   var currentDomain = window.location.hostname;
+  reqPrint("Current Hostname: ");
   console.log(currentDomain);
 
   var checkForLocalhost_Regex = /^(https?:\/\/)?localhost/i;
@@ -17,7 +24,6 @@ const API_Switch = () => {
     ENDPOINT = "http://localhost:8000/";
     SEARCH_ENDPOINT = `http://localhost:8080/searchIndex-1.0-SNAPSHOT/`;
   }
-  
 }
 
 API_Switch();
