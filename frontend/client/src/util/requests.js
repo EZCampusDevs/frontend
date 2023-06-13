@@ -2,7 +2,7 @@ import findCookie from "./findCookie";
 
 //ENDPOINT DEFINITIONS
 let ENDPOINT = "https://api.ezcampus.org/"
-let SEARCH_ENDPOINT = `https://search.ezcampus.org/searchIndex`;
+let SEARCH_ENDPOINT = `https://search.ezcampus.org/searchIndex/`;
 
 // Requests Console Logger
 const reqPrint = (string) => {
