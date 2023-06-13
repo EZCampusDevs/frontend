@@ -51,13 +51,21 @@ const CourseSearchWidget = ({AddCourseCallback}) => {
         }
 
         let dump = [];
+        // Create an empty array to store the sorted entries
+        const sortedEntries = [];
 
-        for(const entry of payload) {
-            
+        for (const entry of payload) {
+            sortedEntries.push(entry);
+          }
+          
+          // Sort the entries based on the ranking in ascending order
+          sortedEntries.sort((a, b) => b.ranking - a.ranking);
+
+        for(const entry of sortedEntries) {
+
             console.log(entry);
 
             dump.push(
-
         //TODO: Make the stylings here better
         
 <div className="search_entry">
@@ -66,7 +74,6 @@ const CourseSearchWidget = ({AddCourseCallback}) => {
     <p class="text-lg mb-2">CRN : {entry.course_crn}</p>
     <p class="text-lg mb-2">{entry.course_data_id}</p>
     <p class="text-lg mb-2">{entry.course_desc}</p>
-    <p class="text-lg mb-2">N/A</p>
 
 
     <button className="ml-6 w-72 flex items-center px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" 
@@ -76,10 +83,7 @@ const CourseSearchWidget = ({AddCourseCallback}) => {
       <span className="ml-3">Add Course</span>
     </button>
 </div>
-
-
-            );
-        }
+            );}
 
         setResults(dump);
 
