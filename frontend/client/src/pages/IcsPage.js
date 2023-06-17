@@ -43,7 +43,7 @@ const IcsPage = () => {
 
       gapi.client.load('calendar', 'v3', () => console.log('bam!'))
 
-      gapi.auth2.getAuthInstance().signIn()
+      gapi.auth2.getAuthInstance().signIn() //! Errors I think
       .then(() => {
 
         console.log("Gets here?")
@@ -113,7 +113,7 @@ const IcsPage = () => {
   }
 
 
-  document.title = app_name + " | Event Planner Heatmap"
+  document.title = app_name + " | Calendar"
 
   //Redux state
   const saved_entries = useSelector((state) => state.courseEntry.ics_dl_entries);
@@ -174,17 +174,15 @@ const IcsPage = () => {
           <button className="" onClick={() => {handleSubmitICS()}}>
         Re-Generate My Calendar File
       </button>
-        </>
-      )
+        </>);
     } else {
       return (
         <>
         <br/>
         <button className="" onClick={() => {handleSubmitICS()}}>
-        Generate My Calendar file 
-      </button>
-      </>
-      )
+          Generate My Calendar file 
+        </button>
+      </>);
     }
     
 }

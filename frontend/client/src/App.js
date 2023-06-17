@@ -7,6 +7,9 @@ import SignUp from './pages/SignUp';
 
 //Page imports:
 import CalendarPage from './pages/CalendarPage';
+
+import NewCalendar from './components/calendar/NewCalendar';
+
 import LoginPage from './pages/LoginPage';
 import ClubUserPage from './pages/ClubUserPage';
 import ClubCreationPage from './pages/ClubCreationPage';
@@ -39,6 +42,8 @@ export default function App() {
       <Route path="/login" element={<LoginPage/>}></Route>
       <Route path="/signup" element={<SignUp/>}></Route>
       <Route path="/ics" element={<IcsPage/>}></Route>
+      <Route path="/calendar_testing" element={<NewCalendar/>}></Route>
+
 
         {/* Temporary path */}
       <Route path="/cs_widget" element={<CourseSearchWidget/>}></Route>

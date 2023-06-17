@@ -138,8 +138,6 @@ export function Sync_ICS_Post(setBlobURL_callback, setBlobSize_callback, setErrM
   .catch((error) => {
       console.error('Error:', error);
   });  
-
-
 }
 
 // ######################### Executive Requests #########################
@@ -158,4 +156,25 @@ export async function tryExecutiveAuth () {
 
   return RESPONSE.status;
 
+}
+
+
+// ######################### Calendar-Related Requests #########################
+
+export async function CalendarPlaceholder(course_data_ids, callback) {
+
+  console.log("Placeholder woerking?")
+
+  //course_data_ids is supposed to be Array of Ints
+
+  const RESPONSE = await fetch(ENDPOINT + 'placeholder/events', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({  "course_data_ids": course_data_ids}) 
+                        //TODO: Figure out page and results per page thing (Also fix the Java Micro-Service for this)
+  });
+
+    let ResponseJSON = await RESPONSE.json();
+    callback(ResponseJSON);
+    return;
 }

@@ -1,5 +1,8 @@
 import { logVoid } from "./logger";
 
+import { datetime, RRule, RRuleSet, rrulestr } from 'rrule'
+
+
 export function calendarParseDesc(stringDescription) {
 
     let eDescription = stringDescription.split('\n');
@@ -17,6 +20,72 @@ export function calendarParseDesc(stringDescription) {
     return descObject;
 }
 
+const pDateStr = (dateStart) => { //Turns string like "yearInt-monthInt-dayInt" into  [ yearInt , monthInt, dayInt ]
+    const ret = dateStart.split('-');
+    return ret.map(e => {return parseInt(e)});
+}
+
+
+export function cParse2(data) {
+    //First & Last mondays
+
+    const rruleSet = new RRuleSet()
+
+    //
+    const OU_DAYS = "days(n)"
+    const OU_WEEKS = "weeks(weekday)"
+    const OU_MONTHS_WD = "months(nth_weekday)"
+    const OU_MONTHS_N = "months(nth)" // Nth Day in Month ; E.G July 14th, June 14th
+    const OU_YEARS = "years(nth)"
+
+
+    let meetings = data["detail"];
+
+    let dateRange = {
+        first : null,
+        last : null
+    }
+
+    for(const [mI,mV] of meetings.entries()) { // Index, Value
+
+        if(!mV){ continue; }
+
+        let startDateList = pDateStr(mV['date_start']); //[ yearInt , monthInt, dayInt ]
+        let endDateList = pDateStr(mV['occurrence_limit']); //In RRULE, occurence_limit refers to the date end
+               
+        //JS counts months from 0 to 11 hence the dateList[1]-1
+        const sDate = new Date(startDateList[0],(startDateList[1]-1),startDateList[2]);
+        const eDate = new Date(endDateList[0],(endDateList[1]-1),endDateList[2]);
+
+               //First
+        if(dateRange.first === null || dateRange.first > sDate){
+            dateRange.first = sDate;
+        }
+
+               //Last
+        if(dateRange.last === null || dateRange.last < eDate){
+            dateRange.last = eDate;
+        }
+        
+    }
+
+    //Got the ranges, now let's generate an everyday for in between them:
+    logVoid('[First Iteration: (dateRange Object)]');
+    console.log(dateRange);
+
+
+    const rule = RRule.fromString(
+        "DTSTART:20230511T131000\n"
+        + "RRULE:FREQ=WEEKLY;UNTIL=20230511T160000;BYDAY=TH"
+      );
+
+    let rall = rule.all();
+
+    console.log(rall);
+}
+
+
+
 export function cParse(crn_inp, cal_inp) {
 
     //RRGGBB Hex Codes:
@@ -31,11 +100,6 @@ export function cParse(crn_inp, cal_inp) {
     logVoid('[ cParse INPUT: ]');
     console.log(crn_inp);
     console.log(cal_inp)
-
-    let pDateStr = (dateStart) => { //Turns "string" into  [ yearInt , monthInt, dayInt ]
-        let ret = dateStart.split('-');
-        return ret.map(e => {return parseInt(e)});
-    }
 
     //let parsed = JSON.parse(input); //This is an array of dicts
     let CRN_input = crn_inp;
@@ -53,7 +117,7 @@ export function cParse(crn_inp, cal_inp) {
 
         let ref;
 
-        if(v === 0 && CRN_input && CRN_input.length){
+        if(v === 0 && CRN_input && CRN_input.length) {
             ref = CRN_input;
         } else if(v === 1 && CAL_input && CAL_input.length) {
             ref = CAL_input;
