@@ -112,7 +112,6 @@ const IcsPage = () => {
     })
   }
 
-
   document.title = app_name + " | Calendar"
 
   //Redux state
@@ -150,7 +149,6 @@ const IcsPage = () => {
 
   }
 
-
   function RenderLink() {
 
     if(blobURL === 1){
@@ -176,16 +174,31 @@ const IcsPage = () => {
       </button>
         </>);
     } else {
-      return (
-        <>
-        <br/>
-        <button className="" onClick={() => {handleSubmitICS()}}>
+
+      if(saved_entries.length) {
+
+      return (<><br/>
+        <button className="large_blue_btn" onClick={() => {handleSubmitICS()}}>
           Generate My Calendar file 
         </button>
       </>);
+      } else {
+        return (<><br/>
+        <button className="large_blue_btn disabled" onClick={() => {handleSubmitICS()}}>
+          Select courses first...
+        </button>
+      </>);
+      }
+
     }
     
 }
+
+  //
+
+  React.useEffect( () => {
+  }, [saved_entries])
+
 
 //! Might be removed if we remove the video embd
   //Based on the Width of the viewport, this function will return a fair height/width to match the size of viewport.
@@ -229,14 +242,14 @@ const IcsPage = () => {
 
         <br/>
 
-        <br/><br/><br/>
+        <br/>
         <div className="step_title r_font">Step 3. Generate & Download:</div> 
 
         <span className="error_text r_font"> {errMsg} </span>
         
         {RenderLink()}<br/><br/>
 
-        <button onClick={() => {handleGoogleCalendar()}}>Google OAuth</button>
+        {/* <button className="large_blue_btn disabled" onClick={() => {handleGoogleCalendar()}}>Save to Google Calendar (Coming Soon)</button> */}
 
       </div>
 

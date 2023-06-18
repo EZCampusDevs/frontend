@@ -62,13 +62,11 @@ const CourseSearchWidget = ({AddCourseCallback}) => {
           sortedEntries.sort((a, b) => b.ranking - a.ranking);
 
         for(const entry of sortedEntries) {
-
-            console.log(entry);
-
             dump.push(
         //TODO: Make the stylings here better
         
 <div className="search_entry">
+<p class="text-xl font-bold mb-2">RANK: {entry.ranking}</p>
     <p class="text-xl font-bold mb-2">{entry.course_code}</p>
     <p class="text-2xl font-semibold mb-2">{entry.course_title}</p>
     <p class="text-lg mb-2">CRN : {entry.course_crn}</p>

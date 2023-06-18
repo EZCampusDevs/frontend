@@ -55,12 +55,16 @@ export const courseEntrySlice = createSlice(
         reducers : {
             assertPush: (state,action) => {
                 //Getting the specific state based on reference
+                
+                console.log("ref: "+action.payload.reference);
+
                 let instance_state = getState(action.payload.reference, state);
 
                 const incomingCDI = action.payload.payload.course_data_id;
 
                 //Check for duplicates, Return early if there is..
-            
+                
+
                 for(let i = 0; i < instance_state.length; i++){
                     if(instance_state[i].course_data_id === incomingCDI){
                         reduxVoid("This Course_Data Entry is already appended.");

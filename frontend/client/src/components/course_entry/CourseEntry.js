@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { assertPush, assertDelete } from '../../redux/features/courseEntrySlice';
 
 
-const CourseEntry = ({reduxKeyRef: reduxReference}) => {
+const CourseEntry = ({reduxReference}) => {
   
     //& reduxKeyRef Refers to the specific sub-section of a slice i'm talking about, 
     //* This is to seperate different states using the same Reducers & Functionalities
@@ -40,14 +40,25 @@ const CourseEntry = ({reduxKeyRef: reduxReference}) => {
 
     for(const savedEntry of savedEntries) {
         dump.push(
-            <div className="" key={dump.length}> {/*So react can shutup about key warning*/}
+            <div className="bg-blue-200 rounded-lg p-4 mb-3 dark:bg-gray-900 dark:text-gray-200" key={dump.length}> {/*So react can shutup about key warning*/}
+              <div className="grid grid-cols-6">
+              {/* COL 1 */}
+              <div className="col-start-1 r_font">
+                <span className="sub_title">{savedEntry.course_code}</span><br></br>
+                {savedEntry.class_type}
+              </div>
 
-                {savedEntry.course_code}        
-                {savedEntry.course_crn}
+              {/* COL 2 */}
+              <div className="col-start-2 r_font"> <span className="font-bold">CRN:</span> {savedEntry.course_crn}     </div>  
+              {/* COL 3 */}
+              <div className="col-start-3 r_font">{savedEntry.course_title}</div>                
 
-                <button className="large_blue_btn" onClick={() => {ReduxDeleteCourse(savedEntry.course_data_id)}}>
+              {/* COL 6 */}
+              <button className="col-start-6 large_blue_btn" onClick={() => {ReduxDeleteCourse(savedEntry.course_data_id)}}>
                     Delete
-                    </button>                                                                            
+              </button>
+
+              </div>
             </div>
         )
     }
