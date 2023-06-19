@@ -76,7 +76,6 @@ export async function SearchCoursesByTerm(searchTerm, termId, callback) {
   });
 
     let ResponseJSON = await RESPONSE.json();
-    console.log(ResponseJSON)
     callback(ResponseJSON);
     return;
 }

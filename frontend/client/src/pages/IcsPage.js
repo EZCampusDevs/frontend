@@ -167,7 +167,7 @@ const IcsPage = () => {
           <br/>
           <p>Successfully created your .ics file </p>
           <br/>
-          <a href={blobURL} className="" download="calendar.ics">CLICK TO DOWNLOAD ({blobSize} bytes)</a>
+          <a className="large-blue-btn" href={blobURL} download="calendar.ics">CLICK TO DOWNLOAD ({blobSize} bytes)</a>
           <br/><br/>
           <button className="" onClick={() => {handleSubmitICS()}}>
         Re-Generate My Calendar File
