@@ -7,14 +7,16 @@ import PageHeader from '../components/navbar/PageHeader'
 const SchoolRoutePage = () => {
 
 
-
+    const genBtn = () => {
+        return <button onClick={() => {window.location.href = "https://otu.ezcampus.org"}}> Click </button>
+    }
 
 
   return (
     <div>
     <PageHeader/>
 
-    TODO: Make this page
+    TODO: Make this page {genBtn()}
 
     </div>
   )
