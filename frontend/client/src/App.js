@@ -29,6 +29,7 @@ import CourseSearchWidget from './components/course_entry/CourseSearchWidget';
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 import { LSLoadSchool } from './util/browserUtil';
+import SchoolRoutePage from './pages/SchoolRoutePage';
 
 export default function App() {
 
@@ -42,6 +43,7 @@ export default function App() {
       <Route path="/login" element={<LoginPage/>}></Route>
       <Route path="/signup" element={<SignUp/>}></Route>
       <Route path="/ics" element={<IcsPage/>}></Route>
+      <Route path="/school/route" element={<SchoolRoutePage/>}></Route>
       <Route path="/calendar_testing" element={<NewCalendar/>}></Route>
 
 
