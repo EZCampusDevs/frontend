@@ -45,43 +45,31 @@ export function cParse2(data) {
         first : null,
         last : null
     }
+    
+    //Find first and last dates:
+
+
+    let eventRules = []; //List of lists of recurrence dates, every list for specific 
 
     for(const [mI,mV] of meetings.entries()) { // Index, Value
-
-        if(!mV){ continue; }
-
-        let startDateList = pDateStr(mV['date_start']); //[ yearInt , monthInt, dayInt ]
-        let endDateList = pDateStr(mV['occurrence_limit']); //In RRULE, occurence_limit refers to the date end
-               
-        //JS counts months from 0 to 11 hence the dateList[1]-1
-        const sDate = new Date(startDateList[0],(startDateList[1]-1),startDateList[2]);
-        const eDate = new Date(endDateList[0],(endDateList[1]-1),endDateList[2]);
-
-               //First
-        if(dateRange.first === null || dateRange.first > sDate){
-            dateRange.first = sDate;
-        }
-
-               //Last
-        if(dateRange.last === null || dateRange.last < eDate){
-            dateRange.last = eDate;
-        }
         
+        let event = mV;
+
+        const eventRule = RRule.fromString(mV.rrulejs_str);
+        let erall = eventRule.all();
+
+        //Now that we've got the RRule All, let's clean up event
+        delete event['rrulejs_str'];
+        event['rall'] = erall;
+
+        eventRules.push(event);
     }
+    console.log(eventRules);
 
     //Got the ranges, now let's generate an everyday for in between them:
     logVoid('[First Iteration: (dateRange Object)]');
     console.log(dateRange);
-
-
-    const rule = RRule.fromString(
-        "DTSTART:20230511T131000\n"
-        + "RRULE:FREQ=WEEKLY;UNTIL=20230511T160000;BYDAY=TH"
-      );
-
-    let rall = rule.all();
-
-    console.log(rall);
+ 
 }
 
 

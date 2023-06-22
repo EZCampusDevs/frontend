@@ -8,12 +8,9 @@ import NewCalendarEvent from './NewCalendarEvent';
 
 const NewCalendar = () => {
 
-    //const eventsOverlay = [<NewCalendarEvent/>];
-    
-    
-    // TODO: try to use rrule with it
 
-
+    const eventsOverlay = [<NewCalendarEvent colStart={1} timeStart="11:40:00" timeEnd="11:00:00"/>];
+    
     const generateCalendar = () => {
 
 
@@ -54,6 +51,7 @@ const NewCalendar = () => {
 
         let cols = (
             <div className="grid grid-cols-8 gap-1">
+
               {/* TIME SLOTS (col 1) */}
               <div className="row-span-49 col-span-1">
                 {/* SWITCH Button, TODO: add styling and functionality */}
@@ -64,13 +62,7 @@ const NewCalendar = () => {
               {/* Starting from second column */}
               <div className="grid col-span-7 grid-cols-7 gr-50">
 
-                <div className=" bg-blue-200 mt-6 h-16">01</div>
-                <div className=" col-start-1
-                bg-green-200 mt-20 h-20
-                ">
-
-                </div>
-
+              {eventsOverlay}
 
               </div>
 
