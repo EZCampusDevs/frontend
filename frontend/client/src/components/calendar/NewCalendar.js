@@ -10,20 +10,30 @@ const NewCalendar = () => {
 
 
     const eventsOverlay = [<NewCalendarEvent colStart={2} timeStart="08:00:00" timeEnd="12:00:00"/>
-  , <NewCalendarEvent colStart={2} timeStart="14:00:00" timeEnd="18:00:00"/>
+  , <NewCalendarEvent colStart={2} timeStart="14:00:00" timeEnd="18:00:00"/>,
+  <NewCalendarEvent colStart={6} timeStart="11:00:00" timeEnd="13:00:00"/>,
+  <NewCalendarEvent colStart={6} timeStart="14:00:00" timeEnd="18:00:00"/>,
+  <NewCalendarEvent colStart={4} timeStart="14:00:00" timeEnd="18:00:00"/>,
+  <NewCalendarEvent colStart={5} timeStart="14:00:00" timeEnd="18:00:00"/>
   ];
     
-    const generateCalendar = () => {
+  // 4, 5, 7, 8 doesn't WORK ???
 
+
+    const generateCalendar = (view) => {
 
         const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
         
+        const earliest = 0;
+        const latest   = 48;
+
+        if(!view) { // If not view, assume it's the default 7 day
+
+        }  
 
 
         let rows = [];
 
-        const earliest = 0;
-        const latest   = 48;
 
 
         //Generate Calendar Header
@@ -48,15 +58,17 @@ const NewCalendar = () => {
         for (let wI = 0; wI <= weekdays.length; wI++) { // Start from 1 since you have a time column
 
           let bgCol = [];
-          for (let i = earliest; i < latest+CALENDAR_TOP_ROW_OFFSET; i++) {
 
+          let depth = 0;
+
+          for (let i = earliest; i < latest+CALENDAR_TOP_ROW_OFFSET; i++) {
+            
             let classStr = "h-5 border border-slate-400 col-span-1 ";
             classStr += "col-start-"+String(wI+1);
 
-          
           //If it's at the earliest column, let's use it for times:
 
-          if(wI === 0 && i >= CALENDAR_TOP_ROW_OFFSET){
+          if(wI === 0 && depth >= CALENDAR_TOP_ROW_OFFSET){
 
             let normalized_i = i - CALENDAR_TOP_ROW_OFFSET;
 
@@ -78,7 +90,7 @@ const NewCalendar = () => {
                 gridRowEnd : (i+2)
               }}></div>);
           }
-          
+            depth++;
           }
 
           bg.push(<div
@@ -101,6 +113,7 @@ const NewCalendar = () => {
               <div className="grid col-span-8 gr-50">
                 {bg}
                 {eventsOverlay}
+                
               </div>
 
             </div>

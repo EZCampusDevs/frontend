@@ -34,7 +34,7 @@ const NewCalendarEvent = ({colStart, timeStart, timeEnd}) => {
       tS[1] -= 30;
     }
 
-    let className = "bg-blue-200 col-start-"+colStart+' ';
+    let className = "bg-blue-200 ";
     className += rowStart;
     
     const rowEnd = rowStart+(deltaMins/30);
@@ -43,7 +43,8 @@ const NewCalendarEvent = ({colStart, timeStart, timeEnd}) => {
       className = {className}
     style={{
         gridRowStart: rowStart,
-        gridRowEnd : rowEnd
+        gridRowEnd : rowEnd,
+        gridColumnStart : colStart
       }}>
 
     LL
