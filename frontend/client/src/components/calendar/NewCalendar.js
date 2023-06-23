@@ -9,13 +9,17 @@ import NewCalendarEvent from './NewCalendarEvent';
 const NewCalendar = () => {
 
 
-    const eventsOverlay = [<NewCalendarEvent colStart={1} timeStart="11:40:00" timeEnd="11:00:00"/>];
+    const eventsOverlay = [<NewCalendarEvent colStart={2} timeStart="08:00:00" timeEnd="12:00:00"/>
+  , <NewCalendarEvent colStart={2} timeStart="14:00:00" timeEnd="18:00:00"/>
+  ];
     
     const generateCalendar = () => {
 
 
         const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
         
+
+
         let rows = [];
 
         const earliest = 0;
@@ -26,44 +30,77 @@ const NewCalendar = () => {
         let header = [];
         for(const [wI,wD] of weekdays.entries()) {
            let headerEntry = (<div className="text-center font-bold">
-                        {weekdays[wI]}
+                        {wD}
                         </div>);
 
         rows.push(headerEntry);
 
+        
+
         }
 
+      
 
-        let slotTimes = [];
-        for (let i = earliest; i < latest; i++) {
-            const hour = Math.floor(i / 2);
-            const minutes = (i % 2) === 0 ? '00' : '30';
+        const CALENDAR_TOP_ROW_OFFSET = 2;
+
+        let bg = [];
+
+        for (let wI = 0; wI <= weekdays.length; wI++) { // Start from 1 since you have a time column
+
+          let bgCol = [];
+          for (let i = earliest; i < latest+CALENDAR_TOP_ROW_OFFSET; i++) {
+
+            let classStr = "h-5 border border-slate-400 col-span-1 ";
+            classStr += "col-start-"+String(wI+1);
+
+          
+          //If it's at the earliest column, let's use it for times:
+
+          if(wI === 0 && i >= CALENDAR_TOP_ROW_OFFSET){
+
+            let normalized_i = i - CALENDAR_TOP_ROW_OFFSET;
+
+            const hour = Math.floor(normalized_i / 2);
+            const minutes = (normalized_i % 2) === 0 ? '00' : '30';
             const time = `${hour}:${minutes}`;
-              
-            const timeSlot = ( <div key={i} className="h-4 text-center col-start-1 col-span-1">
-                    {time}
-                  </div> );
-            slotTimes.push(timeSlot); 
             
+            bgCol.push(
+              <div class={classStr+" text-center font-bold"}
+              style = {{gridRowStart : (normalized_i+1), gridRowEnd : (normalized_i+2)}}> 
+              {time}
+              </div>);
 
+          } else { // Regular Background Cell
+            bgCol.push(
+              <div class={classStr}
+              style = {{
+                gridRowStart : (i+1),
+                gridRowEnd : (i+2)
+              }}></div>);
+          }
+          
+          }
+
+          bg.push(<div
+          style= {{
+            gridRowStart : 1,
+          }}
+          >
+            {bgCol}
+          </div>);
         }
+
+
         
 
         let cols = (
             <div className="grid grid-cols-8 gap-1">
 
               {/* TIME SLOTS (col 1) */}
-              <div className="row-span-49 col-span-1">
-                {/* SWITCH Button, TODO: add styling and functionality */}
-                <span>Switch</span>
-                {slotTimes}
-              </div>
-          
               {/* Starting from second column */}
-              <div className="grid col-span-7 grid-cols-7 gr-50">
-
-              {eventsOverlay}
-
+              <div className="grid col-span-8 gr-50">
+                {bg}
+                {eventsOverlay}
               </div>
 
             </div>

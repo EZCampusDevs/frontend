@@ -72,4 +72,7 @@
     max-height: 60vh;
 }
 
-.gr-50 {grid-template-rows: repeat(50, minmax(0, 1fr)); height: 50rem; }
+.gr-50 {
+    grid-template-rows: repeat(50, minmax(0, 1fr));
+    height: 62.5rem;
+  }
