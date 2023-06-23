@@ -3,51 +3,34 @@ import { logVoid } from "./logger";
 import { datetime, RRule, RRuleSet, rrulestr } from 'rrule'
 
 
-export function calendarParseDesc(stringDescription) {
 
-    let eDescription = stringDescription.split('\n');
-    let descObject = {};
-    
-    for(const k of eDescription){            
-    //Entries of string: 
+export function parseDescription(desc) {
+    let lines = desc.split("\\n");
+    let obj = {};
 
-      //Split first occurance of ':' 
-      const param = k.split(/:(.*)/s);
+    lines.forEach(line => {
+        let parts = line.split(": ");
+        let key = parts[0].toLowerCase().split(' ').join('_'); // Convert "Max capacity" to "max_capacity"
+        let value = parts[1];
+        
+        if (!isNaN(value)) value = parseInt(value); // Convert numeric strings to integers
+        
+        obj[key] = value;
+    });
 
-      descObject[param[0]] = param[1].trim();
-    }
-
-    return descObject;
-}
-
+    return obj;
+} //chatgpt: Generated parseDescription ###
+ 
 const pDateStr = (dateStart) => { //Turns string like "yearInt-monthInt-dayInt" into  [ yearInt , monthInt, dayInt ]
     const ret = dateStart.split('-');
     return ret.map(e => {return parseInt(e)});
 }
 
-
 export function cParse2(data) {
     //First & Last mondays
 
     const rruleSet = new RRuleSet()
-
-    //
-    const OU_DAYS = "days(n)"
-    const OU_WEEKS = "weeks(weekday)"
-    const OU_MONTHS_WD = "months(nth_weekday)"
-    const OU_MONTHS_N = "months(nth)" // Nth Day in Month ; E.G July 14th, June 14th
-    const OU_YEARS = "years(nth)"
-
-
     let meetings = data["detail"];
-
-    let dateRange = {
-        first : null,
-        last : null
-    }
-    
-    //Find first and last dates:
-
 
     let eventRules = []; //List of lists of recurrence dates, every list for specific 
 
@@ -66,9 +49,111 @@ export function cParse2(data) {
     }
     console.log(eventRules);
 
+    let earliestDate = null;
+    let latestDate = null;
+
+    //chatgpt: Generated For Loop which finds EARLIEST & LATEST dates from event rrule.alls
+    for(let i = 0; i < eventRules.length; i++){
+        //Ensure the "rall" array has elements before accessing them
+        if(eventRules[i].rall.length > 0){
+            //Convert the date strings to Date objects for comparison
+            let startDate = new Date(eventRules[i].rall[0]);
+            let endDate = new Date(eventRules[i].rall[eventRules[i].rall.length-1]);
+    
+            //Compare the earliest date of the "rall" array with the current earliest date
+            if(earliestDate === null || startDate < earliestDate){
+                earliestDate = startDate;
+            }
+            //Compare the latest date of the "rall" array with the current latest date
+            if(latestDate === null || endDate > latestDate){
+                latestDate = endDate;
+            }
+        }
+    }
+
+    //! Weird Band-aid fix I brought over from other Algo, look into this
+    const endWeek = new Date(
+        latestDate.getTime()+6*86400000
+    ) 
+    
     //Got the ranges, now let's generate an everyday for in between them:
     logVoid('[First Iteration: (dateRange Object)]');
-    console.log(dateRange);
+    console.log(earliestDate, latestDate);
+
+    let iter = 0;
+    let month_ = [];
+    let month_first = [];
+    let month_offset = 0;
+    let output = [];
+
+    //Range builder:
+
+    while(true) {
+
+        if(!earliestDate || !latestDate){
+            break;
+        }
+
+        const newUnix = earliestDate.getTime()+(86400000*iter)
+
+
+        const iterDate = new Date(newUnix);
+
+        let prevMonth;
+
+        if(output.length !== 0){
+            const pD = (output[output.length-1])['date'];
+            prevMonth = pD.getMonth();
+        }
+
+        if(prevMonth !== iterDate.getMonth()){
+            month_first.push(iter);
+            month_.push(iterDate.getMonth()+1);
+        }
+
+
+        let e = [];
+
+        //1. check iterDate with All Rall dates for all Entries?
+        for(const event of eventRules) {
+
+
+            for(const occurrence of event.rall) {
+                
+            //chatgpt: Wrote if clause
+                let occurrenceDate = new Date(occurrence);
+                if(occurrenceDate.getFullYear() === iterDate.getFullYear() &&
+                   occurrenceDate.getMonth() === iterDate.getMonth() &&
+                   occurrenceDate.getDate() === iterDate.getDate()){
+
+                    let appendedEvent = {...event}; //Spread so it doesn't delete the .rall param on event
+                    delete appendedEvent["rall"];
+
+                    appendedEvent.description = parseDescription(appendedEvent.description);
+                    
+                    e.push(appendedEvent);
+                }
+            }
+        }
+
+        //Made the main dict keys a string (date & event), and everything in event is a declared key (easier to read for me)
+        output.push(
+            {
+                'date' : iterDate, 
+                'events' : e
+            }
+        );
+        iter++;
+        
+        //Exit condition:
+        if(endWeek <= newUnix){
+            break;
+        }
+
+    }
+
+
+    console.log(output);
  
 }
 
@@ -291,7 +376,7 @@ export function cParse(crn_inp, cal_inp) {
                         end : mK['time_end'],
                         location: mK['location'],
                         title: pK['title'],
-                        description : calendarParseDesc(pK['description']),
+                        description : parseDescription(pK['description']),
                         bg_color : entryColor
                     }
 
@@ -319,7 +404,7 @@ export function cParse(crn_inp, cal_inp) {
                     end : mK['time_end'],
                     location: mK['location'],
                     title: pK['title'],
-                    description : calendarParseDesc(pK['description']),
+                    description : parseDescription(pK['description']),
                     bg_color : entryColor
                 };
             

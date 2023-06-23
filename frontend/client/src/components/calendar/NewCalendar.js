@@ -13,8 +13,8 @@ const NewCalendar = () => {
   , <NewCalendarEvent colStart={2} timeStart="14:00:00" timeEnd="18:00:00"/>,
   <NewCalendarEvent colStart={6} timeStart="11:00:00" timeEnd="13:00:00"/>,
   <NewCalendarEvent colStart={6} timeStart="14:00:00" timeEnd="18:00:00"/>,
-  <NewCalendarEvent colStart={4} timeStart="14:00:00" timeEnd="18:00:00"/>,
-  <NewCalendarEvent colStart={5} timeStart="14:00:00" timeEnd="18:00:00"/>
+  <NewCalendarEvent colStart={5} timeStart="14:30:00" timeEnd="18:30:00"/>,
+  <NewCalendarEvent colStart={4} timeStart="15:00:00" timeEnd="19:00:00"/>
   ];
     
   // 4, 5, 7, 8 doesn't WORK ???
@@ -31,10 +31,7 @@ const NewCalendar = () => {
 
         }  
 
-
         let rows = [];
-
-
 
         //Generate Calendar Header
         let header = [];
@@ -45,11 +42,7 @@ const NewCalendar = () => {
 
         rows.push(headerEntry);
 
-        
-
         }
-
-      
 
         const CALENDAR_TOP_ROW_OFFSET = 2;
 
@@ -63,10 +56,13 @@ const NewCalendar = () => {
 
           for (let i = earliest; i < latest+CALENDAR_TOP_ROW_OFFSET; i++) {
             
-            let classStr = "h-5 border border-slate-400 col-span-1 ";
-            classStr += "col-start-"+String(wI+1);
+          //Adding of Switch button:
+ 
 
-          //If it's at the earliest column, let's use it for times:
+          let classStr = "h-5 border border-slate-400 col-span-1 ";
+          classStr += "col-start-"+String(wI+1);
+
+          //!If it's at the earliest column, let's use it for times:
 
           if(wI === 0 && depth >= CALENDAR_TOP_ROW_OFFSET){
 
@@ -82,15 +78,32 @@ const NewCalendar = () => {
               {time}
               </div>);
 
-          } else { // Regular Background Cell
+
+          } else if(wI === 0 && depth === 0) {  //! Adding of Switch button:
+            
+            bgCol.push(
+              <div class={classStr}
+              style = {{
+                gridRowStart : (i+1),
+                gridRowEnd : (i+2)
+              }}>
+                SWITCH
+
+              </div>);
+
+          } else { //! Regular Background Cell
+
             bgCol.push(
               <div class={classStr}
               style = {{
                 gridRowStart : (i+1),
                 gridRowEnd : (i+2)
               }}></div>);
+
           }
-            depth++;
+
+          depth++; //To Maintain the Header's spacing
+
           }
 
           bg.push(<div
