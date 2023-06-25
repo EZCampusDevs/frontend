@@ -162,14 +162,12 @@ export async function tryExecutiveAuth () {
 
 export async function CalendarPlaceholder(course_data_ids, callback) {
 
-  console.log("Placeholder woerking?")
-
   //course_data_ids is supposed to be Array of Ints
 
   const RESPONSE = await fetch(ENDPOINT + 'placeholder/events', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({  "course_data_ids": course_data_ids}) 
+    body: JSON.stringify({  "course_data_ids": course_data_ids, "course_ids" : []}) 
                         //TODO: Figure out page and results per page thing (Also fix the Java Micro-Service for this)
   });
 

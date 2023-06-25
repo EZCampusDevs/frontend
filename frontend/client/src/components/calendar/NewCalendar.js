@@ -8,70 +8,125 @@ import NewCalendarEvent from './NewCalendarEvent';
 
 const NewCalendar = () => {
 
-    //const eventsOverlay = [<NewCalendarEvent/>];
+
+    const eventsOverlay = [<NewCalendarEvent colStart={2} timeStart="08:00:00" timeEnd="12:00:00"/>
+  , <NewCalendarEvent colStart={2} timeStart="14:00:00" timeEnd="18:00:00"/>,
+  <NewCalendarEvent colStart={6} timeStart="11:00:00" timeEnd="13:00:00"/>,
+  <NewCalendarEvent colStart={6} timeStart="14:00:00" timeEnd="18:00:00"/>,
+  <NewCalendarEvent colStart={5} timeStart="14:30:00" timeEnd="18:30:00"/>,
+  <NewCalendarEvent colStart={4} timeStart="15:00:00" timeEnd="19:00:00"/>
+  ];
     
-    
-    // TODO: try to use rrule with it
+  // 4, 5, 7, 8 doesn't WORK ???
 
 
-    const generateCalendar = () => {
-
+    const generateCalendar = (view) => {
 
         const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
         
-        let rows = [];
-
         const earliest = 0;
         const latest   = 48;
 
+        if(!view) { // If not view, assume it's the default 7 day
+
+        }  
+
+        let rows = [];
 
         //Generate Calendar Header
         let header = [];
         for(const [wI,wD] of weekdays.entries()) {
            let headerEntry = (<div className="text-center font-bold">
-                        {weekdays[wI]}
+                        {wD}
                         </div>);
 
         rows.push(headerEntry);
 
         }
 
+        const CALENDAR_TOP_ROW_OFFSET = 2;
 
-        let slotTimes = [];
-        for (let i = earliest; i < latest; i++) {
-            const hour = Math.floor(i / 2);
-            const minutes = (i % 2) === 0 ? '00' : '30';
-            const time = `${hour}:${minutes}`;
-              
-            const timeSlot = ( <div key={i} className="h-4 text-center col-start-1 col-span-1">
-                    {time}
-                  </div> );
-            slotTimes.push(timeSlot); 
+        let bg = [];
+
+        for (let wI = 0; wI <= weekdays.length; wI++) { // Start from 1 since you have a time column
+
+          let bgCol = [];
+
+          let depth = 0;
+
+          for (let i = earliest; i < latest+CALENDAR_TOP_ROW_OFFSET; i++) {
             
+          //Adding of Switch button:
+ 
 
+          let classStr = "h-5 border border-slate-400 col-span-1 ";
+          classStr += "col-start-"+String(wI+1);
+
+          //!If it's at the earliest column, let's use it for times:
+
+          if(wI === 0 && depth >= CALENDAR_TOP_ROW_OFFSET){
+
+            let normalized_i = i - CALENDAR_TOP_ROW_OFFSET;
+
+            const hour = Math.floor(normalized_i / 2);
+            const minutes = (normalized_i % 2) === 0 ? '00' : '30';
+            const time = `${hour}:${minutes}`;
+            
+            bgCol.push(
+              <div class={classStr+" text-center font-bold"}
+              style = {{gridRowStart : (normalized_i+1), gridRowEnd : (normalized_i+2)}}> 
+              {time}
+              </div>);
+
+
+          } else if(wI === 0 && depth === 0) {  //! Adding of Switch button:
+            
+            bgCol.push(
+              <div class={classStr}
+              style = {{
+                gridRowStart : (i+1),
+                gridRowEnd : (i+2)
+              }}>
+                SWITCH
+
+              </div>);
+
+          } else { //! Regular Background Cell
+
+            bgCol.push(
+              <div class={classStr}
+              style = {{
+                gridRowStart : (i+1),
+                gridRowEnd : (i+2)
+              }}></div>);
+
+          }
+
+          depth++; //To Maintain the Header's spacing
+
+          }
+
+          bg.push(<div
+          style= {{
+            gridRowStart : 1,
+          }}
+          >
+            {bgCol}
+          </div>);
         }
+
+
         
 
         let cols = (
             <div className="grid grid-cols-8 gap-1">
+
               {/* TIME SLOTS (col 1) */}
-              <div className="row-span-49 col-span-1">
-                {/* SWITCH Button, TODO: add styling and functionality */}
-                <span>Switch</span>
-                {slotTimes}
-              </div>
-          
               {/* Starting from second column */}
-              <div className="grid col-span-7 grid-cols-7 gr-50">
-
-                <div className=" bg-blue-200 mt-6 h-16">01</div>
-                <div className=" col-start-1
-                bg-green-200 mt-20 h-20
-                ">
-
-                </div>
-
-
+              <div className="grid col-span-8 gr-50">
+                {bg}
+                {eventsOverlay}
+                
               </div>
 
             </div>

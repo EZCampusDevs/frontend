@@ -10,7 +10,7 @@ import LoadingTemplate from '../components/state_template/LoadingTemplate';
 
 //Local/other file imports:
 import ENDPOINT from '../util/API'
-import {cParse, calendarParseDesc} from '../util/calendarJSON'
+import {cParse, parseDescription} from '../util/calendarJSON'
 import findCookie from '../util/findCookie';
 import DeniedTemplate from '../components/state_template/DeniedTemplate';
 import { logVoid } from '../util/logger';
@@ -353,7 +353,7 @@ const CalendarPage = () => {
         for(const entry of crn_cals){
             console.time("parsing...");
 
-            const parsedCRN = parseInt( calendarParseDesc(entry.description)["CRN"] );
+            const parsedCRN = parseInt( parseDescription(entry.description)["CRN"] );
 
             for(let k = 0; k < respJSON.full.length; k++){
 
