@@ -22,7 +22,7 @@ const API_Switch = () => {
   if (isLocalhost === true) {
     console.log("IS LOCAL...");
     ENDPOINT = "http://localhost:8000/";
-    SEARCH_ENDPOINT = `http://localhost:8080/searchIndex-1.0-SNAPSHOT/`;
+    SEARCH_ENDPOINT = `http://localhost:8080/sI/`;
   }
 }
 
