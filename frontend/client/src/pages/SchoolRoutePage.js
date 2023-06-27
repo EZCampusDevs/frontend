@@ -30,47 +30,47 @@ const SchoolRoutePage = () => {
         padding: '50px',
         color:'#fff',
         textShadow: '1px 1px 2px #333',
-        backgroundImage: 'linear-gradient(135deg, #064e3b 0%, #34d399 100%)',}}>
-        <h1 className='font-sans font-bold text-6xl mb-4 text-white dark:text-sky-500'>Select Your School</h1>
+        backgroundImage: 'linear-gradient(135deg, #94a3b8 10%, #a5f3fc 90%)',}}>
+        {/* <h1 className='font-sans font-bold text-6xl mb-4 text-white dark:text-sky-500'>Select Your School</h1> */}
+          <div className='box text-black' style={{fontSize: '3vw', margin: 'max(0.3rem, 1vmin)', border: '0.35rem solid', padding: '0.5vw',
+                                        borderImage: 'conic-gradient(from var(--angle), var(--c2), var(--c1) 0.1turn, var(--c1) 0.15turn, var(--c2) 0.25turn) 30',
+                                        animation: 'borderRotate var(--d) linear infinite forwards',}}>
+            <h1>Select Your School</h1>
+
+          </div>
       </div>
       </header>
-      <div className="flex flex-col items-center justify-top min-h-screen bg-teal-100 dark:bg-gray-800 -mt-5">
-
-          
+      <div className="flex flex-col items-center justify-top min-h-screen bg-black-100 dark:bg-gray-800 -mt-6">
         <div className='max-w-screen-xl' style={{marginTop: '1rem'}}>
 
-          <div className="grid grid-cols-1 items-center sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 x1:grid-cols-5 gap-4 p-4">
+          <div className="grid grid-cols-1 items-center sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 x1:grid-cols-5 gap-4 p-4 mt-4">
             {allSchools.map((school, index) => (
 
               <div key={index} className="btn-glow"
+                style={{display: 'flex', flexDirection: 'column',alignItems:'center'}} 
                 onClick={() => {redirectSchool(school);}}
               >
                 <button
-                  className={"btn-glow relative overflow-hidden flex flex-col items-center justify-center rounded-lg border-none p-0 shadow-md transition-all duration-300 transform hover:scale-105"}
+                  className={"relative overflow-hidden flex flex-col items-center justify-center rounded-lg border-none p-0 shadow-md transition-all duration-300 transform hover:scale-105"}
                   style={{width: '180px', height: '110px',
                           backgroundColor: 'white',}}
                 >
                   <img className='max-w-full max-h-full' 
                   src={school.logo} 
-                  alt='buttonpng'/>
-                        
+                  alt='buttonpng'/>                        
                 </button>
+                <span className='r_font font-semibold mt-1'>{school.name}</span>
               </div>
+                
             ))}
+            
 
           </div>
         </div>
       </div>
         <style>
           {`
-            .header .overlay {
-              width: 100%;
-              height: 100%;
-              padding: 50px;
-              color: #fff;
-              text-shadow: 1px 1px 2px #333;
-              background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            }
+       
             .btn-glow {
               position: relative;
               z-index: 0;
@@ -93,12 +93,6 @@ const SchoolRoutePage = () => {
               transition: opacity 0.3s ease-in-out;
               border-radius: 10px;
             }
-            .btn-glow:active {
-              color: #000
-            }
-            .btn-glow:active:after {
-              background: transparent;
-            }
             .btn-glow:hover:before {
               opacity: 1;
             }
@@ -118,6 +112,19 @@ const SchoolRoutePage = () => {
               50% { background-position: 400% 0; }
               100% { background-position: 0 0; }
             }
+            @keyframes borderRotate {
+              100% { --angle: 420deg;}
+            }
+            @property --angle{
+              syntax: '<angle>';
+              initial-value: 90deg;
+              inherits: true;
+            }
+            :root {
+              --d: 2500ms;
+              --angle: 90deg;
+              --c1: rgba(11, 243, 27, 1);
+              --c2: rgba(11, 243, 27, 0.2);
           `} 
         </style>
     </div>
