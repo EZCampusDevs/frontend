@@ -57,19 +57,34 @@
         opacity: 0.5; /* Example: reducing opacity when disabled */
         pointer-events: none; /* Example: disabling pointer events when disabled */
     }
+
+    .widget_btn {
+        @apply ml-6 w-72 flex items-center px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50;
+    }
     /** SEARCH ENTRIES */
 
     .search_entry {
-        @apply bg-white border border-black rounded-lg p-4 w-full mb-5;
-    }
-    
-    .dark .search_entry {
-        @apply bg-gray-900 text-white;
-    }
+        @apply bg-gradient-to-br from-slate-100 to-cyan-200 border border-black rounded-lg p-4 w-full mb-5;
+      }
+
+      .Laboratory {
+        @apply  bg-gradient-to-br from-slate-100 to-lime-200 border;
+      }
+
+      .Tutorial {
+        @apply  bg-gradient-to-br from-slate-100 to-orange-200 border;
+      }
+      
+      .dark .search_entry {
+        @apply bg-gradient-to-br from-slate-900 to-blue-900 border text-white;
+      }
+      
 }
 
+
+/* For scroll */
 .height_cap {
-    max-height: 60vh;
+    max-height: 75vh;
 }
 
 .gr-50 {

@@ -11,6 +11,7 @@ import { debounce } from 'lodash';
 import { SchoolTermRequest, SearchCoursesByTerm } from '../../util/requests';
 
 import '../../static/css/main_ui.css';
+import CourseSearchResultEntry from './CourseSearchResultEntry';
 
 
 //TODO: Get that callback add thing that propagates out of CourseSearchWidget component
@@ -82,24 +83,7 @@ const CourseSearchWidget = ({AddCourseCallback}) => {
 
         for(const entry of sortedEntries) {
             dump.push(
-        //TODO: Make the stylings here better
-        
-<div className="search_entry">
-<p class="text-xl font-bold mb-2">RANK: {entry.ranking}</p>
-    <p class="text-xl font-bold mb-2">{entry.course_code}</p>
-    <p class="text-2xl font-semibold mb-2">{entry.course_title}</p>
-    <p class="text-lg mb-2">CRN : {entry.course_crn}</p>
-    <p class="text-lg mb-2">{entry.course_data_id}</p>
-    <p class="text-lg mb-2">{entry.course_desc}</p>
-
-
-    <button className="ml-6 w-72 flex items-center px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50" 
-    onClick={() => {AddCourseCallback(entry)}} 
-    >
-      <svg clip-rule="evenodd" fill="#FFFFFF" className="w-6" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="m12.002 2c5.518 0 9.998 4.48 9.998 9.998 0 5.517-4.48 9.997-9.998 9.997-5.517 0-9.997-4.48-9.997-9.997 0-5.518 4.48-9.998 9.997-9.998zm-.747 9.25h-3.5c-.414 0-.75.336-.75.75s.336.75.75.75h3.5v3.5c0 .414.336.75.75.75s.75-.336.75-.75v-3.5h3.5c.414 0 .75-.336.75-.75s-.336-.75-.75-.75h-3.5v-3.5c0-.414-.336-.75-.75-.75s-.75.336-.75.75z" fill-rule="nonzero"/></svg>
-      <span className="ml-3">Add Course</span>
-    </button>
-</div>
+                <CourseSearchResultEntry entry={entry} AddCourseCallback={AddCourseCallback}/>
             );}
 
         setResults(dump);
