@@ -22,7 +22,7 @@ const API_Switch = () => {
   if (isLocalhost === true) {
     console.log("IS LOCAL...");
     ENDPOINT = "http://localhost:8000/";
-    SEARCH_ENDPOINT = `http://localhost:8080/sI/`;
+    SEARCH_ENDPOINT = `https://search.ezcampus.org/searchIndex/`; //! Temp since localhost glassfish was annoying
   }
 }
 
@@ -64,18 +64,19 @@ export async function SchoolTermRequest(redux_identifier, body, callback) {
       return;
 }
 
-export async function SearchCoursesByTerm(searchTerm, termId, callback) {
+export async function SearchCoursesByTerm(searchTerm, page, resultsPerPage, termId, callback) {
 
   console.log(termId)
 
   const RESPONSE = await fetch(SEARCH_ENDPOINT + 'search', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ "search_term": searchTerm , "page": 1, "results_per_page": 5, "term_id": termId }) 
+    body: JSON.stringify({ "search_term": searchTerm , "page": page, "results_per_page": resultsPerPage, "term_id": termId }) 
                         //TODO: Figure out page and results per page thing (Also fix the Java Micro-Service for this)
   });
 
     let ResponseJSON = await RESPONSE.json();
+    console.log(ResponseJSON);
     callback(ResponseJSON);
     return;
 }

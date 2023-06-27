@@ -112,7 +112,7 @@ const IcsPage = () => {
     })
   }
 
-  document.title = app_name + " | Calendar"
+  document.title = app_name + " | .ICS Export";
 
   //Redux state
   const saved_entries = useSelector((state) => state.courseEntry.ics_dl_entries);
@@ -248,6 +248,10 @@ const IcsPage = () => {
         <span className="error_text r_font"> {errMsg} </span>
         
         {RenderLink()}<br/><br/>
+
+        <a href="https://script.google.com/macros/s/AKfycbwuVrj36fmE9noinxa3OE52zttxa5uQkxRpB8BkjHtX9TELzYGZitY2pWras9wyz3hoxg/exec?title=EZCAMPUS EVENT">
+              Noice
+        </a>
 
         {/* <button className="large_blue_btn disabled" onClick={() => {handleGoogleCalendar()}}>Save to Google Calendar (Coming Soon)</button> */}
 

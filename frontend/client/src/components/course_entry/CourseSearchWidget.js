@@ -1,9 +1,12 @@
 import React from 'react'
 
+//Components:
+import ScrollableDiv from './ScrollableDiv';
+
 //Redux
 
 import { useSelector, useDispatch } from 'react-redux';
-import { loadIn } from '../../redux/features/courseSearchSlice';
+import { loadIn, addPage } from '../../redux/features/courseSearchSlice';
 import { debounce } from 'lodash';
 import { SchoolTermRequest, SearchCoursesByTerm } from '../../util/requests';
 
@@ -18,13 +21,16 @@ const CourseSearchWidget = ({AddCourseCallback}) => {
     const [results,setResults] = React.useState("Results are empty..."); //Search Results
     const searchTerm = React.useRef('');  
 
+    const [lastPageSize, setLPS] = React.useState(2);
+    const [page, setPage] = React.useState(2);
+
     //Redux State:
     const search_entries = useSelector((state) => state.courseSearch.ics_search_entries);
     const term_id = useSelector((state) => state.configSelect.selected_term);
     const dispatch = useDispatch();
 
     // Search Reset (Reload new data) function
-    const reduxLoadIn = (payload) => {
+    const reduxLoadIn = (payload) => { //& RESETS WITH NEW `payload`
 
         dispatch(loadIn({
             payload, 
@@ -32,10 +38,23 @@ const CourseSearchWidget = ({AddCourseCallback}) => {
         }));
     }
 
+    const reduxAdd = (payload) => { //& Adds on top of `payload` already appended
+        dispatch(addPage({
+            payload, 
+            reference : "ics" 
+        }));
+        setPage(page+1);
+    }
+
+    const handleScrollDown = () => {
+        SearchCoursesByTerm(searchTerm.current.value, page, search_entries.results_per_page, parseInt(term_id), reduxAdd); //API POST
+    }
+
     //POST Request
     const keystrokeSearchPOST = debounce(async () => {
                         //* Search Term, Term Id (int), Redux Callback
-        SearchCoursesByTerm(searchTerm.current.value, parseInt(term_id), reduxLoadIn); //API POST
+                        setPage(2);
+        SearchCoursesByTerm(searchTerm.current.value, 1, search_entries.results_per_page, parseInt(term_id), reduxLoadIn); //API POST
     }, 300); 
     // Specify the debounce delay (in milliseconds)
 
@@ -98,6 +117,7 @@ const CourseSearchWidget = ({AddCourseCallback}) => {
   return (
     <>
 
+    DEBUG: P. {page} 
     <div class="relative">
 
         {/* actual input box for search */}
@@ -119,10 +139,7 @@ const CourseSearchWidget = ({AddCourseCallback}) => {
 
     <div>     
 
-    <div className="overflow-y-scroll scrollbar-thumb-blue-500 scrollbar-track-blue-200 height_cap" >
-            {results} {/* <-- SEARCH RESULTS */}
-    </div>
-
+    <ScrollableDiv results={results} callback={() => {handleScrollDown()}} />
 
     </div>
     </>
