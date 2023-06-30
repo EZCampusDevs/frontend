@@ -46,7 +46,7 @@ const SchoolRoutePage = () => {
         textShadow: '1px 1px 2px #333',
         backgroundImage: 'linear-gradient(135deg, #94a3b8 10%, #9ca3af 90%)',
         }}>
-          <div className='box text-gray-700' style={{fontSize: '3vw', margin: 'max(0.3rem, 1vmin)', border: '0.35rem solid', padding: '0.5vw',
+          <div className='box text-purple-50 r_font font-semibold' style={{fontSize: '3vw', margin: 'max(0.3rem, 1vmin)', border: '0.35rem solid', padding: '0.5vw',
                                         borderImage: 'conic-gradient(from var(--angle), var(--c2), var(--c1) 0.1turn, var(--c1) 0.15turn, var(--c2) 0.25turn) 30',
                                         animation: 'borderRotate var(--d) linear infinite forwards', textShadow: '2px 1px #71797E'}}>
             <h1>Select Your School</h1>
@@ -129,14 +129,14 @@ const SchoolRoutePage = () => {
             }
             @property --angle{
               syntax: '<angle>';
-              initial-value: 90deg;
+              initial-value: 75deg;
               inherits: true;
             }
             :root {
               --d: 2500ms;
-              --angle: 90deg;
-              --c1: rgba(11, 243, 27, 1);
-              --c2: rgba(11, 243, 27, 0.2);
+              --angle: 75deg;
+              --c1: rgba(219, 217, 220, 1);
+              --c2: rgba(219, 217, 220, 0.2);
           `} 
         </style>
     </div>
