@@ -5,12 +5,26 @@ import '../static/css/main_ui.css'
 import otuLogo from '../static/images/otuLogo.png'
 import uvicLogo from '../static/images/uvicLogo.png'
 import dcLogo from '../static/images/dcLogo.png'
+import humberLogo from '../static/images/humberLogo.png'
+import rdpolyLogo from '../static/images/rdpolyLogo.png'
+import okaLogo from '../static/images/okaLogo.png'
+import truLogo from '../static/images/truLogo.png'
+import usaskLogo from '../static/images/usaskLogo.png'
+import kpuLogo from '../static/images/kpuLogo.png'
+import yukonLogo from '../static/images/yukonLogo.png'
 
 //Try to re-use styles from index.css ! (Going for UI Uniformity where all components look the same across all pages)
 const allSchools = [
   {name: 'Ontario Tech U', redirect: 'otu', logo: otuLogo,},
   {name: 'University of Victoria', redirect: 'uvic', logo: uvicLogo,},
   {name: 'Durham College', redirect: 'dc',  logo: dcLogo,},
+  {name: 'Humber College', redirect: 'humber',  logo: humberLogo,},
+  {name: 'Red Deer Polytechnic', redirect: 'rdpolytech',  logo: rdpolyLogo,},
+  {name: 'Okanagan College', redirect: 'okanagan',  logo: okaLogo,},
+  {name: 'Thompson Rivers Univ.', redirect: 'tru',  logo: truLogo,},
+  {name: 'Univ. of Saskatchewan', redirect: 'usask',  logo: usaskLogo,},
+  {name: 'Kwantlen Polytechnic', redirect: 'kpu',  logo: kpuLogo,},
+  {name: 'Yukon University', redirect: 'yukonu',  logo: yukonLogo,},
 ];
 
 const SchoolRoutePage = () => {
@@ -23,18 +37,18 @@ const SchoolRoutePage = () => {
     <div>
     <PageHeader/>
       <header style={{textAlign: 'center', width:'100%', height: 'auto', backgroundSize: 'cover', backgroundAttachment:'fixed',
-                      position:'relative', overflow:'hidden', borderRadius: '0 0 85% 85% / 20%'}}>
+                      position:'relative', overflow:'hidden', borderRadius: '0 0 85% 85% / 20%',}}>
       <div className="overlay flex flex-col body-font items-center justify-center bg-cover bg-center bg-no-repeat bg-fixed"
       style={{width: '100%',
         height: '100%',
         padding: '50px',
         color:'#fff',
         textShadow: '1px 1px 2px #333',
-        backgroundImage: 'linear-gradient(135deg, #94a3b8 10%, #a5f3fc 90%)',}}>
-        {/* <h1 className='font-sans font-bold text-6xl mb-4 text-white dark:text-sky-500'>Select Your School</h1> */}
-          <div className='box text-black' style={{fontSize: '3vw', margin: 'max(0.3rem, 1vmin)', border: '0.35rem solid', padding: '0.5vw',
+        backgroundImage: 'linear-gradient(135deg, #94a3b8 10%, #9ca3af 90%)',
+        }}>
+          <div className='box text-gray-700' style={{fontSize: '3vw', margin: 'max(0.3rem, 1vmin)', border: '0.35rem solid', padding: '0.5vw',
                                         borderImage: 'conic-gradient(from var(--angle), var(--c2), var(--c1) 0.1turn, var(--c1) 0.15turn, var(--c2) 0.25turn) 30',
-                                        animation: 'borderRotate var(--d) linear infinite forwards',}}>
+                                        animation: 'borderRotate var(--d) linear infinite forwards', textShadow: '2px 1px #71797E'}}>
             <h1>Select Your School</h1>
 
           </div>
@@ -47,13 +61,12 @@ const SchoolRoutePage = () => {
             {allSchools.map((school, index) => (
 
               <div key={index} className="btn-glow"
-                style={{display: 'flex', flexDirection: 'column',alignItems:'center'}} 
+                style={{display: 'flex', flexDirection: 'column',alignItems:'center', }} 
                 onClick={() => {redirectSchool(school);}}
               >
                 <button
                   className={"relative overflow-hidden flex flex-col items-center justify-center rounded-lg border-none p-0 shadow-md transition-all duration-300 transform hover:scale-105"}
-                  style={{width: '180px', height: '110px',
-                          backgroundColor: 'white',}}
+                  style={{width: '180px', height: '110px',}}
                 >
                   <img className='max-w-full max-h-full' 
                   src={school.logo} 
@@ -61,7 +74,6 @@ const SchoolRoutePage = () => {
                 </button>
                 <span className='r_font font-semibold mt-1'>{school.name}</span>
               </div>
-                
             ))}
             
 
@@ -79,15 +91,15 @@ const SchoolRoutePage = () => {
 
             .btn-glow:before {
               content: '';
-              background: linear-gradient(45deg, #fb0094, #0000ff, #00ff00, #ffff00, #ff0000, #fb0094, #0000ff, #00ff00, #ffff00, #ff0000);
+              background: linear-gradient(45deg,#fef08a, #fef9c3);
               position: absolute;
-              top: -2px;
+              top: -6px;
               left:-6px;
               background-size: 400%;
               z-index: -1;
               filter: blur(5px);
               width: calc(100% + 15px);
-              height: calc(100% + 10px);
+              height: calc(100% + 15px);
               animation: glowing 10s linear infinite;
               opacity: 0;
               transition: opacity 0.3s ease-in-out;
@@ -102,7 +114,7 @@ const SchoolRoutePage = () => {
               position: absolute;
               width: 100%;
               height: 100%;
-              background: white;
+              background: #fafafa;
               left: 0;
               top: 0;
               border-radius: 10px;
