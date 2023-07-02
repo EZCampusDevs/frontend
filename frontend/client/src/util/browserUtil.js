@@ -1,6 +1,8 @@
 import findCookie from "./findCookie";
 import Cookies from 'universal-cookie';
 
+export const ACCESS_LINK_NAME = "access_link";
+
 //This function get's called with some document.cookie as domCookie, and a function callback (setParameter)
 export function cookieAuthCheck (domCookie, boolResponse) {
 
@@ -39,20 +41,31 @@ export function LSLoadSchool() {
     const currentUrl = window.location.href;
     let subdomain = extractSubdomain(currentUrl);
     
+    console.log(subdomain);
     //!REMOVE THIS IN PRODUCTION
-    if(subdomain === "localhost:3000/"){ subdomain = "otu"}
+    if(subdomain === "localhost:3000/"){ return false; subdomain = "otu"}
     //!REMOVE THIS IN PRODUCTION
     
-    if(subdomain === '' || !subdomain) { return; }
+    if(subdomain === 'ezcampus' || !subdomain) { return false; }
 
     //Finds Matching value to key in SUBDOMAIN_KEYS
     const matchingValue = Object.keys(SUBDOMAIN_KEYS).find(key => key === subdomain) && SUBDOMAIN_KEYS[subdomain];
 
     localStorage.setItem('school_name', matchingValue);
-  }
-  
+    return true;
+}
 
-    function extractSubdomain(url) {
+export function getPathFromUrl() {
+    const currentUrl = new URL(window.location.href);
+    let path = currentUrl.pathname;
+    // Remove the leading slash if it exists
+    if (path.startsWith('/')) {
+        path = path.slice(1);
+    }
+    return path;
+}
+
+function extractSubdomain(url) {
         // Remove the protocol part (e.g., http:// or https://) from the URL
         const withoutProtocol = url.replace(/^(https?:\/\/)?/, '');
     
@@ -61,4 +74,30 @@ export function LSLoadSchool() {
     
         // If a subdomain is found, return it; otherwise, return an empty string
         return subdomainMatch ? subdomainMatch[0] : '';
+}
+
+export function loadSchool() {
+
+
+    const LSLS = LSLoadSchool();
+    
+    if(!LSLS) {
+          const urlPath = getPathFromUrl(); // location/to/thing?p=123
+
+          if (urlPath) {
+          localStorage.setItem(ACCESS_LINK_NAME, urlPath); //Sets the URL path in an `access_link` variable 
+          }
+
+          window.location.href = "/institutions" ;
     }
+}
+
+export function getAccessLink() {
+
+    const link = localStorage.getItem(ACCESS_LINK_NAME);
+    
+    if(link) {
+        return link;
+    }
+
+}

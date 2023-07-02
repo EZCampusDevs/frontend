@@ -1,5 +1,9 @@
 import React from 'react'
 import PageHeader from '../components/navbar/PageHeader'
+
+//Local imports:
+import { ACCESS_LINK_NAME, getAccessLink } from '../util/browserUtil'
+
 import '../static/css/main_ui.css'
 
 import otuLogo from '../static/images/otuLogo.png'
@@ -30,7 +34,18 @@ const allSchools = [
 const SchoolRoutePage = () => {
 
   const redirectSchool = (school) => {
-    window.location.href = `https://${school.redirect}.ezcampus.org`;
+
+    let redirect = `https://${school.redirect}.ezcampus.org`;
+
+    //check access link payload:
+
+    const aL = getAccessLink();
+    if( aL ){
+      redirect += "/" + aL;
+      localStorage.setItem(ACCESS_LINK_NAME, '');
+    }
+
+    window.location.href = redirect;
   };
     
   return (

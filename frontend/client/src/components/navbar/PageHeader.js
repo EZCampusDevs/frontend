@@ -86,6 +86,8 @@ const PageHeader = ({ selectedElement, slotOneJSX, slotTwoJSX, slotThreeJSX }) =
   }
   
 
+  //! Feature: Dark Mode Toggle
+
   const toggleDarkMode = () => {
     // Step 1: Check if 'theme' exists in localStorage
     if (!localStorage.getItem('theme')) {

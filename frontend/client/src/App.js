@@ -28,12 +28,17 @@ import CourseSearchWidget from './components/course_entry/CourseSearchWidget';
 //React & Lib imports:
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import { LSLoadSchool } from './util/browserUtil';
+import { loadSchool } from './util/browserUtil';
 import SchoolRoutePage from './pages/SchoolRoutePage';
+
+
+//? Note: In app is where we do all school routing at the sub-domain level
+
+
 
 export default function App() {
 
-  LSLoadSchool()
+  loadSchool()
   return (
     <Router>
       <Routes>
@@ -43,9 +48,8 @@ export default function App() {
       <Route path="/login" element={<LoginPage/>}></Route>
       <Route path="/signup" element={<SignUp/>}></Route>
       <Route path="/ics" element={<IcsPage/>}></Route>
-      <Route path="/school/route" element={<SchoolRoutePage/>}></Route>
+      <Route path="/institutions" element={<SchoolRoutePage/>}></Route>
       <Route path="/calendar_testing" element={<NewCalendar/>}></Route>
-
 
         {/* Temporary path */}
       <Route path="/cs_widget" element={<CourseSearchWidget/>}></Route>
