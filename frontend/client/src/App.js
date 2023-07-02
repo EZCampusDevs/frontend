@@ -31,6 +31,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { loadSchool } from './util/browserUtil';
 import SchoolRoutePage from './pages/SchoolRoutePage';
 
+import React from 'react';
 
 //? Note: In app is where we do all school routing at the sub-domain level
 
@@ -38,7 +39,10 @@ import SchoolRoutePage from './pages/SchoolRoutePage';
 
 export default function App() {
 
-  loadSchool()
+  React.useEffect( () => {
+
+    loadSchool();
+  }, [])
   return (
     <Router>
       <Routes>

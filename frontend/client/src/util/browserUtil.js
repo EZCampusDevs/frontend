@@ -93,7 +93,6 @@ export function loadSchool() {
 }
 
 export function getAccessLink() {
-
     const link = localStorage.getItem(ACCESS_LINK_NAME);
     
     if(link) {
