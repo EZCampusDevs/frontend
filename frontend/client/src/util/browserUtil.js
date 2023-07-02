@@ -43,7 +43,7 @@ export function LSLoadSchool() {
     
     console.log(subdomain);
     //!REMOVE THIS IN PRODUCTION
-    if(subdomain === "localhost:3000/"){ return false; subdomain = "otu"}
+    if(subdomain === "localhost:3000/"){ subdomain = "otu"}
     //!REMOVE THIS IN PRODUCTION
     
     if(subdomain === 'ezcampus' || !subdomain) { return false; }
@@ -80,8 +80,12 @@ export function loadSchool() {
 
 
     const LSLS = LSLoadSchool();
+
+    //Check if an Access Link Variable is set
+    const link = localStorage.getItem(ACCESS_LINK_NAME);
     
-    if(!LSLS) {
+
+    if(!LSLS && !link) {
           const urlPath = getPathFromUrl(); // location/to/thing?p=123
 
           if (urlPath) {
@@ -96,6 +100,7 @@ export function getAccessLink() {
     const link = localStorage.getItem(ACCESS_LINK_NAME);
     
     if(link) {
+        localStorage.removeItem(ACCESS_LINK_NAME); //Remove it, then return so usr can be redirected
         return link;
     }
 

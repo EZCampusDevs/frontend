@@ -39,12 +39,12 @@ import React from 'react';
 
 export default function App() {
 
+  // Load Schools Upon Mount
   React.useEffect( () => {
-
     loadSchool();
-  }, [])
-  return (
-    <Router>
+  }, []);
+
+  return (<Router>
       <Routes>
         
       {/* <Route path="/" element={<NewHomePage/>}></Route> */}
