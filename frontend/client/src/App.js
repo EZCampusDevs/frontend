@@ -28,7 +28,6 @@ import CourseSearchWidget from './components/course_entry/CourseSearchWidget';
 //React & Lib imports:
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import { loadSchool } from './util/browserUtil';
 import SchoolRoutePage from './pages/SchoolRoutePage';
 
 import React from 'react';
@@ -38,12 +37,6 @@ import React from 'react';
 
 
 export default function App() {
-
-  // Load Schools Upon Mount
-  React.useEffect( () => {
-    loadSchool();
-  }, []);
-
   return (<Router>
       <Routes>
         
@@ -52,7 +45,6 @@ export default function App() {
       <Route path="/login" element={<LoginPage/>}></Route>
       <Route path="/signup" element={<SignUp/>}></Route>
       <Route path="/ics" element={<IcsPage/>}></Route>
-      <Route path="/institutions" element={<SchoolRoutePage/>}></Route>
       <Route path="/calendar_testing" element={<NewCalendar/>}></Route>
 
         {/* Temporary path */}

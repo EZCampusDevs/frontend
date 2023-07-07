@@ -18,6 +18,7 @@ import '../static/css/main_ui.css';
 
 //Hooks
 import useWindowDimensions from '../util/hooks/useWindowDimensions';
+import SchoolRouteRenderWall from '../components/schools/SchoolRouteRenderWall';
 
 
 const IcsPage = () => {
@@ -212,6 +213,8 @@ const IcsPage = () => {
   }
 
   return (
+
+    <SchoolRouteRenderWall page={
     <div>
     <PageHeader/>
     <br/><br/>
@@ -258,7 +261,7 @@ const IcsPage = () => {
       </div>
 
       </div>
-    </div>
+    </div>} />
   );
 }
 

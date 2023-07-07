@@ -43,7 +43,7 @@ export function LSLoadSchool() {
     
     console.log(subdomain);
     //!REMOVE THIS IN PRODUCTION
-    if(subdomain === "localhost:3000/"){ subdomain = "otu"}
+    if(subdomain === "localhost:3000/"){ subdomain = ""}
     //!REMOVE THIS IN PRODUCTION
     
     if(subdomain === 'ezcampus' || !subdomain) { return false; }
@@ -51,8 +51,13 @@ export function LSLoadSchool() {
     //Finds Matching value to key in SUBDOMAIN_KEYS
     const matchingValue = Object.keys(SUBDOMAIN_KEYS).find(key => key === subdomain) && SUBDOMAIN_KEYS[subdomain];
 
-    localStorage.setItem('school_name', matchingValue);
-    return true;
+    console.log("MATCHING: "+matchingValue);
+
+    if(matchingValue) {
+        localStorage.setItem('school_name', matchingValue);
+        return true;
+    } 
+    return false;
 }
 
 export function getPathFromUrl() {
@@ -81,19 +86,19 @@ export function loadSchool() {
 
     const LSLS = LSLoadSchool();
 
+    if (LSLS) { return true;}     //If OK, Return True, OK meaning a school has been found
+
     //Check if an Access Link Variable is set
     const link = localStorage.getItem(ACCESS_LINK_NAME);
-    
 
     if(!LSLS && !link) {
           const urlPath = getPathFromUrl(); // location/to/thing?p=123
 
-          if (urlPath) {
           localStorage.setItem(ACCESS_LINK_NAME, urlPath); //Sets the URL path in an `access_link` variable 
-          }
-
-          window.location.href = "/institutions" ;
+        //   window.location.href = "/institutions" ;
     }
+
+    return false;
 }
 
 export function getAccessLink() {
