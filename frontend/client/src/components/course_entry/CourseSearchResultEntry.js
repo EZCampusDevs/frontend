@@ -11,6 +11,28 @@ const CourseSearchResultEntry = ({ entry, AddCourseCallback }) => {
   </p>
   }
 
+  const locIconBuilder = (icon, str) => {
+    
+    if(!str) {
+      return <p className="text-lg mb-2 flex items-center">
+      <span className="mr-2">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 01-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0115 18.257V17.25m6-12V15a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 15V5.25m18 0A2.25 2.25 0 0018.75 3H5.25A2.25 2.25 0 003 5.25m18 0V12a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 12V5.25" />
+</svg>
+      </span>
+      Online Lecture (Remote Attendance)
+    </p>
+    } else {
+
+    return <p className="text-lg mb-2 flex items-center">
+    <span className="mr-2">{icon}</span>
+    {str}
+  </p>
+  }
+
+  }
+
+
   //Deconstructing the Entry a bit:
 
   let extra = entry.extra;
@@ -49,9 +71,9 @@ const CourseSearchResultEntry = ({ entry, AddCourseCallback }) => {
    const classType = (str) => {
     str = str.trim();
 
-    if(str == "Laboratory"){ return iconBuilder(labIcon, str); }
+    if(str === "Laboratory"){ return iconBuilder(labIcon, str); }
     
-    if(str == "Tutorial"){ return iconBuilder(tutorialIcon, str);}
+    if(str === "Tutorial"){ return iconBuilder(tutorialIcon, str);}
 
     //If not Laboratory or Tutorial, we'll assume Lecture by Default, but pass `str` thru:
     return iconBuilder(lecIcon, str);
@@ -74,7 +96,7 @@ const CourseSearchResultEntry = ({ entry, AddCourseCallback }) => {
 
       {/* BUILDING */}
 
-        {iconBuilder(<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
+        {locIconBuilder(<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
   <path strokeLinecap="round" strokeLinejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
   <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
 </svg>

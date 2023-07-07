@@ -100,8 +100,6 @@ const CourseSearchWidget = ({AddCourseCallback}) => {
 
   return (
     <>
-
-    DEBUG: P. {page} 
     <div class="relative">
 
         {/* actual input box for search */}

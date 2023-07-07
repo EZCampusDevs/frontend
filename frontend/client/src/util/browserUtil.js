@@ -43,7 +43,7 @@ export function LSLoadSchool() {
     
     console.log(subdomain);
     //!REMOVE THIS IN PRODUCTION
-    if(subdomain === "localhost:3000/"){ subdomain = ""}
+    if(subdomain === "localhost:3000/"){ subdomain = "otu"}
     //!REMOVE THIS IN PRODUCTION
     
     if(subdomain === 'ezcampus' || !subdomain) { return false; }
