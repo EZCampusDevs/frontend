@@ -15,7 +15,7 @@
     height: 5vh;
     background-color: rgb(30, 43, 51);
     font-weight: 400;
-    display: grid;
+    /* display: grid; */
     /* grid-template-columns: 1.5fr 1fr 1.3fr 1.2fr 1.3fr 1fr 1.3fr 1.5fr 2fr; */
     grid-template-columns: 1.5fr 1.75fr 2.5fr 2.5fr 1.3fr 3fr 3fr;
     grid-gap: 1vw;   
@@ -28,7 +28,7 @@
     background-color: rgb(30, 43, 51);
 
     font-weight: 400;
-    display: grid;
+    /* display: grid; */
     grid-template-columns: 0.3fr 0.5fr 2fr;
 
     grid-gap: 1vw;
