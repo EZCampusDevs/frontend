@@ -34,6 +34,7 @@ import React from 'react';
 
 //? Note: In app is where we do all school routing at the sub-domain level
 
+import NewCalendarContainer1 from './components/calendar/NewCalendarContainer1';
 
 
 export default function App() {
@@ -46,6 +47,7 @@ export default function App() {
       <Route path="/signup" element={<SignUp/>}></Route>
       <Route path="/ics" element={<IcsPage/>}></Route>
       <Route path="/calendar_testing" element={<NewCalendar/>}></Route>
+      <Route path="/c/1" element={<NewCalendarContainer1/>}></Route>
 
         {/* Temporary path */}
       <Route path="/cs_widget" element={<CourseSearchWidget/>}></Route>

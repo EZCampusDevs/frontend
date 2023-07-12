@@ -14,21 +14,23 @@ import searchSliceReducer from "./features/searchSlice";
 import executiveCalendarReducer from "./features/executiveCalendarSlice";
 import executiveSliceReducer from "./features/executiveSlice";
 
+import newCalendarReducer from "./features/newCalendarSlice";
+
 //School & Config Selection
 import configSelectReducer from "./features/configSelectSlice";
 import courseSearchReducer from "./features/courseSearchSlice";
-
 
 export const store = configureStore({
     reducer : {
         optimizer : optimizerReducer,
         meetingEdit : meetingEditReducer, 
         crnEdit : crnEditReducer,
+        newCalendar : newCalendarReducer,
         courseEntry : courseEntryReducer,
         searchStorage : searchSliceReducer,
         executiveCalendar : executiveCalendarReducer,
         executiveEdit : executiveSliceReducer,
         configSelect : configSelectReducer,
-        courseSearch : courseSearchReducer
+        courseSearch : courseSearchReducer,
     }
 });

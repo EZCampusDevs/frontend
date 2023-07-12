@@ -6,7 +6,7 @@ import { CalendarPlaceholder } from '../../util/requests'
 import { cParse2 } from '../../util/calendarJSON';
 import NewCalendarEvent from './NewCalendarEvent';
 
-const NewCalendar = () => {
+const NewCalendar = ({onLeftScroll, onRightScroll}) => {
 
 
     const eventsOverlay = [<NewCalendarEvent colStart={2} timeStart="08:00:00" timeEnd="12:00:00"/>
@@ -24,8 +24,8 @@ const NewCalendar = () => {
 
         const weekdays = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
         
-        const earliest = 0;
-        const latest   = 48;
+        const EARLIEST_TIME = 0;
+        const LATEST_TIME   = 48;
 
         if(!view) { // If not view, assume it's the default 7 day
 
@@ -54,7 +54,7 @@ const NewCalendar = () => {
 
           let depth = 0;
 
-          for (let i = earliest; i < latest+CALENDAR_TOP_ROW_OFFSET; i++) {
+          for (let i = EARLIEST_TIME; i < LATEST_TIME+CALENDAR_TOP_ROW_OFFSET; i++) {
             
           //Adding of Switch button:
  
@@ -107,10 +107,7 @@ const NewCalendar = () => {
           }
 
           bg.push(<div
-          style= {{
-            gridRowStart : 1,
-          }}
-          >
+          style= {{ gridRowStart : 1}}>
             {bgCol}
           </div>);
         }
@@ -140,7 +137,7 @@ const NewCalendar = () => {
         // Handle the response data here
         console.log("Handling:");
         console.log(response);
-        cParse2(response);
+        let parsed_cal = cParse2(response);
         
     };
 

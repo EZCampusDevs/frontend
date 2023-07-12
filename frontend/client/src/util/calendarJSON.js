@@ -117,7 +117,6 @@ export function cParse2(data) {
         //1. check iterDate with All Rall dates for all Entries?
         for(const event of eventRules) {
 
-
             for(const occurrence of event.rall) {
                 
             //chatgpt: Wrote if clause
@@ -145,16 +144,14 @@ export function cParse2(data) {
         );
         iter++;
         
-        //Exit condition:
+        //Exit condition: (endWeek is also in Unix time)
         if(endWeek <= newUnix){
             break;
         }
 
     }
 
-
-    console.log(output);
- 
+    return output;
 }
 
 
