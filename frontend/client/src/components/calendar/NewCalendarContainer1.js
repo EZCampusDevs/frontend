@@ -96,6 +96,7 @@ const NewCalendarContainer1 = () => {
     return (<>
         <button onClick={() => {reduxScrollSwitch(false)}}>Left {"<--"}</button>
         <button onClick={() => {reduxScrollSwitch(true)}}>Right {"-->"}</button>
+        <NewCalendar calendarView={full_view.slice(current_offset, current_offset+7)}/>
         </>);
 }
 

@@ -5,20 +5,24 @@ import React from 'react'
 import { CalendarPlaceholder } from '../../util/requests'
 import { cParse2 } from '../../util/calendarJSON';
 import NewCalendarEvent from './NewCalendarEvent';
+import { set } from 'lodash';
 
-const NewCalendar = ({onLeftScroll, onRightScroll}) => {
+const NewCalendar = ({calendarView}) => {
 
-
-    const eventsOverlay = [<NewCalendarEvent colStart={2} timeStart="08:00:00" timeEnd="12:00:00"/>
-  , <NewCalendarEvent colStart={2} timeStart="14:00:00" timeEnd="18:00:00"/>,
-  <NewCalendarEvent colStart={6} timeStart="11:00:00" timeEnd="13:00:00"/>,
-  <NewCalendarEvent colStart={6} timeStart="14:00:00" timeEnd="18:00:00"/>,
-  <NewCalendarEvent colStart={5} timeStart="14:30:00" timeEnd="18:30:00"/>,
-  <NewCalendarEvent colStart={4} timeStart="15:00:00" timeEnd="19:00:00"/>
-  ];
+  const [eventsOverlay, setOverlay] = React.useState([<NewCalendarEvent colStart={2} timeStart="08:00:00" timeEnd="12:00:00"/>
+  , <NewCalendarEvent colStart={3} timeStart="14:00:00" timeEnd="18:00:00"/>,
+  <NewCalendarEvent colStart={4} timeStart="11:00:00" timeEnd="13:00:00"/>,
+  <NewCalendarEvent colStart={5} timeStart="14:00:00" timeEnd="18:00:00"/>,
+  <NewCalendarEvent colStart={6} timeStart="14:30:00" timeEnd="18:30:00"/>,
+  <NewCalendarEvent colStart={7} timeStart="14:30:00" timeEnd="18:30:00"/>,
+  <NewCalendarEvent colStart={8} timeStart="15:00:00" timeEnd="19:00:00"/>
+  ]);
     
   // 4, 5, 7, 8 doesn't WORK ???
 
+    //* ========== ========== ========== ========== ==========
+    //* >> Calendar JSX Rendering Function & Helpers
+    //* ========== ========== ========== ========== ==========
 
     const generateCalendar = (view) => {
 
@@ -132,28 +136,68 @@ const NewCalendar = ({onLeftScroll, onRightScroll}) => {
         return cols;
     }
 
+    const encode_2_NewCalendarEvent = (viewEntry) => {
+      
+      const events = viewEntry.events;
+      const dateObject   = new Date(viewEntry.date);
+       
+      console.log(dateObject.getDay());
+      
 
-    const handleResponse = (response) => {
-        // Handle the response data here
-        console.log("Handling:");
-        console.log(response);
-        let parsed_cal = cParse2(response);
-        
-    };
+      let jsxEvents = [];
+
+      for(const event of events){
+
+        console.log(event);
+
+        const timeStart = event["time_start"];
+        const timeEnd = event["time_end"];
+        const colStart = dateObject.getDay()+2; //!
+
+        jsxEvents.push(
+          <NewCalendarEvent colStart={colStart} timeStart={timeStart} timeEnd={timeEnd}/>
+        );
+
+
+      }
+
+      return jsxEvents;
+
+    }
+
+    //* ========== ========== ========== ========== ==========
+    //* >> REACT useEffect & return
+    //* ========== ========== ========== ========== ==========
+
+    React.useEffect(() => { //OnMount
+     }, []);
 
     React.useEffect(() => {
-        const courseDataIds = [1, 2, 3]; // Example array of course data IDs
-        CalendarPlaceholder(courseDataIds, handleResponse);
 
+      //TODO: parse CalendarView
+      console.log(calendarView);
 
-     }, []);
-    
-  return (
-    <div>
-        
-    {generateCalendar()}
-    </div>
-  )
+      let jsxEvents = [];
+
+      for(const viewEntry of calendarView) {
+        let miniJSX = encode_2_NewCalendarEvent(viewEntry);
+        if(miniJSX.length){
+          for(const m of miniJSX){ 
+            jsxEvents.push(m);
+          }
+        }
+      }
+
+      console.log(jsxEvents);
+      //setOverlay(jsxEvents);
+
+    }, [calendarView]);
+
+    //! RETURN STMT
+    return (<div>  
+      {generateCalendar()}
+      </div>);
+
 }
 
 export default NewCalendar

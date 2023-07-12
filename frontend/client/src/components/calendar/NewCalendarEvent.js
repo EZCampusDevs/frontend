@@ -2,23 +2,17 @@ import React from 'react'
 
 const NewCalendarEvent = ({colStart, timeStart, timeEnd}) => {
 
-  //? #################### Format Helpers ####################
-
-  const parseTime = (timeStr) => { // "01:00:00" -> [1,0,0]  where hr / min / sec
+  const parseTime = (timeStr) => {
     return timeStr.split(':').map(e => {return parseInt(e)});
   }
 
   const computeDelta = (tS, tE) => {
-    // calculate differences directly, convert everything to minutes
     let diffHours = (tE[0] - tS[0]) * 60; 
     let diffMinutes = tE[1] - tS[1];
     let diffSeconds = (tE[2] - tS[2]) / 60;
   
-    // Return in minutes different between End and Start
     return diffHours + diffMinutes + diffSeconds;
   }
-
-  //? #################### Format Helpers ####################
 
   let tS = parseTime(timeStart); 
   const tE = parseTime(timeEnd);
@@ -26,34 +20,25 @@ const NewCalendarEvent = ({colStart, timeStart, timeEnd}) => {
   let deltaMins = computeDelta(tS, tE);
   
   const generateEvent = () => {
+    let top = (tS[0] * 60 + tS[1]) / (24 * 60) * 100;  // percentage of a day
+    let height = deltaMins / (24 * 60) * 100;  // percentage of a day
+    let left = ((colStart - 1) * (100 / 8.30))+3.65;  // each column represents 1/7th of the total width assuming 7 days view
+    let width = 100 / 8.5;  // each column represents 1/7th of the total width assuming 7 days view
 
-    let rowStart = 3 + (tS[0] * 2); // 3 row offset, plus double the hour
-    
-    if(tS[1] >= 30){ // If's its like 9:30, boost it a col
-      rowStart++;
-      tS[1] -= 30;
-    }
-
-    let className = "bg-blue-200 ";
-    className += rowStart;
-    
-    const rowEnd = rowStart+(deltaMins/30);
-
-    return <div 
-      className = {className}
-    style={{
-        gridRowStart: rowStart,
-        gridRowEnd : rowEnd,
-        gridColumnStart : colStart
-      }}>
-
-    LL
-
-    </div>
-
+    return (
+      <div 
+        className="bg-blue-200 absolute"
+        style={{
+            top: `${top}%`,
+            height: `${height}%`,
+            left: `${left}%`,
+            width: `${width}%`,
+        }}
+      >
+        LL
+      </div>
+    );
   }
-
-
   
   return generateEvent();
 }
