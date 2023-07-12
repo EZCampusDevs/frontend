@@ -9,7 +9,7 @@ import { cParse2 } from '../../util/calendarJSON';
 
 //Redux 
 import { useSelector, useDispatch } from 'react-redux';
-import { setParameter } from '../../redux/features/newCalendarSlice.js';
+import { leftScroll, rightScroll, setParameter } from '../../redux/features/newCalendarSlice.js';
 
 const NewCalendarContainer1 = () => {
 
@@ -18,7 +18,7 @@ const NewCalendarContainer1 = () => {
     //* ========== ========== ========== ========== ==========
 
     const full_view = useSelector((state) => state.newCalendar.full_view);
-    const current_view = useSelector((state) => state.newCalendar.current_view);
+    const current_offset = useSelector((state) => state.newCalendar.current_offset);
 
     const dispatch = useDispatch();
 
@@ -29,6 +29,11 @@ const NewCalendarContainer1 = () => {
             payload : payload
         }));
 
+    }
+
+    const reduxScrollSwitch = (s) => { 
+        if(s) { dispatch(rightScroll()); } 
+        else {  dispatch(leftScroll());  }
     }
 
     //* ========== ========== ========== ========== ==========
@@ -47,7 +52,7 @@ const NewCalendarContainer1 = () => {
         const serializedParsedCal = JSON.parse(JSON.stringify(parsedCal)); //! Doing this Serializes the data, for Redux
 
         reduxSetParameter("full_view", serializedParsedCal); //Needs to be Seralized data
-        reduxSetParameter("current_view", serializedParsedCal.slice(0,7)); //Set Current view to first 7 elements in the serialized list
+        reduxSetParameter("current_offset", 0); //Set Current view to start at beginning of list ( 0 )
     };
 
     const setCalendarWithCDIs = (courseDataIds) => {
@@ -79,12 +84,18 @@ const NewCalendarContainer1 = () => {
 
         console.log(full_view);
 
-     }, [full_view])
+     }, [full_view]);
+
+     React.useEffect(() => {
+
+        console.log(full_view.slice(current_offset, current_offset+7));
+
+     }, [current_offset]);
 
 
     return (<>
-        <button>Left {"<--"}</button>
-        <button>Right {"-->"}</button>
+        <button onClick={() => {reduxScrollSwitch(false)}}>Left {"<--"}</button>
+        <button onClick={() => {reduxScrollSwitch(true)}}>Right {"-->"}</button>
         </>);
 }
 
