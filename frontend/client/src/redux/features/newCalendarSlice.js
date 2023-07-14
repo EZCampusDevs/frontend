@@ -4,7 +4,7 @@ import { createSlice } from "@reduxjs/toolkit";
 import { reduxVoid } from "../../util/logger";
 
 const initialState = {
-    full_view : [],
+    full_view : [], //Refers to the Entire Calendar loaded in from the backend
     view_state : 0, 
     current_offset : 0 
 }

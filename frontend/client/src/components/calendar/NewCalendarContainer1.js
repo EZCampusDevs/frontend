@@ -19,6 +19,7 @@ const NewCalendarContainer1 = () => {
 
     const full_view = useSelector((state) => state.newCalendar.full_view);
     const current_offset = useSelector((state) => state.newCalendar.current_offset);
+    const view_state = useSelector((state) => state.newCalendar.view_state);
 
     const dispatch = useDispatch();
 
@@ -31,7 +32,8 @@ const NewCalendarContainer1 = () => {
 
     }
 
-    const reduxScrollSwitch = (s) => { 
+    //Function Accepts a boolean Paramter, and scrolls Right or Left accordingly
+    const reduxScroll = (s) => { 
         if(s) { dispatch(rightScroll()); } 
         else {  dispatch(leftScroll());  }
     }
@@ -63,13 +65,7 @@ const NewCalendarContainer1 = () => {
     //* >> ACTUAL CONTAINER UI FUNCTIONS
     //* ========== ========== ========== ========== ========== 
 
-    const onLeftScroll = () => {
-
-    }
-
-    const onRightScroll = () => {
-
-    }
+    //...
 
     //* ========== ========== ========== ========== ==========
     //* >> REACT useEffect & return
@@ -94,9 +90,14 @@ const NewCalendarContainer1 = () => {
 
 
     return (<>
-        <button onClick={() => {reduxScrollSwitch(false)}}>Left {"<--"}</button>
-        <button onClick={() => {reduxScrollSwitch(true)}}>Right {"-->"}</button>
-        <NewCalendar calendarView={full_view.slice(current_offset, current_offset+7)}/>
+        <button onClick={() => {reduxScroll(false)}}>Left {"<--"}</button>
+        <button onClick={() => {reduxScroll(true)}}>Right {"-->"}</button>
+        <NewCalendar 
+            calendarView={full_view.slice(current_offset, current_offset+7)} 
+            viewState={0}
+            EARLIEST_TIME={0}
+            LATEST_TIME={48}
+            />
         </>);
 }
 
