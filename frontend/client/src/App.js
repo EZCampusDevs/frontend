@@ -60,6 +60,7 @@ export default function App() {
       <Route path="/events" element={<ClubSearchPage/>}></Route>
       */}
       <Route path="/optimize" element={<OptimizerPageV4/>}></Route> 
+      <Route path="/s/r"element={<SchoolRoutePage/>}></Route> 
 
       <Route path="/executive" element={<ExecutiveCalendarPage/>}></Route>
       <Route path="/about/us" element={<AboutUsPage/>}></Route>      

@@ -103,7 +103,7 @@ const PageHeader = ({ selectedElement, slotOneJSX, slotTwoJSX, slotThreeJSX }) =
     // Step 3: Add or remove the 'dark' class based on the updated theme
     if (updatedTheme === 'dark') {
       document.documentElement.classList.add('dark');
-      document.body.style.backgroundColor = 'rgb(3,6,9)';
+      document.body.style.backgroundColor = 'rgb(17,24,39)';
       setDarkModeIcon(sunSVG);
     } else {
       document.documentElement.classList.remove('dark');

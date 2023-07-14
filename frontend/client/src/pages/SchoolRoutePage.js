@@ -33,6 +33,7 @@ const allSchools = [
 
 const SchoolRoutePage = () => {
 
+  //global scope current theme:
   const redirectSchool = (school) => {
 
     let redirect = `https://${school.redirect}.ezcampus.org`;
@@ -69,11 +70,15 @@ const SchoolRoutePage = () => {
           </div>
       </div>
       </header>
-      <div className="flex flex-col items-center justify-top min-h-screen bg-black-100 dark:bg-gray-800 -mt-6">
+      <div className="flex flex-col items-center justify-top min-h-screen bg-black-100 mt-6">
         <div className='max-w-screen-xl' style={{marginTop: '1rem'}}>
 
           <div className="grid grid-cols-1 items-center sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 x1:grid-cols-5 gap-4 p-4 mt-4">
-            {allSchools.map((school, index) => (
+
+
+{/* ADDING THE SCHOOL ELEMENT / BUTTONS */}
+
+{allSchools.map((school, index) => (
 
               <div key={index} className="btn-glow"
                 style={{display: 'flex', flexDirection: 'column',alignItems:'center', }} 
@@ -89,7 +94,7 @@ const SchoolRoutePage = () => {
                 </button>
                 <span className='r_font font-semibold mt-1'>{school.name}</span>
               </div>
-            ))}
+))}
             
 
           </div>
@@ -134,6 +139,47 @@ const SchoolRoutePage = () => {
               top: 0;
               border-radius: 10px;
             }
+
+            .btn-glow-dark {
+              position: relative;
+              z-index: 0;
+              border-radius: 10px;
+            }
+            
+            .btn-glow-dark:before {
+              content: '';
+              background: linear-gradient(45deg,#45484d, #000c40);
+              position: absolute;
+              top: -6px;
+              left:-6px;
+              background-size: 400%;
+              z-index: -1;
+              filter: blur(5px);
+              width: calc(100% + 15px);
+              height: calc(100% + 15px);
+              animation: glowing 10s linear infinite;
+              opacity: 0;
+              transition: opacity 0.3s ease-in-out;
+              border-radius: 10px;
+            }
+            
+            .btn-glow-dark:hover:before {
+              opacity: 1;
+            }
+            
+            .btn-glow-dark:after {
+              z-index: -1;
+              content: '';
+              position: absolute;
+              width: 100%;
+              height: 100%;
+              background: #1c1c1c; // darker background for dark mode
+              left: 0;
+              top: 0;
+              border-radius: 10px;
+            }
+            
+
             @keyframes glowing {
               0% { background-position: 0 0; }
               50% { background-position: 400% 0; }
