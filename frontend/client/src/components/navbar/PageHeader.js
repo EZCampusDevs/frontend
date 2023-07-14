@@ -118,6 +118,7 @@ const PageHeader = ({ selectedElement, slotOneJSX, slotTwoJSX, slotThreeJSX }) =
 
     return (
       <>
+        {headerDropdown}
         <header className="w-full p-4 h-20 bg-custom-dark-blue text-left header_container box_shadow flex items-center">
           <a href='' className="flex items-center">
             <img src={logo} alt="ezcampus" className='logo_style object-contain h-12 max-w-full' />
