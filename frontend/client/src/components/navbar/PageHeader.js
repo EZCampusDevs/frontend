@@ -88,6 +88,19 @@ const PageHeader = ({ selectedElement, slotOneJSX, slotTwoJSX, slotThreeJSX }) =
 
   //! Feature: Dark Mode Toggle
 
+  const setDarkHTML = () => {
+    document.documentElement.classList.add('dark');
+    document.body.style.backgroundColor = 'rgb(17,24,39)';
+    setDarkModeIcon(sunSVG);
+  }
+
+  const setLightHTML = () => {
+    document.documentElement.classList.remove('dark');
+    document.body.style.backgroundColor = 'rgb(222,243,255)';
+    setDarkModeIcon(moonSVG)
+  }
+
+
   const toggleDarkMode = () => {
     // Step 1: Check if 'theme' exists in localStorage
     if (!localStorage.getItem('theme')) {
@@ -100,16 +113,31 @@ const PageHeader = ({ selectedElement, slotOneJSX, slotTwoJSX, slotThreeJSX }) =
     const updatedTheme = currentTheme === 'dark' ? 'light' : 'dark';
     localStorage.setItem('theme', updatedTheme);
 
+
+    
     // Step 3: Add or remove the 'dark' class based on the updated theme
-    if (updatedTheme === 'dark') {
-      document.documentElement.classList.add('dark');
-      document.body.style.backgroundColor = 'rgb(17,24,39)';
-      setDarkModeIcon(sunSVG);
-    } else {
-      document.documentElement.classList.remove('dark');
-      document.body.style.backgroundColor = 'rgb(222,243,255)';
-      setDarkModeIcon(moonSVG)
+    if (updatedTheme === 'dark') { setDarkHTML(); } 
+    else { setLightHTML(); }
+  }
+
+  const setTheme = () => {
+    let currentTheme = localStorage.getItem('theme');
+        
+    if (!currentTheme) {
+      if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        // System prefers dark theme
+        localStorage.setItem('theme', 'dark');
+      } else {
+        // System prefers light theme
+        localStorage.setItem('theme', 'light');
+      }
     }
+
+    currentTheme = localStorage.getItem('theme');
+
+    if (currentTheme === 'dark') { setDarkHTML(); } 
+    else { setLightHTML(); }
+
   }
 
 
@@ -120,7 +148,7 @@ const PageHeader = ({ selectedElement, slotOneJSX, slotTwoJSX, slotThreeJSX }) =
       <>
         {headerDropdown}
         <header className="w-full p-4 h-20 bg-custom-dark-blue text-left header_container box_shadow flex items-center">
-          <a href='' className="flex items-center">
+          <a href='institutions' className="flex items-center">
             <img src={logo} alt="ezcampus" className='logo_style object-contain h-12 max-w-full' />
           </a>
 
@@ -162,6 +190,10 @@ const PageHeader = ({ selectedElement, slotOneJSX, slotTwoJSX, slotThreeJSX }) =
     return <></>
 
   }
+
+  React.useEffect(() => {
+    setTheme();
+  }, [])
 
   return (
     <>
