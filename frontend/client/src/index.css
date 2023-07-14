@@ -61,11 +61,17 @@
     .widget_btn {
         @apply ml-6 w-72 flex items-center px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50;
     }
+
+    
+    .large_red_btn {
+        @apply bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 border border-red-800 rounded;
+    }
+
     /** SEARCH ENTRIES */
 
     .search_entry {
         @apply bg-gradient-to-br from-slate-100 to-cyan-200 border border-black rounded-lg p-4 w-full mb-5;
-      }
+    }
 
       .Laboratory {
         @apply  bg-gradient-to-br from-slate-100 to-lime-200 border;
@@ -75,10 +81,28 @@
         @apply  bg-gradient-to-br from-slate-100 to-orange-200 border;
       }
       
-      .dark .search_entry {
+    .dark .search_entry {
         @apply bg-gradient-to-br from-slate-900 to-blue-900 border text-white;
-      }
+    }
+
+      .dark .Laboratory {
+        @apply bg-gradient-to-br from-slate-900 to-purple-900 border text-white;
+       }
+
+      .dark .Tutorial {
+        @apply bg-gradient-to-br from-slate-900 to-cyan-900 border text-white;
+       }
       
+    /** SAVED ENTRIES */ 
+    
+    .saved_entry {
+        @apply bg-blue-200 rounded-lg p-4 mb-3
+    }
+
+    .dark .saved_entry {
+        @apply text-gray-200 bg-gray-800
+    }
+
 }
 
 

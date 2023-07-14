@@ -218,7 +218,7 @@ const IcsPage = () => {
     <div>
     <PageHeader/>
     <br/><br/>
-    <div className="mr-4 ml-4 sm:mr-64 sm:ml-64">
+    <div className="mr-4 ml-4 md:mr-32 md:ml-32 lg:mr-56 lg:ml-56">
 
     {/* //! Might be removed if we remove the video embd */}
       <div className="">
