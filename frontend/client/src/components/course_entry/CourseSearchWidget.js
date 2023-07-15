@@ -10,6 +10,7 @@ import { loadIn, addPage } from '../../redux/features/courseSearchSlice';
 import { debounce } from 'lodash';
 import { SchoolTermRequest, SearchCoursesByTerm } from '../../util/requests';
 
+import { iconBuilder } from '../../util/reactHelper';
 import '../../static/css/main_ui.css';
 import CourseSearchResultEntry from './CourseSearchResultEntry';
 
@@ -66,8 +67,15 @@ const CourseSearchWidget = ({AddCourseCallback}) => {
     const searchEntryBuilder = (payload) => {
 
         if(payload.length === 0){
-            setResults(<p>No results found...</p>)
-            return;
+            setResults(
+            <h3 className="sub_title">
+                {iconBuilder( <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+</svg>
+            ,"No courses found...")}
+            </h3>
+            )
+            return; //Set the Searches results to not found
         }
 
         let dump = [];
@@ -110,7 +118,7 @@ const CourseSearchWidget = ({AddCourseCallback}) => {
 
             {/* Magnifying Glass Icon for Search Bar */}
             
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="icon_styling">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="icon_styling mt-3">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
             </svg>
 

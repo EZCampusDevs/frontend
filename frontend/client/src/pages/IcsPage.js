@@ -252,9 +252,9 @@ const IcsPage = () => {
         
         {RenderLink()}<br/><br/>
 
-        <a href="https://script.google.com/macros/s/AKfycbwuVrj36fmE9noinxa3OE52zttxa5uQkxRpB8BkjHtX9TELzYGZitY2pWras9wyz3hoxg/exec?title=EZCAMPUS EVENT">
+        {/* <a href="https://script.google.com/macros/s/AKfycbwuVrj36fmE9noinxa3OE52zttxa5uQkxRpB8BkjHtX9TELzYGZitY2pWras9wyz3hoxg/exec?title=EZCAMPUS EVENT">
               Noice
-        </a>
+        </a> */}
 
         {/* <button className="large_blue_btn disabled" onClick={() => {handleGoogleCalendar()}}>Save to Google Calendar (Coming Soon)</button> */}
 

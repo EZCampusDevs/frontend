@@ -6,10 +6,12 @@ import CourseSearchWidget from './CourseSearchWidget'
 //Redux
 import { useSelector, useDispatch } from 'react-redux';
 import { assertPush, assertDelete } from '../../redux/features/courseEntrySlice';
+import SavedCourseGroup from './SavedCourseGroup';
 
+import { iconBuilder } from '../../util/reactHelper';
 
 const CourseEntry = ({reduxReference}) => {
-
+  
     const C_Gs = ["bg-cyan-200" , "bg-lime-200", "bg-red-200", "bg-blue-200"];
 
     //& reduxKeyRef Refers to the specific sub-section of a slice i'm talking about, 
@@ -40,41 +42,20 @@ const CourseEntry = ({reduxReference}) => {
   const savedEntriesBuilder = (savedEntries) => {
     // Group entries by course code
     const groupedEntries = savedEntries.reduce((acc, curr) => {
-      (acc[curr.course_code] = acc[curr.course_code] || []).push(curr);
+      (acc[curr.course_title] = acc[curr.course_title] || []).push(curr);
       return acc;
     }, {});
   
+
+
     const dump = Object.entries(groupedEntries).map(([courseCode, entries], Gindex) => (
-      <div className="course_group" key={Gindex}>
-        <h3 className="course_code_title">{courseCode}</h3> {/* title for each group */}
-      
-      {/* ENTRY MAPPING WITHIN GROUP */}
-      
-      {entries.map((entry, index) => (
-          <div className={"saved_entry "+C_Gs[Gindex]} key={index}>
-            <div className="grid grid-cols-1 md:grid-cols-6 gap-4">
-              {/* COL 1 */}
-              <div className="md:col-start-1 r_font">
-                <span className="sub_title">{entry.course_code}</span><br></br>
-                {entry.class_type}
-              </div>
-  
-              {/* COL 2 */}
-              <div className="md:col-start-2 r_font"> 
-                <span className="font-bold">CRN:</span> {entry.course_crn}
-              </div>  
-  
-              {/* COL 3 */}
-              <div className="md:col-start-3 r_font">{entry.course_title}</div>                
-  
-              {/* COL 6 */}
-              <button className="md:col-start-6 large_red_btn" onClick={() => {ReduxDeleteCourse(entry.course_data_id)}}>
-                Delete
-              </button>
-            </div>
-          </div>
-        ))}
-      </div>
+    <SavedCourseGroup 
+      Gindex={Gindex}
+      courseCode={courseCode}
+      entries={entries}
+      ReduxDeleteCourse={ReduxDeleteCourse}
+      iconBuilder={iconBuilder}
+    />
     ));
   
     setSavedEntries(dump);

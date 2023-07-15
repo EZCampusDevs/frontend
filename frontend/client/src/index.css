@@ -36,7 +36,7 @@
       }
 
     .medium_search_bar {
-        @apply w-full pl-10 pr-4 py-2 rounded-lg border-gray-300 sm:text-lg;
+        @apply w-full pl-10 pr-4 py-2 rounded-lg border-gray-300 sm:text-lg mt-4;
     }
 
     .dark .medium_search_bar {
