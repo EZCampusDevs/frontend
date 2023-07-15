@@ -107,11 +107,11 @@ export function Sync_ICS_Post(setBlobURL_callback, setBlobSize_callback, setErrM
   }).then(response => {  //& .then #1, Save the response as a file BLOB
 
     //If response is OK, assume it's a File response
-    if(response.status == 200){
+    if(response.status === 200){
       return response.blob(); //*Propagates to the next .then 
     } 
 
-    if(response.status == 406){
+    if(response.status === 406){
       response.json().then(respJSON =>
         setErrMsg_callback(respJSON.detail)
       );

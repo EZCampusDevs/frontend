@@ -43,7 +43,7 @@ const SavedCourseGroup = ({Gindex, courseCode, entries, ReduxDeleteCourse, iconB
   
             {/* COL 6 */}
             <button className="md:col-start-6 large_red_btn" onClick={() => {ReduxDeleteCourse(entry.course_data_id)}}>
-              Delete
+              Remove
             </button>
           </div>
         </div>

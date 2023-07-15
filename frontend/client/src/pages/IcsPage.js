@@ -185,7 +185,7 @@ const IcsPage = () => {
       </>);
       } else {
         return (<><br/>
-        <button className="large_blue_btn disabled" onClick={() => {handleSubmitICS()}}>
+        <button className="large_blue_btn disabled">
           Select courses first...
         </button>
       </>);

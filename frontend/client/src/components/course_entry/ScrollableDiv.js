@@ -31,8 +31,6 @@ const ScrollableDiv = ({results, callback}) => {
       // Call your function or perform desired actions here
       console.log('Scrolled to the bottom');
       callback();
-
-
     }
   }, [isScrolledToBottom]);
 

@@ -12,7 +12,9 @@ import { iconBuilder } from '../../util/reactHelper';
 
 const CourseEntry = ({reduxReference}) => {
   
-    const C_Gs = ["bg-cyan-200" , "bg-lime-200", "bg-red-200", "bg-blue-200"];
+  //* ========== ========== ========== ========== ==========
+  //* >> Redux Stuff
+  //* ========== ========== ========== ========== ==========
 
     //& reduxKeyRef Refers to the specific sub-section of a slice i'm talking about, 
     //* This is to seperate different states using the same Reducers & Functionalities
@@ -33,10 +35,11 @@ const CourseEntry = ({reduxReference}) => {
         }))
     }
 
-    //React State
-    const [savedEntriesJSX, setSavedEntries] = React.useState([]);  
+  //* ========== ========== ========== ========== ==========
+  //* >> Main State & Renderings
+  //* ========== ========== ========== ========== ==========
 
-//TODO: Move this out and fix to generalize
+    const [savedEntriesJSX, setSavedEntries] = React.useState([]);  
   const saved_entries = useSelector((state) => state.courseEntry.ics_dl_entries);
 
   const savedEntriesBuilder = (savedEntries) => {
@@ -45,22 +48,20 @@ const CourseEntry = ({reduxReference}) => {
       (acc[curr.course_title] = acc[curr.course_title] || []).push(curr);
       return acc;
     }, {});
-  
+    
 
-
+    //Every Course Code Group is Rendered as it's own `SavedCourseGroup` component, for easy collapsibility
     const dump = Object.entries(groupedEntries).map(([courseCode, entries], Gindex) => (
-    <SavedCourseGroup 
-      Gindex={Gindex}
-      courseCode={courseCode}
-      entries={entries}
-      ReduxDeleteCourse={ReduxDeleteCourse}
-      iconBuilder={iconBuilder}
-    />
+      <SavedCourseGroup 
+        Gindex={Gindex}
+        courseCode={courseCode}
+        entries={entries}
+        ReduxDeleteCourse={ReduxDeleteCourse}
+        iconBuilder={iconBuilder}
+      />
     ));
-  
     setSavedEntries(dump);
   }
-   
 
   //* ========== ========== ========== ========== ==========
   //* >> React UseEffects and Return
@@ -69,8 +70,7 @@ const CourseEntry = ({reduxReference}) => {
   React.useEffect(
     () => {
         savedEntriesBuilder(saved_entries);
-    } , [saved_entries]
-  );
+    } , [saved_entries]);
   
   return (
     <>
