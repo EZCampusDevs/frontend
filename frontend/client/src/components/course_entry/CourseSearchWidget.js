@@ -129,7 +129,7 @@ const CourseSearchWidget = ({AddCourseCallback}) => {
 
     <div>     
 
-    <ScrollableDiv results={results} callback={() => {handleScrollDown()}} />
+    <ScrollableDiv results={results} resultsPerPage={search_entries.results_per_page} callback={() => {handleScrollDown()}} />
 
     </div>
     </>
