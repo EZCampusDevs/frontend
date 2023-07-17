@@ -7,7 +7,6 @@ import ScrollableDiv from './ScrollableDiv';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { loadIn, addPage } from '../../redux/features/courseSearchSlice';
-import { debounce } from 'lodash';
 import { SchoolTermRequest, SearchCoursesByTerm } from '../../util/requests';
 
 import { iconBuilder } from '../../util/reactHelper';
@@ -18,6 +17,22 @@ import CourseSearchResultEntry from './CourseSearchResultEntry';
 //TODO: Get that callback add thing that propagates out of CourseSearchWidget component
 
 const CourseSearchWidget = ({AddCourseCallback}) => {
+
+    // Instead of using the entire Lodash Library for one function...
+    //https://github.com/you-dont-need/You-Dont-Need-Lodash-Underscore#_debounce
+    function debounce(func, wait, immediate) {
+        var timeout;
+        return function() {
+            var context = this, args = arguments;
+            clearTimeout(timeout);
+            if (immediate && !timeout) func.apply(context, args);
+            timeout = setTimeout(function() {
+                timeout = null;
+                if (!immediate) func.apply(context, args);
+            }, wait);
+        };
+      }
+      
 
     //React State:
     const [results,setResults] = React.useState("Results are empty..."); //Search Results

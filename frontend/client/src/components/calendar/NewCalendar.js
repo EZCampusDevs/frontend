@@ -5,7 +5,7 @@ import React from 'react'
 import { CalendarPlaceholder } from '../../util/requests'
 import { cParse2 } from '../../util/calendarJSON';
 import NewCalendarEvent from './NewCalendarEvent';
-import { set } from 'lodash';
+
 
 const NewCalendar = ({calendarView, viewState, EARLIEST_TIME, LATEST_TIME}) => {
 
