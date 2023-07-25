@@ -1,5 +1,10 @@
+//lib imports:
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
 //Static imports:
 import logo from './logo.svg';
+import { tos } from './util/textblock';
 
 //Component imports:
 import HomePage from "./pages/HomePage";
@@ -21,16 +26,13 @@ import AboutUsPage from './pages/AboutUsPage';
 import ClubSearchPage from './pages/ClubSearchPage';
 import ExecutiveCalendarPage from './pages/ExecutiveCalendarPage';
 import NewHomePage from './pages/NewHomePage';
+import TextBlockPage from './pages/TextBlockPage';
 
 import SchoolConfigSelect from './components/util/SchoolConfigSelect';
 import CourseSearchWidget from './components/course_entry/CourseSearchWidget';
 
-//React & Lib imports:
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
 import SchoolRoutePage from './pages/SchoolRoutePage';
 
-import React from 'react';
 
 //? Note: In app is where we do all school routing at the sub-domain level
 
@@ -60,7 +62,9 @@ export default function App() {
       <Route path="/events" element={<ClubSearchPage/>}></Route>
       */}
       <Route path="/optimize" element={<OptimizerPageV4/>}></Route> 
-      <Route path="/institutions"element={<SchoolRoutePage/>}></Route> 
+      <Route path="/institutions" element={<SchoolRoutePage/>}></Route>
+
+      <Route path="/tos" element={<TextBlockPage titleStr={"Terms Of Service"} paragraphJSX={tos}/>}></Route>
 
       <Route path="/executive" element={<ExecutiveCalendarPage/>}></Route>
       <Route path="/about/us" element={<AboutUsPage/>}></Route>      

@@ -180,7 +180,7 @@ export async function CalendarPlaceholder(course_data_ids, callback) {
 
 
 export function oauth_try() {
-  return fetch(ENDPOINT+"/google-api/auth/start", {
+  return fetch(ENDPOINT+"google-api/auth/start", {
 })
   .then(response => response.json())
   .then(data => {
@@ -196,5 +196,4 @@ export function oauth_try() {
     console.log("Consent Screen:");
     window.location.href = data.authorization_url;
   });
-
 }
