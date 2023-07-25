@@ -180,7 +180,7 @@ export async function CalendarPlaceholder(course_data_ids, callback) {
 
 
 export function oauth_try() {
-  return fetch('http://localhost:8000/google-api/auth/start', {
+  return fetch(ENDPOINT+"/google-api/auth/start", {
 })
   .then(response => response.json())
   .then(data => {
@@ -188,6 +188,7 @@ export function oauth_try() {
     console.log(data);
     // Store the new token
 
+    //! This does nothing, just here in Case...
     const cookies = new Cookies();
     cookies.set('token', data.token);
 
