@@ -1,4 +1,5 @@
 import findCookie from "./findCookie";
+import Cookies from 'universal-cookie';
 
 //ENDPOINT DEFINITIONS
 let ENDPOINT = "https://api.ezcampus.org/"
@@ -175,4 +176,24 @@ export async function CalendarPlaceholder(course_data_ids, callback) {
     let ResponseJSON = await RESPONSE.json();
     callback(ResponseJSON);
     return;
+}
+
+
+export function oauth_try() {
+  return fetch('http://localhost:8000/google-api/auth/start', {
+})
+  .then(response => response.json())
+  .then(data => {
+    
+    console.log(data);
+    // Store the new token
+
+    const cookies = new Cookies();
+    cookies.set('token', data.token);
+
+    // Redirect the user to Google's consent screen
+    console.log("Consent Screen:");
+    window.location.href = data.authorization_url;
+  });
+
 }
