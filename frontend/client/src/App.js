@@ -21,6 +21,7 @@ import AboutUsPage from './pages/AboutUsPage';
 import ClubSearchPage from './pages/ClubSearchPage';
 import ExecutiveCalendarPage from './pages/ExecutiveCalendarPage';
 import NewHomePage from './pages/NewHomePage';
+import BugReportPage from './pages/BugReportPage';
 
 import SchoolConfigSelect from './components/util/SchoolConfigSelect';
 import CourseSearchWidget from './components/course_entry/CourseSearchWidget';
@@ -63,8 +64,10 @@ export default function App() {
       <Route path="/institutions"element={<SchoolRoutePage/>}></Route> 
 
       <Route path="/executive" element={<ExecutiveCalendarPage/>}></Route>
-      <Route path="/about/us" element={<AboutUsPage/>}></Route>      
+      <Route path="/about/us" element={<AboutUsPage/>}></Route>    
+      <Route path="/report" element={<BugReportPage/>}></Route>  
       <Route path='*' exact={true} element={<IcsPage/>}></Route>
+
 
       </Routes>
      </Router>

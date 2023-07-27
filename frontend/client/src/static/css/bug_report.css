@@ -1,0 +1,38 @@
+/*BUG REPORT PAGE CSS*/
+.bug-report {
+    /*Bug report should be centered with a little space inbetween each text box*/
+    width: 50%;
+    margin: auto;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    background-color: #1e2b33;
+    border-radius: 2vh;
+    padding: 2vh;
+    box-sizing: border-box;
+    color : rgb(0,0,0);
+}
+
+.form-control {
+    width: 100%;
+    box-sizing: border-box;
+    border-radius: 2vh;
+    padding: 2vh;
+}
+
+.report-label {
+    font-family: 'Roboto Slab', serif;
+    font-size: 2vh;
+    color: white;
+}
+
+.report-btn {
+    font-family: 'Roboto Slab', serif;
+    font-size: 2vh;
+    width: 50%;
+    color: white;
+    background-color: #1e2b33;
+    border-radius: 2vh;
+    padding: 2vh;
+    box-sizing: border-box;
+    border: 0;
+}
