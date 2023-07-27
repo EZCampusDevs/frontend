@@ -50,7 +50,15 @@
     /** BUTTONS */
 
     .large_blue_btn {
-        @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded;
+        @apply bg-blue-500 hover:bg-blue-700 text-gray-200 font-bold py-2 px-4 border border-blue-700 rounded dark:text-white;
+    }
+
+    .large_red_btn {
+        @apply bg-red-500 hover:bg-red-700 text-gray-200 font-bold  py-2 px-4 border border-red-950 rounded dark:text-white;
+    }
+
+    .large_warning_btn {
+        @apply bg-yellow-400 hover:bg-yellow-500 text-gray-950 font-bold  py-2 px-4 border border-red-950 rounded dark:text-gray-500;
     }
 
     .large_blue_btn.disabled {
@@ -63,10 +71,6 @@
     }
 
     
-    .large_red_btn {
-        @apply bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 border border-red-800 rounded;
-    }
-
     /** SEARCH ENTRIES */
 
     .search_entry {
