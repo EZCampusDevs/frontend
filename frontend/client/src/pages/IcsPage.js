@@ -6,6 +6,7 @@ import React from 'react'
 import PageHeader from '../components/navbar/PageHeader';
 import TermSelect from '../components/util/TermSelect';
 import CourseEntry from '../components/course_entry/CourseEntry';
+import Tos from '../components/util/Tos';
 
 //Redux
 import { useSelector, useDispatch } from 'react-redux';
@@ -133,6 +134,7 @@ const IcsPage = () => {
     <SchoolRouteRenderWall page={
     <div>
     <PageHeader/>
+    <Tos/>
     <br/><br/>
     <div className="mr-4 ml-4 md:mr-32 md:ml-32 lg:mr-56 lg:ml-56">
 

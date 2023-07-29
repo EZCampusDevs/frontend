@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 //Static imports:
 import logo from './logo.svg';
-import { tos } from './util/textblock';
+import { full_tos} from './util/textblock';
 
 //Component imports:
 import HomePage from "./pages/HomePage";
@@ -64,7 +64,7 @@ export default function App() {
       <Route path="/optimize" element={<OptimizerPageV4/>}></Route> 
       <Route path="/institutions" element={<SchoolRoutePage/>}></Route>
 
-      <Route path="/tos" element={<TextBlockPage titleStr={"Terms Of Service"} paragraphJSX={tos}/>}></Route>
+      <Route path="/tos" element={<TextBlockPage titleStr={"Terms Of Service"} paragraphJSX={full_tos}/>}></Route>
 
       <Route path="/executive" element={<ExecutiveCalendarPage/>}></Route>
       <Route path="/about/us" element={<AboutUsPage/>}></Route>      
