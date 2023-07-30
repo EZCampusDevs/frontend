@@ -11,6 +11,14 @@ export function iconBuilder (icon, str) {
   </p>
   }
 
+export function iconBuilderIDX (icon, str,idx) {
+    return <p key={idx} className="text-lg mb-2 flex items-center">
+    <span className="mr-2">{icon}</span>
+    {str}
+  </p>
+  }
+
+
 export function locIconBuilder (str) {
     
     if(!str) {
