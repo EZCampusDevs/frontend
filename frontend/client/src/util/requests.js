@@ -201,7 +201,7 @@ export function OAuth_Redirect() {
   });
 }
 
-export async function OAuthHandleCallback (code, courseDataId_List) {
+export async function OAuthHandleCallback (code, courseDataId_List, callback) {
 
   const RESPONSE = await fetch(ENDPOINT + 'google-api/auth/callback', {
     method: 'POST' , 
@@ -210,5 +210,5 @@ export async function OAuthHandleCallback (code, courseDataId_List) {
     });
   
   let ResponseJSON = await RESPONSE.json();
-  console.log(ResponseJSON);
+  callback(ResponseJSON);
 }
