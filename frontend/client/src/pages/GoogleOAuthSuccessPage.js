@@ -17,23 +17,16 @@ const GoogleOAuthSuccessPage = () => {
 
   function renderSwitch(state) {
     if(!state) {
-      return (
-        <>
-      <br/>
+      return (<><br/>
       <span className="sub_title">Requesting Google's Calendar API...</span>
-      </>
-      );
-    } if (state == 1) {
-      return (
-        <>
-      <br/>
+      </>);
+    } if (state === 1) {
+      return (<><br/>
       <span className="step_title">Success!</span>
       <br/>
       <span className="sub_title">Added your Selection to your Google Calendar, go check it out.</span>
       <br/>
-      <a href="https://calendar.google.com/">https://calendar.google.com/</a>
-      </>
-      );
+      <a href="https://calendar.google.com/">https://calendar.google.com/</a></>);
 
     } else { //! Error state
       return(

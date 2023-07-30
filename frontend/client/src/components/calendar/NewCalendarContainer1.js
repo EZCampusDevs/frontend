@@ -72,7 +72,7 @@ const NewCalendarContainer1 = () => {
     //* ========== ========== ========== ========== ========== 
 
     React.useEffect(() => {
-        setCalendarWithCDIs([1,2,3]);
+        //setCalendarWithCDIs([1,2,3]);
 
      }, []);
 
@@ -95,7 +95,7 @@ const NewCalendarContainer1 = () => {
         <NewCalendar 
             calendarView={full_view.slice(current_offset, current_offset+7)} 
             viewState={0}
-            EARLIEST_TIME={0}
+            EARLIEST_TIME={12}
             LATEST_TIME={48}
             />
         </>);

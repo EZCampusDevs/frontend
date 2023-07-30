@@ -137,6 +137,12 @@
     max-height: 75vh;
 }
 
+@media (max-width: 768px) {
+    .height_cap {
+        max-height: 60vh; /* Set a smaller max-height for mobile */
+    }
+}
+
 .gr-50 {
     grid-template-rows: repeat(50, minmax(0, 1fr));
     height: 62.5rem;

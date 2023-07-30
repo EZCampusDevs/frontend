@@ -9,8 +9,9 @@ import NewCalendarEvent from './NewCalendarEvent';
 
 const NewCalendar = ({calendarView, viewState, EARLIEST_TIME, LATEST_TIME}) => {
 
-  const [eventsOverlay, setOverlay] = React.useState([<NewCalendarEvent colStart={2} timeStart="08:00:00" timeEnd="12:00:00"/>
-  , <NewCalendarEvent colStart={3} timeStart="14:00:00" timeEnd="18:00:00"/>,
+  const [eventsOverlay, setOverlay] = React.useState([
+  <NewCalendarEvent colStart={2} timeStart="08:00:00" timeEnd="12:00:00"/>,
+  <NewCalendarEvent colStart={3} timeStart="14:00:00" timeEnd="18:00:00"/>,
   <NewCalendarEvent colStart={4} timeStart="11:00:00" timeEnd="16:00:00"/>,
   <NewCalendarEvent colStart={4} timeStart="6:00:00" timeEnd="08:00:00"/>,
   <NewCalendarEvent colStart={5} timeStart="14:00:00" timeEnd="18:00:00"/>,
@@ -172,25 +173,26 @@ const NewCalendar = ({calendarView, viewState, EARLIEST_TIME, LATEST_TIME}) => {
     React.useEffect(() => { //OnMount
      }, []);
 
-    React.useEffect(() => {
+  //! Uncomment once placholder events is fixed   
+    // React.useEffect(() => {
 
-      //TODO: parse CalendarView
-      console.log(calendarView);
+    //   //TODO: parse CalendarView
+    //   console.log(calendarView);
 
-      let jsxEvents = [];
+    //   let jsxEvents = [];
 
-      for(const viewEntry of calendarView) {
-        let miniJSX = encode_2_NewCalendarEvent(viewEntry);
-        if(miniJSX.length){
-          for(const m of miniJSX){ 
-            jsxEvents.push(m);
-          }
-        }
-      }
+    //   for(const viewEntry of calendarView) {
+    //     let miniJSX = encode_2_NewCalendarEvent(viewEntry);
+    //     if(miniJSX.length){
+    //       for(const m of miniJSX){ 
+    //         jsxEvents.push(m);
+    //       }
+    //     }
+    //   }
 
-      setOverlay(jsxEvents);
+    //   setOverlay(jsxEvents);
 
-    }, [calendarView]);
+    // }, [calendarView]);
 
     //! RETURN STMT
     return (<div>  

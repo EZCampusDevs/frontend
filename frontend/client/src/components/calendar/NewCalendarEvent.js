@@ -27,13 +27,16 @@ const NewCalendarEvent = ({colStart, timeStart, timeEnd, EARLIEST_INTR , LATEST_
     
     let left = ((colStart - 1) * elementWidth) + 0.225 * colStart;  // each column represents 1/7th of the total width assuming 7 days view
 
+    //TOP Estimated linear eq:
+    //5.333 + -2.074 * (x)
+
     return (
       <div 
         className="bg-blue-200 absolute"
         style={{
-            top: `${top}vh`,
+            top: `${top+(-19.556)}vh`,
             height: `${height}vh`,
-            left: `${left}rem`,
+            left: `${left+1}rem`,
             width: `${elementWidth}rem`,
         }}
       >
