@@ -178,8 +178,11 @@ export async function CalendarPlaceholder(course_data_ids, callback) {
     return;
 }
 
+// ######################### Google Calendar | OAuth Related Requests #########################
 
-export function oauth_try() {
+
+//This URL will redirect to Google's accounts.google.com for Login, then redirect back to the frontend
+export function OAuth_Redirect() {
   return fetch(ENDPOINT+"google-api/auth/start", {
 })
   .then(response => response.json())
@@ -196,4 +199,16 @@ export function oauth_try() {
     console.log("Consent Screen:");
     window.location.href = data.authorization_url;
   });
+}
+
+export async function OAuthHandleCallback (code, courseDataId_List) {
+
+  const RESPONSE = await fetch(ENDPOINT + 'google-api/auth/callback', {
+    method: 'POST' , 
+    headers: {'Content-Type' : 'application/json'},
+    body: JSON.stringify({  "cdis": courseDataId_List, "code" : code}) 
+    });
+  
+  let ResponseJSON = await RESPONSE.json();
+  console.log(ResponseJSON);
 }

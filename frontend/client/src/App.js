@@ -37,6 +37,7 @@ import SchoolRoutePage from './pages/SchoolRoutePage';
 //? Note: In app is where we do all school routing at the sub-domain level
 
 import NewCalendarContainer1 from './components/calendar/NewCalendarContainer1';
+import GoogleOAuthSuccessPage from './pages/GoogleOAuthSuccessPage';
 
 
 export default function App() {
@@ -69,6 +70,9 @@ export default function App() {
       <Route path="/executive" element={<ExecutiveCalendarPage/>}></Route>
       <Route path="/about/us" element={<AboutUsPage/>}></Route>      
       <Route path='*' exact={true} element={<IcsPage/>}></Route>
+        
+      {/* GOOGLE OAUTH SUCCESS ROUTE */}
+      <Route path="/google-auth-callback" element={<GoogleOAuthSuccessPage/>}></Route>      
 
       </Routes>
      </Router>

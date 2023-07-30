@@ -1,5 +1,5 @@
-import React from 'react'
-
+import React from 'react';
+import Cookies from "universal-cookie";
 
 //Component imports
 
@@ -13,7 +13,7 @@ import { assertPush, assertDelete } from '../redux/features/courseEntrySlice';
 
 //Local 
 import { app_name } from '../util/constant';
-import { Sync_ICS_Post , oauth_try} from '../util/requests';
+import { Sync_ICS_Post , OAuth_Redirect} from '../util/requests';
 import '../static/css/main_ui.css';
 
 //Hooks
@@ -23,18 +23,6 @@ import SchoolRouteRenderWall from '../components/schools/SchoolRouteRenderWall';
 const googleSvg = <svg xmlns="http://www.w3.org/2000/svg" className={`h-6 w-6 mr-3 text-gray-900 dark:text-white`} viewBox="0 0 48 48"><path id="a" d="M44.5 20H24v8.5h11.8C34.7 33.9 30.1 37 24 37c-7.2 0-13-5.8-13-13s5.8-13 13-13c3.1 0 5.9 1.1 8.1 2.9l6.4-6.4C34.6 4.1 29.6 2 24 2 11.8 2 2 11.8 2 24s9.8 22 22 22c11 0 21-8 21-22 0-1.3-.2-2.7-.5-4z"/></svg>
 
 const IcsPage = () => {
-
-//Google Calendar Auth stuff
-  var gapi = window.gapi;
-  console.log(gapi)
-  var CLIENT_ID = "712384750559-gfvgd0eukbv859v4768so8dobj949kf8.apps.googleusercontent.com";
-  var G_API_KEY = "AIzaSyDvkDQ5say67ia8t9ejwpmTddxFN9-w7qA";
-  var DISCOVERY_DOCS = ['https://www.googleapis.com/discovery/v1/apis/calendar/v3/rest'];
-  var SCOPES = "https://www.googleapis.com/auth/calendar.events";
-
-  const handleGoogleCalendar = () => {
-    oauth_try();
-  }
 
   document.title = app_name + " | .ICS Export";
 
@@ -53,6 +41,33 @@ const IcsPage = () => {
 
   const [errMsg, setErrMsg] = React.useState('');
 
+  // ICS Helper FNS:
+
+  const getSelectedCDIs = () => {
+    let course_data_ids_list = [];
+
+    for(const entry of saved_entries) {
+      course_data_ids_list.push(entry.course_data_id);
+    }
+    return course_data_ids_list;
+  }
+
+
+
+  //Google Calendar Auth stuff
+  const handleGoogleCalendar = () => {
+
+    let course_data_ids_list = getSelectedCDIs();
+    const cookies = new Cookies();
+
+    //! TO BE USED IN PRODUCTION:
+    //cookies.set('course_data_ids', JSON.stringify(course_data_ids_list), { domain: '.ezcampus.org', path: '/' });
+    console.log(JSON.stringify(course_data_ids_list));
+
+    cookies.set('course_data_ids', JSON.stringify(course_data_ids_list), { path: '/' });
+    OAuth_Redirect();
+  }
+
 
   const handleSubmitICS = () => {
 
@@ -62,11 +77,7 @@ const IcsPage = () => {
       return;
     } 
 
-    let course_data_ids_list = [];
-
-    for(const entry of saved_entries) {
-      course_data_ids_list.push(entry.course_data_id);
-    }
+    let course_data_ids_list = getSelectedCDIs();
 
     //Preform Request; Passing over callbacks to ICS page's State Setters
     Sync_ICS_Post(setBlobURL, setBlobSize, setErrMsg, RenderLink, course_data_ids_list )
@@ -168,9 +179,6 @@ const IcsPage = () => {
         
         {RenderLink()}<br/><br/>
 
-        {/* <a href="https://script.google.com/macros/s/AKfycbwuVrj36fmE9noinxa3OE52zttxa5uQkxRpB8BkjHtX9TELzYGZitY2pWras9wyz3hoxg/exec?title=EZCAMPUS EVENT">
-              Noice
-        </a> */}
       </div>
 
       </div>
