@@ -5,9 +5,8 @@
 @layer components {
 
     /** TITLES & TEXT STYLINGS */
-
     .sub_title {
-        @apply text-xl text-gray-800 dark:text-white;   
+        @apply text-xl text-gray-800 dark:text-white;
     }
 
     .step_title {
@@ -15,7 +14,7 @@
     }
 
     .large_text_field {
-        @apply shadow block w-full p-4 text-gray-900 border border-gray-300 rounded-lg 
+        @apply shadow block w-full p-4 text-gray-900 border border-gray-300 rounded-lg
         bg-gray-50 focus:ring-blue-500 focus:border-blue-500;
     }
 
@@ -24,23 +23,22 @@
     }
 
     /** DROP DOWNS, SELECTIONS, INPUTS */
-
     .large_select_field {
-        @apply shadow sm:w-full p-2 border border-gray-300 rounded-lg bg-gray-50 sm:text-lg 
+        @apply shadow sm:w-full p-2 border border-gray-300 rounded-lg bg-gray-50 sm:text-lg
         focus:ring-blue-500 focus:border-blue-500;
     }
 
     .dark .large_select_field {
-        @apply shadow-sm w-full p-2 border border-gray-700 rounded-lg bg-gray-800 text-white sm:text-lg 
+        @apply shadow-sm w-full p-2 border border-gray-700 rounded-lg bg-gray-800 text-white sm:text-lg
         focus:ring-blue-500 focus:border-blue-500;
-      }
+    }
 
     .medium_search_bar {
         @apply w-full pl-10 pr-4 py-2 rounded-lg border-gray-300 sm:text-lg my-4;
     }
 
     .dark .medium_search_bar {
-        @apply  border-gray-700 rounded-lg bg-gray-800 text-white;
+        @apply border-gray-700 rounded-lg bg-gray-800 text-white;
     }
 
     .icon_styling {
@@ -48,7 +46,6 @@
     }
 
     /** BUTTONS */
-
     .large_blue_btn {
         @apply bg-blue-500 hover:bg-blue-700 text-gray-200 font-bold py-2 px-4 border border-blue-700 rounded dark:text-white;
     }
@@ -66,39 +63,42 @@
         pointer-events: none; /* Example: disabling pointer events when disabled */
     }
 
+    .large_red_btn.disabled {
+        opacity: 0.5; /* Example: reducing opacity when disabled */
+        pointer-events: none; /* Example: disabling pointer events when disabled */
+    }
+
     .widget_btn {
         @apply w-72 flex items-center px-4 py-2 text-white bg-blue-500 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50;
     }
 
-    
-    /** SEARCH ENTRIES */
 
+    /** SEARCH ENTRIES */
     .search_entry {
         @apply bg-gradient-to-br from-slate-100 to-cyan-200 border border-black rounded-lg p-4 w-full mb-5;
     }
 
-      .Laboratory {
-        @apply  bg-gradient-to-br from-slate-100 to-lime-200 border;
-      }
+    .Laboratory {
+        @apply bg-gradient-to-br from-slate-100 to-lime-200 border;
+    }
 
-      .Tutorial {
-        @apply  bg-gradient-to-br from-slate-100 to-orange-200 border;
-      }
-      
+    .Tutorial {
+        @apply bg-gradient-to-br from-slate-100 to-orange-200 border;
+    }
+
     .dark .search_entry {
         @apply bg-gradient-to-br from-slate-900 to-blue-900 border text-white;
     }
 
-      .dark .Laboratory {
+    .dark .Laboratory {
         @apply bg-gradient-to-br from-slate-900 to-purple-900 border text-white;
-       }
+    }
 
-      .dark .Tutorial {
+    .dark .Tutorial {
         @apply bg-gradient-to-br from-slate-900 to-cyan-900 border text-white;
-       }
-      
-    /** SAVED ENTRIES */ 
-    
+    }
+
+    /** SAVED ENTRIES */
     .saved_entry {
         @apply bg-blue-200 rounded-lg p-4 mb-3
     }
@@ -109,12 +109,10 @@
 
 
     /** TEXT BLOCK PAGE ; EXTRA STYLINGS */
-
     .text_block_main_container {
         @apply bg-blue-200 rounded-lg p-8 m-4
     }
 
-    
 
     .dark .text_block_main_container {
         @apply text-gray-200 bg-gray-700
@@ -125,7 +123,7 @@
     }
 
     .textblock_title {
-        @apply text-3xl text-gray-800 dark:text-white;   
+        @apply text-3xl text-gray-800 dark:text-white;
     }
 
 
@@ -146,7 +144,7 @@
 .gr-50 {
     grid-template-rows: repeat(50, minmax(0, 1fr));
     height: 62.5rem;
-  }
+}
 
 .col_w {
     width: 13.25rem;
