@@ -1,23 +1,20 @@
-# pull official base image for node
-FROM node:16-buster-slim
+# Build the client files in a build stage
+FROM node:lts-alpine as build
+RUN apk add --no-cache git
 
-# set working directory
 WORKDIR /app
 
-# add `/app/node_modules/.bin` to PATH
-ENV PATH /app/node_modules/.bin:$PATH
+# Install npm dependencies
+COPY package*.json /app/
+RUN npm ci
 
-# install dependencies
-COPY package.json ./
-COPY package-lock.json ./
-RUN npm i -g npm@latest
-RUN npm install
+COPY . /app
+RUN npm run docker-build
 
-# copy all src files to the container
-COPY . .
+FROM nginx:alpine
 
-# Expose port
-EXPOSE ${REACT_PORT}
+# Copy in nginx config
+COPY nginx/default.conf /etc/nginx/conf.d/
 
-# start the web app
-CMD ["npm", "run", "start"]
+# Copy in the built app from the build stage
+COPY --from=build /app/build/ /usr/share/nginx/html
