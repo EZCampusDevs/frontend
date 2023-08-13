@@ -1,5 +1,6 @@
 import findCookie from "./findCookie";
 import Cookies from 'universal-cookie';
+import {general_ics, notion_csv} from '../util/constant';
 
 //ENDPOINT DEFINITIONS
 let ENDPOINT = "https://api.ezcampus.org/"
@@ -91,25 +92,28 @@ export async function SearchCoursesByTerm(searchTerm, page, resultsPerPage, term
 // ######################### ICS Requests #########################
 // String, fn, fn, fn, fn, Array<int>
 export function Sync_File_Download_Post(file_type, setBlobURL_callback, setBlobSize_callback, setErrMsg_callback, render, courseDataIds) {
-  setBlobURL_callback(1);
+  // setBlobURL_callback(1);
 
-  const FILE_TYPE_ENDPOINT = {
-    "ics": "download/ics/courses?",
-    "notion_csv": "download/csv/courses?"
+  let endpoint_path = null  // TODO: Add error handling for this!
+  let content_type = null
+  if (file_type === general_ics) {
+    endpoint_path = "download/ics/courses?"
+    content_type = "application/json"
+    // content_type = "text/calendar"
+  } else if (file_type === notion_csv) {
+    endpoint_path = "download/csv/courses?"
+    content_type = "application/json"
+    // content_type = "text/csv"
   }
 
   //* API Request for Download
-  fetch(ENDPOINT + FILE_TYPE_ENDPOINT[file_type],
+  fetch(ENDPOINT + endpoint_path,
 
     //Request Parameters
     {
-      method: 'POST', headers: {
-        'Content-Type': 'application/json',
-      },
-
-      //Post Body to API
+      method: "POST",
+      headers: {"Content-Type": content_type,},
       body: JSON.stringify({"course_data_ids": courseDataIds}),
-
     }).then(response => {  //& .then #1, Save the response as a file BLOB
 
     //If response is OK, assume it's a File response
@@ -124,19 +128,22 @@ export function Sync_File_Download_Post(file_type, setBlobURL_callback, setBlobS
       return null;
     }
 
+    console.log(response)
+
   }).then(data => {   //& .then #2 Once it's converted into file blob, set download link via HREF url object
 
+    console.log(data)
+
     if (data == null) {
-      setBlobURL_callback('');
+      // setBlobURL_callback("");
       return;
     }
 
     const href = window.URL.createObjectURL(data);
-    setBlobSize_callback(data.size); //For Display purposes
+    // setBlobSize_callback(data.size); //For Display purposes
 
     //Clear error if there was any
-    setErrMsg_callback('');
-
+    // setErrMsg_callback('');
     return setBlobURL_callback(href);
 
   }).then( //& .then #3 Render Callback once everything has been set
@@ -145,7 +152,7 @@ export function Sync_File_Download_Post(file_type, setBlobURL_callback, setBlobS
     }
   )
     .catch((error) => {
-      console.error('Error:', error);
+      console.error("Error:", error);
     });
 }
 

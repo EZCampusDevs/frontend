@@ -107,10 +107,15 @@ const ExportCoursesPage = () => {
     let course_data_ids_list = getSelectedCDIs();
 
     //Preform Request; Passing over callbacks to page's State Setters based on file_type
+    let callback = null  // TODO: Add error handling for this!
     if (file_type === general_ics) {
-      Sync_File_Download_Post(file_type, setBlobURL, setBlobSize, setErrMsg, RenderICSLink, course_data_ids_list)
+      callback = RenderICSLink
     } else if (file_type === notion_csv) {
-      Sync_File_Download_Post(file_type, setBlobURL, setBlobSize, setErrMsg, RenderNotionCSVLink, course_data_ids_list)
+      callback = RenderNotionCSVLink
+    }
+
+    if (callback !== null) {
+      Sync_File_Download_Post(file_type, setBlobURL, setBlobSize, setErrMsg, callback, course_data_ids_list)
     }
   }
 
@@ -119,7 +124,7 @@ const ExportCoursesPage = () => {
       <a className="large_blue_btn flex items-center justify-center space-x-2" onClick={() => {
         postFileDownload(general_ics)
       }} href={blobURL} download="calendar.ics">
-        {downloadSvg}&nbsp;&nbsp;Calendar File (ics)&nbsp;{calendarSvg}</a>
+        {downloadSvg}&nbsp;&nbsp;iCal (ics) → Apple & Google Calendar&nbsp;{calendarSvg}</a>
     </>);
   }
 
@@ -128,16 +133,16 @@ const ExportCoursesPage = () => {
       <a className="large_blue_btn flex items-center justify-center space-x-2" onClick={() => {
         postFileDownload(notion_csv)
       }} href={blobURL} download="notion_database.csv">
-        {downloadSvg}&nbsp;&nbsp;Notion Database (csv)&nbsp;{notionSvg}</a>
+        {downloadSvg}&nbsp;&nbsp;Database (csv) → Notion&nbsp;{notionSvg}</a>
     </>);
   }
 
   function RenderGoogleCalLink() {
     return (<>
-      <a className="large_blue_btn flex items-center justify-center space-x-2" onClick={() => {
+      <a className="large_red_btn disabled flex items-center justify-center space-x-2" onClick={() => {
         handleGoogleCalendar()
       }}>
-        {directSvg}&nbsp;&nbsp;Google Calendar&nbsp;{googleSvg}
+        {directSvg}&nbsp;&nbsp;[COMING SOON!] <s>Direct → Google Calendar</s>&nbsp;{googleSvg}
       </a>
     </>);
   }
