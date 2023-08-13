@@ -5,15 +5,18 @@ pipeline {
 
         stage("Build Docker Image") {
 
+            steps {
+
                 dir("frontend/client") {
 
-                        script {
+                    script {
 
-                            docker.build("ezcampus_react_prod", ".")
+                        docker.build("ezcampus_react_prod", ".")
 
-                            }
                     }
+                }
             }
+        }
     }
     
         
