@@ -21,19 +21,24 @@ pipeline {
     
         
     post {
+
         always {
-            discordSend(
-                        description: currentBuild.result, 
-                        enableArtifactsList: false, 
-                        footer: '', 
-                        image: '', 
-                        link: '', 
-                        result: currentBuild.result, 
-                        scmWebUrl: '', 
-                        thumbnail: '', 
-                        title: env.JOB_BASE_NAME, 
-                        webhookURL: "${DISCORD_WEBHOOK_1}"
-                    )
+
+            withCredentials([string(credentialsId: 'DISCORD_WEBHOOK_1', variable: 'WEBHOOK_URL')]) {
+
+                discordSend(
+                            description: currentBuild.result, 
+                            enableArtifactsList: false, 
+                            footer: '', 
+                            image: '', 
+                            link: '', 
+                            result: currentBuild.result, 
+                            scmWebUrl: '', 
+                            thumbnail: '', 
+                            title: env.JOB_BASE_NAME, 
+                            webhookURL: "${WEBHOOK_URL}"
+                        )
+            }
         }
     }
 }
