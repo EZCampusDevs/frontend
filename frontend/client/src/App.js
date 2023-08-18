@@ -20,7 +20,7 @@ import ClubUserPage from './pages/ClubUserPage';
 import ClubCreationPage from './pages/ClubCreationPage';
 import OptimizerPageV4 from './pages/OptimizerPageV4';
 import ClubPage from './pages/ClubPage';
-import PageNotFound from './pages/PageNotFound';
+import PageNotFoundPage from './pages/PageNotFoundPage.js';
 import IcsPage from './pages/IcsPage';
 import AboutUsPage from './pages/AboutUsPage';
 import ClubSearchPage from './pages/ClubSearchPage';
@@ -54,7 +54,7 @@ export default function App() {
 
         {/* Temporary path */}
       <Route path="/cs_widget" element={<CourseSearchWidget/>}></Route>
-
+      <Route path="/404" element={<PageNotFoundPage/>}></Route>
       {/* <Route path="/calendar" element={<CalendarPage/>}></Route>
       <Route path="/optimize" element={<OptimizerPage/>}></Route>
       <Route path="/club/create" element={<ClubCreationPage/>}></Route>

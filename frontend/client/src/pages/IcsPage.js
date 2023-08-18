@@ -7,6 +7,8 @@ import PageHeader from '../components/navbar/PageHeader';
 import TermSelect from '../components/util/TermSelect';
 import CourseEntry from '../components/course_entry/CourseEntry';
 
+import Footer from '../components/footer/Footer';
+
 //Redux
 import { useSelector, useDispatch } from 'react-redux';
 import { assertPush, assertDelete } from '../redux/features/courseEntrySlice';
@@ -182,7 +184,9 @@ const IcsPage = () => {
       </div>
 
       </div>
-    </div>} />
+      <Footer/>
+    </div>
+  } />
   );
 }
 
