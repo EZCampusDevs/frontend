@@ -58,9 +58,9 @@ const SavedCourseGroup = ({Gindex, courseCode, entries, ReduxDeleteCourse, iconB
             {/* COL 5 */}
             <div className="md:col-start-5 r_font">
 
-                {locIconBuilder(entry.extra[0].building)}
+                {locIconBuilder(entry.extra[0] ? entry.extra[0].building : "Online Lecture")}
 
-                {entry.extra[0].building_description}
+                {entry.extra[0] ? entry.extra[0].building_description : "(Remote Attendance)"}
             </div>
 
             {/* COL 6 */}

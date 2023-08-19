@@ -67,7 +67,6 @@ export async function SchoolTermRequest(redux_identifier, body, callback) {
 
 export async function SearchCoursesByTerm(searchTerm, page, resultsPerPage, termId, callback) {
 
-  console.log(termId)
 
   const RESPONSE = await fetch(SEARCH_ENDPOINT + 'search', {
     method: 'POST',
