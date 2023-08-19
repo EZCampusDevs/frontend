@@ -3,26 +3,17 @@ pipeline {
 
     stages {
 
-        stage('Remote Deploy Repository') {
+        stage("Build Docker Image") {
+
             steps {
-                dir("frontend") {
-                    sshPublisher(publishers: [
-                        sshPublisherDesc(configName: '2GB_Glassfish_VPS', transfers: [
-                            sshTransfer(
-                                cleanRemote: true, excludes: '', execCommand: '''
-cd ~/frontend
-chmod +x ./build.sh
-./build.sh USE_LOG_FILE
-chmod +x ./deploy.sh
-./deploy.sh USE_LOG_FILE
-''', 
-execTimeout: 120000, flatten: false,
-                                makeEmptyDirs: true, noDefaultExcludes: false, patternSeparator: '[, ]+',
-                                remoteDirectory: 'frontend', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '**/*'
-                            )
-                        ],
-                        usePromotionTimestamp: false, useWorkspaceInPromotion: false, verbose: false)
-                    ])
+
+                dir("frontend/client") {
+
+                    script {
+
+                        docker.build("ezcampus_react_prod", ".")
+
+                    }
                 }
             }
         }
@@ -30,19 +21,24 @@ execTimeout: 120000, flatten: false,
     
         
     post {
+
         always {
-            discordSend(
-                        description: currentBuild.result, 
-                        enableArtifactsList: false, 
-                        footer: '', 
-                        image: '', 
-                        link: '', 
-                        result: currentBuild.result, 
-                        scmWebUrl: '', 
-                        thumbnail: '', 
-                        title: env.JOB_BASE_NAME, 
-                        webhookURL: "${DISCORD_WEBHOOK_1}"
-                    )
+
+            withCredentials([string(credentialsId: 'DISCORD_WEBHOOK_1', variable: 'WEBHOOK_URL')]) {
+
+                discordSend(
+                            description: currentBuild.result, 
+                            enableArtifactsList: false, 
+                            footer: '', 
+                            image: '', 
+                            link: '', 
+                            result: currentBuild.result, 
+                            scmWebUrl: '', 
+                            thumbnail: '', 
+                            title: env.JOB_BASE_NAME, 
+                            webhookURL: "${WEBHOOK_URL}"
+                        )
+            }
         }
     }
 }
