@@ -89,14 +89,17 @@ const NewCalendarContainer1 = () => {
      }, [current_offset]);
 
 
+
+     // 30 * 48 = 1440, (1) 10 * 144 = 1440, (3) 
     return (<>
         <button onClick={() => {reduxScroll(false)}}>Left {"<--"}</button>
         <button onClick={() => {reduxScroll(true)}}>Right {"-->"}</button>
         <NewCalendar 
             calendarView={full_view.slice(current_offset, current_offset+7)} 
             viewState={0}
-            EARLIEST_TIME={12}
-            LATEST_TIME={48}
+            THIRTY_FRAC_DENOM={3}
+            EARLIEST_TIME={0}
+            LATEST_TIME={144}
             />
         </>);
 }

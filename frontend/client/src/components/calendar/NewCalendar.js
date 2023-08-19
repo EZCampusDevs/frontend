@@ -7,17 +7,17 @@ import { cParse2 } from '../../util/calendarJSON';
 import NewCalendarEvent from './NewCalendarEvent';
 
 
-const NewCalendar = ({calendarView, viewState, EARLIEST_TIME, LATEST_TIME}) => {
+const NewCalendar = ({calendarView, viewState, EARLIEST_TIME, LATEST_TIME, THIRTY_FRAC_DENOM}) => {
 
   const [eventsOverlay, setOverlay] = React.useState([
-  <NewCalendarEvent colStart={2} timeStart="08:00:00" timeEnd="12:00:00"/>,
-  <NewCalendarEvent colStart={3} timeStart="14:00:00" timeEnd="18:00:00"/>,
-  <NewCalendarEvent colStart={4} timeStart="11:00:00" timeEnd="16:00:00"/>,
-  <NewCalendarEvent colStart={4} timeStart="6:00:00" timeEnd="08:00:00"/>,
-  <NewCalendarEvent colStart={5} timeStart="14:00:00" timeEnd="18:00:00"/>,
-  <NewCalendarEvent colStart={6} timeStart="14:30:00" timeEnd="18:30:00"/>,
-  <NewCalendarEvent colStart={7} timeStart="14:30:00" timeEnd="18:30:00"/>,
-  <NewCalendarEvent colStart={8} timeStart="15:00:00" timeEnd="19:00:00"/>
+  <NewCalendarEvent colStart={2} timeStart="08:00:00" timeEnd="12:00:00" EARLIEST_INTR={EARLIEST_TIME} LATEST_TIME={LATEST_TIME} DENOM_FACTOR={THIRTY_FRAC_DENOM} />,
+  <NewCalendarEvent colStart={3} timeStart="14:00:00" timeEnd="18:00:00" EARLIEST_INTR={EARLIEST_TIME} LATEST_TIME={LATEST_TIME} DENOM_FACTOR={THIRTY_FRAC_DENOM}/>,
+  <NewCalendarEvent colStart={4} timeStart="11:00:00" timeEnd="16:00:00" EARLIEST_INTR={EARLIEST_TIME} LATEST_TIME={LATEST_TIME} DENOM_FACTOR={THIRTY_FRAC_DENOM}/>,
+  <NewCalendarEvent colStart={4} timeStart="6:00:00" timeEnd="08:00:00"  EARLIEST_INTR={EARLIEST_TIME} LATEST_TIME={LATEST_TIME} DENOM_FACTOR={THIRTY_FRAC_DENOM}/>,
+  <NewCalendarEvent colStart={5} timeStart="14:00:00" timeEnd="18:00:00" EARLIEST_INTR={EARLIEST_TIME} LATEST_TIME={LATEST_TIME} DENOM_FACTOR={THIRTY_FRAC_DENOM}/>,
+  <NewCalendarEvent colStart={6} timeStart="14:30:00" timeEnd="18:30:00" EARLIEST_INTR={EARLIEST_TIME} LATEST_TIME={LATEST_TIME} DENOM_FACTOR={THIRTY_FRAC_DENOM}/>,
+  <NewCalendarEvent colStart={7} timeStart="14:30:00" timeEnd="18:30:00" EARLIEST_INTR={EARLIEST_TIME} LATEST_TIME={LATEST_TIME} DENOM_FACTOR={THIRTY_FRAC_DENOM}/>,
+  <NewCalendarEvent colStart={8} timeStart="15:00:00" timeEnd="19:00:00" EARLIEST_INTR={EARLIEST_TIME} LATEST_TIME={LATEST_TIME} DENOM_FACTOR={THIRTY_FRAC_DENOM}/>
   ]);
     
     //* ========== ========== ========== ========== ==========
@@ -55,34 +55,58 @@ const NewCalendar = ({calendarView, viewState, EARLIEST_TIME, LATEST_TIME}) => {
           let bgCol = [];
           let depth = 0;
 
+          let timeCounter = 0;
+
           for (let i = EARLIEST_TIME; i < LATEST_TIME+CALENDAR_TOP_ROW_OFFSET; i++) {
             
           //Adding of Switch button:
  
           let titleBox_CSS_STR = "h-5 text-lg ml-20 w-24"
-          let gridBox_CSS_STR = "h-5 border border-slate-400 col-span-1 col_w";
+          let gridBox_CSS_STR = "h-2 border border-slate-400 col-span-1 col_w";
+          let gridBoxT_CSS_STR = "h-2 col-span-1 col_w border-b-2 border-x-2 border-slate-300";
+
           
           gridBox_CSS_STR += " col-start-"+String(wI+1);
           titleBox_CSS_STR += " col-start-"+String(wI+1);
+
+        //Line Border Every 3 Lines (Right Before next Time Stamp)
+        let isLineBorder = (timeCounter === 1) ? gridBoxT_CSS_STR : gridBox_CSS_STR;
+
+        //!If it's at the earliest column, let's use it for times:
+        if(wI === 0 && depth >= CALENDAR_TOP_ROW_OFFSET){
+
+          let normalized_i = i - CALENDAR_TOP_ROW_OFFSET;
+
+          const hour = Math.floor(normalized_i / 6); // Adjusted for 10-min intervals
+          const minutes = (normalized_i % 6) === 0 ? '00' : '30'; // Adjusted for 10-min intervals
+          const time = `${hour}:${minutes}`;
           
-          //!If it's at the earliest column, let's use it for times:
-
-          if(wI === 0 && depth >= CALENDAR_TOP_ROW_OFFSET){
-
-            let normalized_i = i - CALENDAR_TOP_ROW_OFFSET;
-
-            const hour = Math.floor(normalized_i / 2);
-            const minutes = (normalized_i % 2) === 0 ? '00' : '30';
-            const time = `${hour}:${minutes}`;
-            
-            bgCol.push(
-              <div class={gridBox_CSS_STR+" text-center font-bold"}
-              style = {{gridRowStart : (normalized_i+1), gridRowEnd : (normalized_i+2)}}> 
+          if(!timeCounter) {
+          bgCol.push(
+              <div class={gridBox_CSS_STR + " text-center font-bold"}
+              style = {{
+                  gridRowStart: (normalized_i+1),
+                  gridRowEnd: (normalized_i+4), // Span 3 rows
+              }}>
               {time}
-              </div>);
+              </div>
+          );
+          timeCounter += 2;
+        } else {
 
+          bgCol.push(
+            <div class={isLineBorder + " text-center font-bold"}
+            style = {{
+                gridRowStart: (normalized_i+1),
+                gridRowEnd: (normalized_i+2), // Span 3 rows
+            }}>
+            </div>
+        );
+          timeCounter--
+        }
 
-          } else if (depth === 0) { //! Adding DAYs OF THE WEEK
+            
+      } else if (depth === 0) { //! Adding DAYs OF THE WEEK
 
             let w = "100vw";
 
@@ -101,17 +125,17 @@ const NewCalendar = ({calendarView, viewState, EARLIEST_TIME, LATEST_TIME}) => {
           }
           else { //! Regular Background Cell
 
+            const moduloClass = (i % THIRTY_FRAC_DENOM === 0) ? gridBoxT_CSS_STR : gridBox_CSS_STR;
+            
             bgCol.push(
-              <div class={gridBox_CSS_STR}
+              <div class={moduloClass}
               style = {{
                 gridRowStart : (i+1),
                 gridRowEnd : (i+2)
               }}></div>);
-
           }
 
           depth++; //To Maintain the Header's spacing
-
           }
 
           bg.push(<div
