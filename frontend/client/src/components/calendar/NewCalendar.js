@@ -10,14 +10,14 @@ import NewCalendarEvent from './NewCalendarEvent';
 const NewCalendar = ({calendarView, viewState, EARLIEST_TIME, LATEST_TIME, THIRTY_FRAC_DENOM}) => {
 
   const [eventsOverlay, setOverlay] = React.useState([
-  <NewCalendarEvent colStart={2} timeStart="08:00:00" timeEnd="12:00:00" EARLIEST_INTR={EARLIEST_TIME} LATEST_TIME={LATEST_TIME} DENOM_FACTOR={THIRTY_FRAC_DENOM} />,
+  <NewCalendarEvent colStart={2} timeStart="10:00:00" timeEnd="12:00:00" EARLIEST_INTR={EARLIEST_TIME} LATEST_TIME={LATEST_TIME} DENOM_FACTOR={THIRTY_FRAC_DENOM} />,
   <NewCalendarEvent colStart={3} timeStart="14:00:00" timeEnd="18:00:00" EARLIEST_INTR={EARLIEST_TIME} LATEST_TIME={LATEST_TIME} DENOM_FACTOR={THIRTY_FRAC_DENOM}/>,
   <NewCalendarEvent colStart={4} timeStart="11:00:00" timeEnd="16:00:00" EARLIEST_INTR={EARLIEST_TIME} LATEST_TIME={LATEST_TIME} DENOM_FACTOR={THIRTY_FRAC_DENOM}/>,
   <NewCalendarEvent colStart={4} timeStart="6:00:00" timeEnd="08:00:00"  EARLIEST_INTR={EARLIEST_TIME} LATEST_TIME={LATEST_TIME} DENOM_FACTOR={THIRTY_FRAC_DENOM}/>,
   <NewCalendarEvent colStart={5} timeStart="14:00:00" timeEnd="18:00:00" EARLIEST_INTR={EARLIEST_TIME} LATEST_TIME={LATEST_TIME} DENOM_FACTOR={THIRTY_FRAC_DENOM}/>,
   <NewCalendarEvent colStart={6} timeStart="14:30:00" timeEnd="18:30:00" EARLIEST_INTR={EARLIEST_TIME} LATEST_TIME={LATEST_TIME} DENOM_FACTOR={THIRTY_FRAC_DENOM}/>,
   <NewCalendarEvent colStart={7} timeStart="14:30:00" timeEnd="18:30:00" EARLIEST_INTR={EARLIEST_TIME} LATEST_TIME={LATEST_TIME} DENOM_FACTOR={THIRTY_FRAC_DENOM}/>,
-  <NewCalendarEvent colStart={8} timeStart="15:00:00" timeEnd="19:00:00" EARLIEST_INTR={EARLIEST_TIME} LATEST_TIME={LATEST_TIME} DENOM_FACTOR={THIRTY_FRAC_DENOM}/>
+  <NewCalendarEvent colStart={8} timeStart="23:00:00" timeEnd="19:00:00" EARLIEST_INTR={EARLIEST_TIME} LATEST_TIME={LATEST_TIME} DENOM_FACTOR={THIRTY_FRAC_DENOM}/>
   ]);
     
     //* ========== ========== ========== ========== ==========
