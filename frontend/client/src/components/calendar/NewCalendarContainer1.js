@@ -98,7 +98,7 @@ const NewCalendarContainer1 = () => {
             calendarView={full_view.slice(current_offset, current_offset+7)} 
             viewState={0}
             THIRTY_FRAC_DENOM={3}
-            EARLIEST_TIME={0}
+            EARLIEST_TIME={36}
             LATEST_TIME={144}
             />
         </>);

@@ -148,7 +148,7 @@
 
 .gr-50 {
     grid-template-rows: repeat(144, minmax(0, 1fr));
-    height: 73.75rem;
+    height: 74rem;
   }
 
 .col_w {

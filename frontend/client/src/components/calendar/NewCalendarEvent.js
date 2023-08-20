@@ -13,7 +13,7 @@ const NewCalendarEvent = ({ colStart, timeStart, timeEnd, EARLIEST_INTR, LATEST_
     return diffHours + diffMinutes + diffSeconds;
   };
 
-  let tS = parseTime(timeStart);
+  const tS = parseTime(timeStart);
   const tE = parseTime(timeEnd);
   let deltaMins = computeDelta(tS, tE);
 
@@ -21,10 +21,17 @@ const NewCalendarEvent = ({ colStart, timeStart, timeEnd, EARLIEST_INTR, LATEST_
   const generateEvent = () => {
 
     //! Refers to Row of the Event
-    var verticalRowStart = (tS[0] * 6)+7 + (tS[1]/60*6)  - EARLIEST_INTR; 
+    console.log("EARLIEST INCR: "+EARLIEST_INTR);
+    var verticalRowStart = (tS[0] * 6)+6 + (tS[1]/60*6) - EARLIEST_INTR; 
 
-    let top = Math.floor(tS[0] + tS[1]/60);  // percentage of a day
-    let height = deltaMins / (24 * 60) * 100;  // percentage of a day
+    //! Height of Event in Rows
+    let nRows = Math.floor(deltaMins / 30)*3;  // percentage of a day
+
+    //TODO *** REMOVE HACKS ***
+    if(tS[0] < 16) {verticalRowStart = verticalRowStart--;}
+    else if(tS[0] > 16.5) {verticalRowStart = verticalRowStart-2;}
+    //TODO *** REMOVE HACKS ***
+    
 
     console.log(tS, tE);
 
@@ -34,7 +41,7 @@ const NewCalendarEvent = ({ colStart, timeStart, timeEnd, EARLIEST_INTR, LATEST_
         style={{
           gridColumnStart: colStart, 
           gridRowStart: verticalRowStart,
-          gridRowEnd : verticalRowStart+2,
+          gridRowEnd : verticalRowStart+nRows,
           width : "12vw"
         }}>
         LL
