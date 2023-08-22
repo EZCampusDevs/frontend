@@ -5,19 +5,40 @@ import React from 'react'
 import { CalendarPlaceholder } from '../../util/requests'
 import { cParse2 } from '../../util/calendarJSON';
 import NewCalendarEvent from './NewCalendarEvent';
+import { logVoid } from '../../util/logger';
 
 
 const NewCalendar = ({calendarView, viewState, EARLIEST_TIME, LATEST_TIME, THIRTY_FRAC_DENOM}) => {
+  
+  //chatgpt : #### WROTE THIS FORMATTING HELPER FN:
+      function formatDateToCalendarView(dateString) {
+        const dateObj = new Date(dateString);
+        // Array of month names
+        const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+        // Get the month name from the date
+        const monthName = monthNames[dateObj.getMonth()];
+
+        // Get the day from the date
+        const day = dateObj.getDate();
+
+        // Get the ordinal suffix for the day
+        let ordinalSuffix;
+        if (day % 10 === 1 && day !== 11) {
+            ordinalSuffix = "st";
+        } else if (day % 10 === 2 && day !== 12) {
+            ordinalSuffix = "nd";
+        } else if (day % 10 === 3 && day !== 13) {
+            ordinalSuffix = "rd";
+        } else {
+            ordinalSuffix = "th";
+        }
+
+        return `${monthName} ${day}${ordinalSuffix}`;
+    }
 
   const [eventsOverlay, setOverlay] = React.useState([
-  <NewCalendarEvent colStart={2} timeStart="10:00:00" timeEnd="12:30:00" EARLIEST_INTR={EARLIEST_TIME} LATEST_TIME={LATEST_TIME} DENOM_FACTOR={THIRTY_FRAC_DENOM} />,
-  <NewCalendarEvent colStart={3} timeStart="17:00:00" timeEnd="20:00:00" EARLIEST_INTR={EARLIEST_TIME} LATEST_TIME={LATEST_TIME} DENOM_FACTOR={THIRTY_FRAC_DENOM}/>,
-  <NewCalendarEvent colStart={4} timeStart="11:00:00" timeEnd="16:00:00" EARLIEST_INTR={EARLIEST_TIME} LATEST_TIME={LATEST_TIME} DENOM_FACTOR={THIRTY_FRAC_DENOM}/>,
-  <NewCalendarEvent colStart={4} timeStart="6:00:00" timeEnd="08:00:00"  EARLIEST_INTR={EARLIEST_TIME} LATEST_TIME={LATEST_TIME} DENOM_FACTOR={THIRTY_FRAC_DENOM}/>,
-  <NewCalendarEvent colStart={5} timeStart="14:00:00" timeEnd="18:00:00" EARLIEST_INTR={EARLIEST_TIME} LATEST_TIME={LATEST_TIME} DENOM_FACTOR={THIRTY_FRAC_DENOM}/>,
-  <NewCalendarEvent colStart={6} timeStart="14:30:00" timeEnd="18:30:00" EARLIEST_INTR={EARLIEST_TIME} LATEST_TIME={LATEST_TIME} DENOM_FACTOR={THIRTY_FRAC_DENOM}/>,
-  <NewCalendarEvent colStart={7} timeStart="14:30:00" timeEnd="18:30:00" EARLIEST_INTR={EARLIEST_TIME} LATEST_TIME={LATEST_TIME} DENOM_FACTOR={THIRTY_FRAC_DENOM}/>,
-  <NewCalendarEvent colStart={8} timeStart="22:00:00" timeEnd="23:00:00" EARLIEST_INTR={EARLIEST_TIME} LATEST_TIME={LATEST_TIME} DENOM_FACTOR={THIRTY_FRAC_DENOM}/>
+  // <NewCalendarEvent colStart={2} timeStart="10:00:00" timeEnd="12:30:00" EARLIEST_INTR={EARLIEST_TIME} LATEST_TIME={LATEST_TIME} DENOM_FACTOR={THIRTY_FRAC_DENOM} />,
   ]);
     
     //* ========== ========== ========== ========== ==========
@@ -119,6 +140,8 @@ const NewCalendar = ({calendarView, viewState, EARLIEST_TIME, LATEST_TIME, THIRT
                 height : "3.5vh",
                 width : w,
               }}>
+
+                {wI === 0 ? "" : (calendarView[wI-1] ? formatDateToCalendarView(calendarView[wI-1].date) : "n/a" )}<br/>
                 {weekdays[wI]}
 
               </span>);
@@ -208,6 +231,7 @@ const NewCalendar = ({calendarView, viewState, EARLIEST_TIME, LATEST_TIME, THIRT
     React.useEffect(() => {
 
       //TODO: parse CalendarView
+      logVoid("CALENDAR VIEW *** : ")
       console.log(calendarView);
 
       let jsxEvents = [];
