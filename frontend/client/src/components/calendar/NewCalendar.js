@@ -177,17 +177,24 @@ const NewCalendar = ({calendarView, viewState, EARLIEST_TIME, LATEST_TIME, THIRT
 
         const timeStart = event["time_start"];
         const timeEnd = event["time_end"];
-        const colStart = dateObject.getDay()+2; //!
+        const colStart = dateObject.getDay()+1; //!
 
         jsxEvents.push(
-          <NewCalendarEvent colStart={colStart} timeStart={timeStart} timeEnd={timeEnd}/>
-        );
+        <NewCalendarEvent 
 
+            eventBlob={event}
 
+            colStart={colStart} 
+            timeStart={timeStart} 
+            timeEnd={timeEnd}  
+            
+            EARLIEST_INTR={EARLIEST_TIME} 
+            LATEST_TIME={LATEST_TIME} 
+            DENOM_FACTOR={THIRTY_FRAC_DENOM}
+        />);
       }
 
       return jsxEvents;
-
     }
 
     //* ========== ========== ========== ========== ==========
@@ -198,25 +205,25 @@ const NewCalendar = ({calendarView, viewState, EARLIEST_TIME, LATEST_TIME, THIRT
      }, []);
 
   //! Uncomment once placholder events is fixed   
-    // React.useEffect(() => {
+    React.useEffect(() => {
 
-    //   //TODO: parse CalendarView
-    //   console.log(calendarView);
+      //TODO: parse CalendarView
+      console.log(calendarView);
 
-    //   let jsxEvents = [];
+      let jsxEvents = [];
 
-    //   for(const viewEntry of calendarView) {
-    //     let miniJSX = encode_2_NewCalendarEvent(viewEntry);
-    //     if(miniJSX.length){
-    //       for(const m of miniJSX){ 
-    //         jsxEvents.push(m);
-    //       }
-    //     }
-    //   }
+      for(const viewEntry of calendarView) {
+        let miniJSX = encode_2_NewCalendarEvent(viewEntry);
+        if(miniJSX.length){
+          for(const m of miniJSX){ 
+            jsxEvents.push(m);
+          }
+        }
+      }
 
-    //   setOverlay(jsxEvents);
+      setOverlay(jsxEvents);
 
-    // }, [calendarView]);
+    }, [calendarView]);
 
     //! RETURN STMT
     return (<div>  

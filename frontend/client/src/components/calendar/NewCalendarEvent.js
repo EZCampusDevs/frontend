@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NewCalendarEvent = ({ colStart, timeStart, timeEnd, EARLIEST_INTR, LATEST_INTR , DENOM_FACTOR }) => {
+const NewCalendarEvent = ({eventBlob, colStart, timeStart, timeEnd, EARLIEST_INTR, LATEST_INTR , DENOM_FACTOR }) => {
     
   const parseTime = (timeStr) => {
     return timeStr.split(':').map(e => parseInt(e));
@@ -25,7 +25,7 @@ const NewCalendarEvent = ({ colStart, timeStart, timeEnd, EARLIEST_INTR, LATEST_
     var verticalRowStart = (tS[0] * 6)+6 + (tS[1]/60*6) - EARLIEST_INTR; 
 
     //! Height of Event in Rows
-    let nRows = Math.floor(deltaMins / 30)*3;  // percentage of a day
+    let nRows = Math.floor(deltaMins / 10);  // percentage of a day
 
     //TODO *** REMOVE HACKS ***
     if(tS[0] < 16) {verticalRowStart = verticalRowStart--;}
@@ -33,20 +33,25 @@ const NewCalendarEvent = ({ colStart, timeStart, timeEnd, EARLIEST_INTR, LATEST_
     //TODO *** REMOVE HACKS ***
     
 
-    console.log(tS, tE);
+    if(eventBlob){
+ 
+      console.log(tS, tE);
 
-    return (
-      <div 
-        className={`bg-blue-200`}
-        style={{
-          gridColumnStart: colStart, 
-          gridRowStart: verticalRowStart,
-          gridRowEnd : verticalRowStart+nRows,
-          width : "12vw"
-        }}>
-        LL
-      </div>
-    );
+      return (
+        <div 
+          className={`bg-blue-200`}
+          style={{
+            gridColumnStart: colStart, 
+            gridRowStart: verticalRowStart,
+            gridRowEnd : verticalRowStart+nRows,
+            width : "12vw"
+          }}>
+            {eventBlob["name"]}
+        </div>
+      );
+
+    }
+
   };
 
   return generateEvent();

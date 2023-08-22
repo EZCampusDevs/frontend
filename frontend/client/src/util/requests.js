@@ -165,7 +165,7 @@ export async function CalendarPlaceholder(course_data_ids, callback) {
 
   //course_data_ids is supposed to be Array of Ints
 
-  const RESPONSE = await fetch(ENDPOINT + 'placeholder/events', {
+  const RESPONSE = await fetch(ENDPOINT + 'experimental/events', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({  "course_data_ids": course_data_ids, "course_ids" : []}) 

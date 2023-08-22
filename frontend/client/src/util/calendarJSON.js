@@ -39,7 +39,15 @@ export function cParse2(data) {
         let event = mV;
 
         const eventRule = RRule.fromString(mV.rrulejs_str);
-        let erall = eventRule.all();
+        console.log(eventRule);
+
+        let erall;
+
+        if(eventRule.options.freq){ //If the Frequency of the Event isn't 0, get all Recurrence Dates
+            erall = eventRule.all();
+        } else {
+            erall = [eventRule.options.dtstart]; 
+        }
 
         //Now that we've got the RRule All, let's clean up event
         delete event['rrulejs_str'];
@@ -60,11 +68,11 @@ export function cParse2(data) {
             let startDate = new Date(eventRules[i].rall[0]);
             let endDate = new Date(eventRules[i].rall[eventRules[i].rall.length-1]);
     
-            //Compare the earliest date of the "rall" array with the current earliest date
+            //& Compare the earliest date of the "rall" array with the current earliest date
             if(earliestDate === null || startDate < earliestDate){
                 earliestDate = startDate;
             }
-            //Compare the latest date of the "rall" array with the current latest date
+            //& Compare the latest date of the "rall" array with the current latest date
             if(latestDate === null || endDate > latestDate){
                 latestDate = endDate;
             }
@@ -79,6 +87,9 @@ export function cParse2(data) {
     //Got the ranges, now let's generate an everyday for in between them:
     logVoid('[First Iteration: (dateRange Object)]');
     console.log(earliestDate, latestDate);
+
+    console.log("END WEEK: ");
+    console.log(endWeek);
 
     let iter = 0;
     let month_ = [];
@@ -95,9 +106,8 @@ export function cParse2(data) {
         }
 
         const newUnix = earliestDate.getTime()+(86400000*iter)
-
-
         const iterDate = new Date(newUnix);
+        //Current Iteration's Date
 
         let prevMonth;
 
@@ -149,6 +159,10 @@ export function cParse2(data) {
             break;
         }
 
+        if(iter > 350){
+            console.log('EMERGENCY ITER BREAK!');
+            break;
+        }
     }
 
     return output;
