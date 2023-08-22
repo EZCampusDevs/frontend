@@ -72,7 +72,7 @@ const NewCalendarContainer1 = () => {
     //* ========== ========== ========== ========== ========== 
 
     React.useEffect(() => {
-        setCalendarWithCDIs([225]);
+        setCalendarWithCDIs([225, 226, 1, 2]);
 
      }, []);
 
