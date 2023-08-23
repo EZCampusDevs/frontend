@@ -132,6 +132,16 @@
         background-color: rgb(17, 24, 39);
     }
 
+    /** Login And Sign Up Extra Stylings */
+
+    .main_title {
+        @apply text-slate-950;
+    }
+
+    .dark .main_title {
+        @apply text-white;
+    }
+
 }
 
 

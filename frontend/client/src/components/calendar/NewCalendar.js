@@ -141,7 +141,7 @@ const NewCalendar = ({calendarView, viewState, EARLIEST_TIME, LATEST_TIME, THIRT
                 width : w,
               }}>
 
-                {wI === 0 ? "" : (calendarView[wI-1] ? formatDateToCalendarView(calendarView[wI-1].date) : "n/a" )}<br/>
+                {wI === 0 ? "" : (calendarView[wI-1] ? formatDateToCalendarView(calendarView[wI-1].date) : "" )}<br/>
                 {weekdays[wI]}
 
               </span>);

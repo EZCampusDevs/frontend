@@ -15,12 +15,10 @@ import CalendarPage from './pages/CalendarPage';
 
 import NewCalendar from './components/calendar/NewCalendar';
 
-import LoginPage from './pages/LoginPage';
 import ClubUserPage from './pages/ClubUserPage';
 import ClubCreationPage from './pages/ClubCreationPage';
 import OptimizerPageV4 from './pages/OptimizerPageV4';
 import ClubPage from './pages/ClubPage';
-import PageNotFoundPage from './pages/PageNotFoundPage.js';
 import IcsPage from './pages/IcsPage';
 import AboutUsPage from './pages/AboutUsPage';
 import ClubSearchPage from './pages/ClubSearchPage';
@@ -33,6 +31,10 @@ import CourseSearchWidget from './components/course_entry/CourseSearchWidget';
 
 import SchoolRoutePage from './pages/SchoolRoutePage';
 
+//Newer Bootstrap Pages:
+import PageNotFoundPage from './pages/PageNotFoundPage';
+import NewLoginPage from './pages/NewLoginPage';
+import NewSignUpPage from './pages/NewSignUpPage';
 
 //? Note: In app is where we do all school routing at the sub-domain level
 
@@ -46,7 +48,6 @@ export default function App() {
         
       {/* <Route path="/" element={<NewHomePage/>}></Route> */}
       
-      <Route path="/login" element={<LoginPage/>}></Route>
       <Route path="/signup" element={<SignUp/>}></Route>
       <Route path="/ics" element={<IcsPage/>}></Route>
       <Route path="/calendar_testing" element={<NewCalendar/>}></Route>
@@ -71,8 +72,14 @@ export default function App() {
       <Route path="/about/us" element={<AboutUsPage/>}></Route>      
       <Route path='*' exact={true} element={<IcsPage/>}></Route>
         
+      {/* Bootstrapified Components: */}
+      <Route path="/login" element={<NewLoginPage/>}></Route>
+
+
       {/* GOOGLE OAUTH SUCCESS ROUTE */}
       <Route path="/google-auth-callback" element={<GoogleOAuthSuccessPage/>}></Route>      
+
+
 
       </Routes>
      </Router>

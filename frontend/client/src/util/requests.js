@@ -211,3 +211,42 @@ export async function OAuthHandleCallback (code, courseDataId_List, callback) {
   let ResponseJSON = await RESPONSE.json();
   callback(ResponseJSON);
 }
+
+export async function API_login_user(event, usernameStr, passwordStr, setErrorMsg, UNIVERSAL_COOKIES) {
+      
+  event.preventDefault()
+
+  if(!usernameStr.current.value || !passwordStr.current.value){
+    setErrorMsg('Some fields are missing information!');
+    return;
+  }
+
+  const RESPONSE = await fetch(ENDPOINT + 'user/login', 
+
+  //Request Params
+  {
+    method: 'POST',
+    headers: {
+      'Content-Type' : 'application/x-www-form-urlencoded' //*This is what type FastAPI Login Manager wants as `Content-Type` header
+    }, //* Curl inspired POST request for login
+    body: JSON.stringify(
+      `grant_type=&username=${usernameStr.current.value}&password=${passwordStr.current.value}&scope=&client_id=&client_secret=`
+    ),
+  })
+  
+
+  //! RESPONSE DESIGN PATTERN STRAYS FROM THE REST...
+  
+  const respJSON = await RESPONSE.json(); //didn't unwrap detail here
+
+  if(RESPONSE.status === 200) {
+    UNIVERSAL_COOKIES.set('access_token' , respJSON.detail.access_token);
+    UNIVERSAL_COOKIES.set('token_type' , respJSON.detail.token_type);
+
+    window.location.href = "/executive";
+  } else {
+    setErrorMsg(respJSON.detail);
+    return;
+
+  }
+}
