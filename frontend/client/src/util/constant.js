@@ -9,4 +9,7 @@ export const calendar_tags = "calendar_tags";
 
 //Web-app Title:
 
-export const app_name = "ezcampus";
+export const app_name = "EZCampus";
+
+export const general_ics = "ics";
+export const notion_csv = "notion_csv";

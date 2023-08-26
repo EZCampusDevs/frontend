@@ -19,7 +19,8 @@ import ClubUserPage from './pages/ClubUserPage';
 import ClubCreationPage from './pages/ClubCreationPage';
 import OptimizerPageV4 from './pages/OptimizerPageV4';
 import ClubPage from './pages/ClubPage';
-import IcsPage from './pages/IcsPage';
+import ExportCoursesPage from './pages/ExportCoursesPage';
+
 import AboutUsPage from './pages/AboutUsPage';
 import ClubSearchPage from './pages/ClubSearchPage';
 import ExecutiveCalendarPage from './pages/ExecutiveCalendarPage';
@@ -49,7 +50,7 @@ export default function App() {
       {/* <Route path="/" element={<NewHomePage/>}></Route> */}
       
       <Route path="/signup" element={<SignUp/>}></Route>
-      <Route path="/ics" element={<IcsPage/>}></Route>
+      <Route path="/export" element={<ExportCoursesPage/>}></Route>
       <Route path="/calendar_testing" element={<NewCalendar/>}></Route>
       <Route path="/c/1" element={<NewCalendarContainer1/>}></Route>
 
@@ -70,7 +71,7 @@ export default function App() {
 
       <Route path="/executive" element={<ExecutiveCalendarPage/>}></Route>
       <Route path="/about/us" element={<AboutUsPage/>}></Route>      
-      <Route path='*' exact={true} element={<IcsPage/>}></Route>
+      <Route path='*' exact={true} element={<ExportCoursesPage/>}></Route>
         
       {/* Bootstrapified Components: */}
       <Route path="/login" element={<NewLoginPage/>}></Route>
