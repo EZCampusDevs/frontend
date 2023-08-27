@@ -34,7 +34,8 @@ const allSchools = [
 const SchoolRoutePage = () => {
 
   //global scope current theme:
-  const redirectSchool = (school) => {
+  //
+  const getRedirectSchoolLoc = (school) => {
 
     let redirect = `https://${school.redirect}.ezcampus.org`;
 
@@ -45,13 +46,16 @@ const SchoolRoutePage = () => {
       redirect += "/" + aL;
       localStorage.setItem(ACCESS_LINK_NAME, '');
     }
+    return redirect;
+  };
 
-    window.location.href = redirect;
+  const redirectSchool = (school) => {
+    window.location.href = getRedirectSchoolLoc(school);
   };
     
   return (
     <div>
-    <PageHeader/>
+    <PageHeader hideDropDownButtons={true}/>
       <header style={{textAlign: 'center', width:'100%', height: 'auto', backgroundSize: 'cover', backgroundAttachment:'fixed',
                       position:'relative', overflow:'hidden', borderRadius: '0 0 85% 85% / 20%',}}>
       <div className="overlay flex flex-col body-font items-center justify-center bg-cover bg-center bg-no-repeat bg-fixed"
@@ -80,20 +84,21 @@ const SchoolRoutePage = () => {
 
 {allSchools.map((school, index) => (
 
-              <div key={index} className="btn-glow"
-                style={{display: 'flex', flexDirection: 'column',alignItems:'center', }} 
-                onClick={() => {redirectSchool(school);}}
-              >
-                <button
-                  className={"relative overflow-hidden flex flex-col items-center justify-center rounded-lg border-none p-0 shadow-md transition-all duration-300 transform hover:scale-105"}
-                  style={{width: '180px', height: '110px',}}
-                >
-                  <img className='max-w-full max-h-full' 
-                  src={school.logo} 
-                  alt='buttonpng'/>                        
-                </button>
-                <span className='r_font font-semibold mt-1'>{school.name}</span>
-              </div>
+  <div key={index} className="btn-glow"
+    style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', }}
+  >
+    <a href={getRedirectSchoolLoc(school)}>
+      <button
+        className={"relative overflow-hidden flex flex-col items-center justify-center rounded-lg border-none p-0 shadow-md transition-all duration-300 transform hover:scale-105"}
+        style={{ width: '180px', height: '110px', }}
+      >
+        <img className='max-w-full max-h-full'
+          src={school.logo}
+          alt='buttonpng' />
+      </button>
+    </a>
+    <span className='r_font font-semibold mt-1'>{school.name}</span>
+  </div>
 ))}
             
 
