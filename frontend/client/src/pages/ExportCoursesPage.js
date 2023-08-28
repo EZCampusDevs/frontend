@@ -13,7 +13,7 @@ import {useSelector, useDispatch} from 'react-redux';
 import {assertPush, assertDelete} from '../redux/features/courseEntrySlice';
 
 //Local
-import {app_name, general_ics, notion_csv} from '../util/constant';
+import {app_name} from '../util/constant';
 import {Sync_File_Download_Post, OAuth_Redirect} from '../util/requests';
 import '../static/css/main_ui.css';
 
@@ -112,34 +112,27 @@ const ExportCoursesPage = () => {
     let course_data_ids_list = getSelectedCDIs();
 
     //Preform Request; Passing over callbacks to page's State Setters based on file_type
-    if (file_type === general_ics) {
-      Sync_File_Download_Post(file_type, setBlobURL, setBlobSize, setErrMsg, RenderICSLink, course_data_ids_list)
-    } else if (file_type === notion_csv) {
-      Sync_File_Download_Post(file_type, setBlobURL, setBlobSize, setErrMsg, RenderNotionCSVLink, course_data_ids_list)
-    }
-
+    Sync_File_Download_Post(file_type, setBlobURL, setBlobSize, setErrMsg, course_data_ids_list)
   }
 
   function RenderICSLink() {
     
-    
-
     return (<>
       <a className="large_blue_btn flex items-center justify-center space-x-2" onClick={() => {
-          postFileDownload(general_ics);
+          postFileDownload("ics");
           setDLname("calendar.ics");
         }}>
         {downloadSvg}&nbsp;&nbsp;Calendar File (ics)&nbsp;{calendarSvg}</a>
     </>);
 
-}
+  }
 
   function RenderNotionCSVLink() {
 
 
     return (<>
       <a className="large_blue_btn flex items-center justify-center space-x-2" onClick={() => {
-          postFileDownload(notion_csv);
+          postFileDownload("notion_csv");
           setDLname("notion_database.csv");
         }}>
         {downloadSvg}&nbsp;&nbsp;Notion Database (csv)&nbsp;{notionSvg}</a>
@@ -159,6 +152,8 @@ const ExportCoursesPage = () => {
   function RenderAllLinks() {
 
     if(blobURL === 1){
+      setErrMsg('');
+
       return (
       <>
         <br/>
@@ -184,7 +179,7 @@ const ExportCoursesPage = () => {
       return(
         <>       
         <br/>
-        <p className="sub_title"> <b>Successful!</b> Check your Downloads Destination for `{dlName}` !</p>
+        <p className="sub_title"> <b>Successful!</b> Check your Downloads Destination for `{dlName}` | {blobSize} bytes</p>
         </>
       );
 
