@@ -4,8 +4,7 @@ import PageHeader from '../components/navbar/PageHeader';
 import Footer from '../components/footer/Footer';
 
 import '../bootstrap_assets/bootstrap/css/bootstrap.min.css';
-import '../bootstrap_assets/css/Banner-Heading-Image-images.css';
-import '../bootstrap_assets/css/Footer-Dark-icons.css';
+
 
 import Error404Pic from '../bootstrap_assets/img/3793096.jpg';
 

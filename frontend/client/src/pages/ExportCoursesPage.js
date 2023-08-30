@@ -71,8 +71,10 @@ const ExportCoursesPage = () => {
   const [blobURL, setBlobURL] = React.useState('');
   const [blobSize, setBlobSize] = React.useState('');
 
-  //Download state
-  const [dlName, setDLname] = React.useState('x');
+  //Download State
+  const [dlName, setDLname] = React.useState('');
+  //Export State
+  const [exportState, setExportState] = React.useState('');
 
   const [errMsg, setErrMsg] = React.useState('');
 
@@ -119,7 +121,7 @@ const ExportCoursesPage = () => {
     
     return (<>
       <a className="large_blue_btn flex items-center justify-center space-x-2" onClick={() => {
-          postFileDownload("ics");
+          postFileDownload(true);
           setDLname("calendar.ics");
         }}>
         {downloadSvg}&nbsp;&nbsp;Calendar File (ics)&nbsp;{calendarSvg}</a>
@@ -132,7 +134,7 @@ const ExportCoursesPage = () => {
 
     return (<>
       <a className="large_blue_btn flex items-center justify-center space-x-2" onClick={() => {
-          postFileDownload("notion_csv");
+          postFileDownload(false);
           setDLname("notion_database.csv");
         }}>
         {downloadSvg}&nbsp;&nbsp;Notion Database (csv)&nbsp;{notionSvg}</a>
@@ -152,7 +154,6 @@ const ExportCoursesPage = () => {
   function RenderAllLinks() {
 
     if(blobURL === 1){
-      setErrMsg('');
 
       return (
       <>
@@ -180,6 +181,14 @@ const ExportCoursesPage = () => {
         <>       
         <br/>
         <p className="sub_title"> <b>Successful!</b> Check your Downloads Destination for `{dlName}` | {blobSize} bytes</p>
+
+        <a className="large_warning_btn flex items-center justify-center space-x-2" onClick={() => {
+          setBlobURL('');
+          setErrMsg('');
+        }}>
+          Export another way...
+        </a>
+
         </>
       );
 
@@ -188,6 +197,7 @@ const ExportCoursesPage = () => {
       if (saved_entries.length) {
         return (<>
           <br/>
+          <span className="error_text r_font"> {errMsg} </span>
           {RenderICSLink()}
           <br/>
           {RenderNotionCSVLink()}
@@ -234,8 +244,9 @@ const ExportCoursesPage = () => {
             <br/>
             <br/>
             <div className="step_title r_font">3. Export:</div>
-            <span className="error_text r_font"> {errMsg} </span>
-            {RenderAllLinks()}<br/><br/>
+
+            {RenderAllLinks()}
+
           </div>
         </div>
         <Footer/>

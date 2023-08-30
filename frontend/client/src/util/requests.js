@@ -93,16 +93,12 @@ export async function SearchCoursesByTerm(searchTerm, page, resultsPerPage, term
 // ######################### ICS Requests #########################
 // String, fn, fn, fn, fn, Array<int>
 export function Sync_File_Download_Post(file_type, setBlobURL_callback, setBlobSize_callback, setErrMsg_callback, courseDataIds) {
-  console.log("Trying >>" + file_type); 
   setBlobURL_callback(1);
 
-  const FILE_TYPE_ENDPOINT = {
-    "ics" : "download/ics/courses?",
-    "notion_csv"  : "download/csv/courses?"
-  }
+  const FILE_TYPE_ENDPOINT = file_type ? "download/ics/courses" : "download/csv/courses";
 
   //* API Request for Download
-  fetch(ENDPOINT + FILE_TYPE_ENDPOINT[file_type],
+  fetch(ENDPOINT + FILE_TYPE_ENDPOINT,
 
     //Request Parameters
     {
@@ -136,7 +132,7 @@ export function Sync_File_Download_Post(file_type, setBlobURL_callback, setBlobS
     setBlobSize_callback(data.size); //For Display purposes
 
     //Clear error if there was any
-    setErrMsg_callback('');
+    //setErrMsg_callback('');
 
     return setBlobURL_callback(href);
 
