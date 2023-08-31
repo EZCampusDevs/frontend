@@ -16,7 +16,9 @@ import CourseSearchResultEntry from './CourseSearchResultEntry';
 
 //TODO: Get that callback add thing that propagates out of CourseSearchWidget component
 
-const CourseSearchWidget = ({AddCourseCallback, currentSavedEntries}) => {
+const CourseSearchWidget = ({AddCourseCallback}) => {
+
+
 
     // Instead of using the entire Lodash Library for one function...
     //https://github.com/you-dont-need/You-Dont-Need-Lodash-Underscore#_debounce
@@ -43,6 +45,7 @@ const CourseSearchWidget = ({AddCourseCallback, currentSavedEntries}) => {
 
     //Redux State:
     const search_entries = useSelector((state) => state.courseSearch.ics_search_entries);
+    const saved_entries = useSelector((state) => state.courseEntry.ics_dl_entries);
     const term_id = useSelector((state) => state.configSelect.selected_term);
     const dispatch = useDispatch();
 
@@ -96,18 +99,60 @@ const CourseSearchWidget = ({AddCourseCallback, currentSavedEntries}) => {
         let dump = [];
         // Create an empty array to store the sorted entries
         const sortedEntries = [];
-        
-        for (const entry of payload) {
-            sortedEntries.push(entry);
-          }
-          
-          // Sort the entries based on the ranking in ascending order
-          sortedEntries.sort((a, b) => b.ranking - a.ranking);
 
-        for(const entry of sortedEntries) {
+        // for (const entry of saved_entries) {
+        //     course_data_ids_list.push(entry.course_data_id);
+        //   }
+
+        for (let entry of payload) {
+
+            const EntryCDI = entry.course_data_id;
+
+            //* Removal of Entry in Search, once it's added as Saved Entry
+            //! ##### BANDAID FIX FOR WEIRD DUPLICATE RENDERING ERROR #######
+            // let isDuplicate = false;
+
+            // if(saved_entries.length) {
+            //     for (const saved_entry of saved_entries) {
+            //         if(saved_entry.course_data_id === EntryCDI) {
+            //             isDuplicate = true;
+            //             console.log("Avoided...");
+            //             break;
+            //         }
+            //     }
+            //     if (!isDuplicate) {
+            //         sortedEntries.push(entry);
+            //     }
+            // } else {
+            //     sortedEntries.push(entry);
+            // }
+            //! ##### BANDAID FIX FOR WEIRD DUPLICATE RENDERING ERROR #######
+
+            
+            let moddedEntry = {...entry, is_saved : false}
+
+            if(saved_entries.length) {
+                for(const saved_entry of saved_entries) {
+                    if(saved_entry.course_data_id === EntryCDI) {
+                        moddedEntry.is_saved = true;
+                        break;
+                    }  
+                }
+            }
+
+            sortedEntries.push(moddedEntry); 
+        }
+
+        // Sort the entries based on the ranking in ascending order
+        sortedEntries.sort((a, b) => b.ranking - a.ranking);
+
+        for (let index = 0; index < sortedEntries.length; index++) {
+            const E = sortedEntries[index];
             dump.push(
-                <CourseSearchResultEntry entry={entry} AddCourseCallback={AddCourseCallback}/>
-            );}
+              <CourseSearchResultEntry key={index} entry={E} AddCourseCallback={AddCourseCallback}/>
+            );
+        }
+          
 
         setResults(dump);
 
@@ -118,8 +163,9 @@ const CourseSearchWidget = ({AddCourseCallback, currentSavedEntries}) => {
   React.useEffect(
     () => {
         searchEntryBuilder(search_entries.payload);
-    }, [search_entries]
+    }, [search_entries, saved_entries]
     );
+    //Remove dependency on saved_entries if you'd like to remove duplicate checking feature on search
 
   return (
     <>
