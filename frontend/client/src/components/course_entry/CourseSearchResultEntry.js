@@ -41,7 +41,7 @@ const CourseSearchResultEntry = ({ entry, AddCourseCallback }) => {
       );
     } else {
       return(<>
-        <div className="flex items-center text-lime-500"> {/* Add text-lime-500 for lime green text */}
+        <div className="flex items-center text-purple-700 dark dark:text-lime-500"> {/* Add text-lime-500 for lime green text */}
           <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6 stroke-current"> {/* Add stroke-current to apply the text color to the SVG stroke */}
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
           </svg>

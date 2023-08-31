@@ -1,5 +1,8 @@
 import React from 'react'
 
+//util
+import { logVoid } from '../../util/logger';
+
 //Components:
 import ScrollableDiv from './ScrollableDiv';
 
@@ -72,8 +75,9 @@ const CourseSearchWidget = ({AddCourseCallback}) => {
 
     //POST Request
     const keystrokeSearchPOST = debounce(async () => {
-                        //* Search Term, Term Id (int), Redux Callback
-                        setPage(2);
+        //* Search Term, Term Id (int), Redux Callback
+        logVoid("keystrokeSearchPOST::Posted Search Term");
+        setPage(2);
         SearchCoursesByTerm(searchTerm.current.value, 1, search_entries.results_per_page, parseInt(term_id), reduxLoadIn); //API POST
     }, 300); 
     // Specify the debounce delay (in milliseconds)
@@ -169,23 +173,25 @@ const CourseSearchWidget = ({AddCourseCallback}) => {
 
   return (
     <>
-    <div class="relative">
+<div className="relative flex items-center">
 
-        {/* actual input box for search */}
+{/* Magnifying Glass Icon for Search Bar */}
+<div className="absolute pl-3">
+    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="h-5 w-5">
+        <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+    </svg>
+</div>
 
-        <input type="text" onChange={keystrokeSearchPOST} ref={searchTerm} placeholder="Search Course Codes, CRNs, Prof names" class="medium_search_bar r_font" />
+{/* actual input box for search */}
+<input type="text" onChange={keystrokeSearchPOST} ref={searchTerm} placeholder="Search Course Codes, CRNs, Prof names" 
+className="medium_search_bar r_font flex-grow" />
 
-        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+    {/* Button | Comment it out and the Search Bar will dynamically adjust */}
+    <button onClick={keystrokeSearchPOST} className="w-36 bg-slate-700 text-white p-2 rounded-lg ml-2">
+        Search
+    </button>
+</div>
 
-            {/* Magnifying Glass Icon for Search Bar */}
-            
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="icon_styling mt-3">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-            </svg>
-
-        </div>
-        
-    </div>
 
 
     <div>     
