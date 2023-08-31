@@ -9,11 +9,7 @@ const Footer = () => {
             <li className="list-inline-item me-4"><a className="link-secondary" href="#">Terms of Service</a></li>
             <li className="list-inline-item"><a className="link-secondary" href="#">Privacy Policy</a></li>
         </ul>
-        <ul className="list-inline">
-            {/* Your SVG elements can stay as they are */}
-            {/* ... */}
-        </ul>
-        <p className="mb-0 dark:text-white">Copyright © 2023 EZCampus</p>
+        <p className="night_text">Copyright © 2023 EZCampus</p>
     </div>
     </footer>
   )

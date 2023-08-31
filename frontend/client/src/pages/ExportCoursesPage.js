@@ -184,8 +184,7 @@ const ExportCoursesPage = () => {
 
         <a className="large_warning_btn flex items-center justify-center space-x-2" onClick={() => {
           setBlobURL('');
-          setErrMsg('');
-        }}>
+          setErrMsg('');}}>
           Export another way...
         </a>
 
@@ -210,10 +209,9 @@ const ExportCoursesPage = () => {
           <a className="large_red_btn disabled flex">{haltSvg}&nbsp;&nbsp;Select courses first...</a>
         </>);
       }
-
     }
   }
-
+  
   return (
 
     <SchoolRouteRenderWall page={
