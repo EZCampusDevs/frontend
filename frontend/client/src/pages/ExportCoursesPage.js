@@ -120,7 +120,7 @@ const ExportCoursesPage = () => {
   function RenderICSLink() {
     
     return (<>
-      <a className="large_blue_btn flex items-center justify-center space-x-2" onClick={() => {
+      <a style={{cursor : "pointer"}} className="large_blue_btn flex items-center justify-center space-x-2" onClick={() => {
           postFileDownload(true);
           setDLname("calendar.ics");
         }}>
@@ -133,7 +133,7 @@ const ExportCoursesPage = () => {
 
 
     return (<>
-      <a className="large_blue_btn flex items-center justify-center space-x-2" onClick={() => {
+      <a style={{cursor : "pointer"}} className="large_blue_btn flex items-center justify-center space-x-2" onClick={() => {
           postFileDownload(false);
           setDLname("notion_database.csv");
         }}>
@@ -143,7 +143,7 @@ const ExportCoursesPage = () => {
 
   function RenderGoogleCalLink() {
     return (<>
-      <a className="large_blue_btn disabled flex items-center justify-center space-x-2" onClick={() => {
+      <a style={{cursor : "pointer"}} className="large_blue_btn disabled flex items-center justify-center space-x-2" onClick={() => {
         //handleGoogleCalendar();
       }}>
         {directSvg}&nbsp;&nbsp;[COMING SOON!] Google Calendar&nbsp;{googleSvg}
@@ -182,7 +182,7 @@ const ExportCoursesPage = () => {
         <br/>
         <p className="sub_title"> <b>Successful!</b> Check your Downloads Destination for `{dlName}` | {blobSize} bytes</p>
 
-        <a className="large_warning_btn flex items-center justify-center space-x-2" onClick={() => {
+        <a style={{cursor : "pointer"}} className="large_warning_btn flex items-center justify-center space-x-2" onClick={() => {
           setBlobURL('');
           setErrMsg('');}}>
           Export another way...

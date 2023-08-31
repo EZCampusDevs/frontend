@@ -16,7 +16,7 @@ import CourseSearchResultEntry from './CourseSearchResultEntry';
 
 //TODO: Get that callback add thing that propagates out of CourseSearchWidget component
 
-const CourseSearchWidget = ({AddCourseCallback}) => {
+const CourseSearchWidget = ({AddCourseCallback, currentSavedEntries}) => {
 
     // Instead of using the entire Lodash Library for one function...
     //https://github.com/you-dont-need/You-Dont-Need-Lodash-Underscore#_debounce
@@ -96,7 +96,7 @@ const CourseSearchWidget = ({AddCourseCallback}) => {
         let dump = [];
         // Create an empty array to store the sorted entries
         const sortedEntries = [];
-
+        
         for (const entry of payload) {
             sortedEntries.push(entry);
           }
