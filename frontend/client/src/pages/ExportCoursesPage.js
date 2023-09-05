@@ -14,7 +14,7 @@ import {assertPush, assertDelete} from '../redux/features/courseEntrySlice';
 
 //Local
 import {app_name} from '../util/constant';
-import {Sync_File_Download_Post, OAuth_Redirect} from '../util/requests';
+import {Sync_File_Download_Post, OAuth_Redirect, POST_bug_report} from '../util/requests';
 import '../static/css/main_ui.css';
 
 //Hooks
@@ -202,6 +202,8 @@ const ExportCoursesPage = () => {
           {RenderNotionCSVLink()}
           <br/>
           {RenderGoogleCalLink()}
+          <br/>
+
         </>);
       } else {
         return (<>

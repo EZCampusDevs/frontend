@@ -36,6 +36,7 @@ import SchoolRoutePage from './pages/SchoolRoutePage';
 import PageNotFoundPage from './pages/PageNotFoundPage';
 import NewLoginPage from './pages/NewLoginPage';
 import NewSignUpPage from './pages/NewSignUpPage';
+import ReportPage from './pages/ReportPage';
 
 //? Note: In app is where we do all school routing at the sub-domain level
 
@@ -68,6 +69,7 @@ export default function App() {
       <Route path="/institutions" element={<SchoolRoutePage/>}></Route>
 
       <Route path="/tos" element={<TextBlockPage titleStr={"Terms Of Service"} paragraphJSX={tos}/>}></Route>
+      <Route path="/report" element={<ReportPage/>}></Route>
 
       <Route path="/executive" element={<ExecutiveCalendarPage/>}></Route>
       <Route path="/about/us" element={<AboutUsPage/>}></Route>      

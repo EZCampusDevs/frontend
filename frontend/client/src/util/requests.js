@@ -80,7 +80,6 @@ export async function SearchCoursesByTerm(searchTerm, page, resultsPerPage, term
       "results_per_page": resultsPerPage,
       "term_id": termId
     })
-    //TODO: Figure out page and results per page thing (Also fix the Java Micro-Service for this)
   });
 
   let ResponseJSON = await RESPONSE.json();
@@ -89,6 +88,42 @@ export async function SearchCoursesByTerm(searchTerm, page, resultsPerPage, term
   return;
 }
 
+
+export async function POST_Report(osId, browserTypeId, reportTypeId, desc) {
+
+
+  const RESPONSE = await fetch(SEARCH_ENDPOINT + 'report/submit', {
+    method: 'POST',
+    headers: {'Content-Type': 'application/json'},
+    body: JSON.stringify({
+      "os_id": osId,
+      "browser_type_id": browserTypeId,
+      "report_type_id": reportTypeId,
+      "description": desc
+    })
+  });
+
+  console.log("POSTED BUG!!!!");
+
+  let ResponseJSON = await RESPONSE.json();
+  console.log(ResponseJSON);
+  return;
+}
+
+export async function GETALL_TYPES_Report(typeStr) {
+
+
+  const RESPONSE = await fetch(SEARCH_ENDPOINT + 'report/getall/'+typeStr, {
+    method: 'GET',
+    headers: {'Content-Type': 'application/json'},
+  });
+
+  console.log("POSTED GETALL !!!!");
+
+  let ResponseJSON = await RESPONSE.json();
+  console.log(ResponseJSON);
+  return;
+}
 
 // ######################### ICS Requests #########################
 // String, fn, fn, fn, fn, Array<int>
@@ -173,7 +208,6 @@ export async function CalendarPlaceholder(course_data_ids, callback) {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
     body: JSON.stringify({"course_data_ids": course_data_ids, "course_ids": []})
-    //TODO: Figure out page and results per page thing (Also fix the Java Micro-Service for this)
   });
 
   let ResponseJSON = await RESPONSE.json();
@@ -214,3 +248,6 @@ export async function OAuthHandleCallback(code, courseDataId_List, callback) {
   let ResponseJSON = await RESPONSE.json();
   callback(ResponseJSON);
 }
+
+
+
