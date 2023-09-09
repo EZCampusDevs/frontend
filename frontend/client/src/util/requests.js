@@ -89,8 +89,12 @@ export async function SearchCoursesByTerm(searchTerm, page, resultsPerPage, term
 }
 
 
-export async function POST_Report(osId, browserTypeId, reportTypeId, desc) {
+export async function POST_Report(osId, browserTypeId, reportTypeId, desc, descMin, descMax) {
 
+  //! Assertions:
+  if(osId < 0 || browserTypeId < 0 || reportTypeId < 0 || desc.length < descMin || desc.length > descMax){
+    return 1;
+  }
 
   const RESPONSE = await fetch(SEARCH_ENDPOINT + 'report/submit', {
     method: 'POST',
@@ -107,7 +111,7 @@ export async function POST_Report(osId, browserTypeId, reportTypeId, desc) {
 
   let ResponseJSON = await RESPONSE.json();
   console.log(ResponseJSON);
-  return;
+  return 0;
 }
 
 export async function GETALL_TYPES_Report(typeStr) {

@@ -40,12 +40,6 @@ const ReportPage = () => {
     return generalized;
   }
 
-  //! API WRAPPER
-
-  const postReport = () => {
-
-  }
-
   //############## UTILITY ####################
 
   const [browsers,setBrowsers] = React.useState(null);
@@ -55,7 +49,7 @@ const ReportPage = () => {
   const[browserCheck, sBC] = React.useState(xSVG);
   const[operatingSystemCheck, sOC] = React.useState(xSVG);
   const[reportTypeCheck, sRC] = React.useState(xSVG);
-  
+
   const selectedBrowser = React.useRef('');
   const selectedOperatingSystem = React.useRef('');
   const selectedReportType = React.useRef('');
