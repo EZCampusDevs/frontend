@@ -186,10 +186,10 @@ const CourseSearchWidget = ({AddCourseCallback}) => {
 <input type="text" onChange={keystrokeSearchPOST} ref={searchTerm} placeholder="Search Course Codes, CRNs, Prof names" 
 className="medium_search_bar r_font flex-grow" />
 
-    {/* Button | Comment it out and the Search Bar will dynamically adjust */}
+    {/* Button | Comment it out and the Search Bar will dynamically adjust
     <button onClick={keystrokeSearchPOST} className="w-36 bg-slate-700 text-white p-2 rounded-lg ml-2">
         Search
-    </button>
+    </button> */}
 </div>
 
 

@@ -118,11 +118,8 @@ export async function GETALL_TYPES_Report(typeStr) {
     headers: {'Content-Type': 'application/json'},
   });
 
-  console.log("POSTED GETALL !!!!");
-
   let ResponseJSON = await RESPONSE.json();
-  console.log(ResponseJSON);
-  return;
+  return ResponseJSON;
 }
 
 // ######################### ICS Requests #########################
