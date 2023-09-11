@@ -1,5 +1,6 @@
 import React from 'react'
 import PageHeader from '../components/navbar/PageHeader.js';
+import Footer from '../components/footer/Footer.js';
 
 //This page is designed to be used as Terms of Service, Privacy Policy,
 //Or any other pages requiring Long-Paragraphs of text.
@@ -14,6 +15,7 @@ const TextBlockPage = ({titleStr, paragraphJSX}) => {
         <br/>
             {paragraphJSX}
         </div>
+        <Footer/>
     </>
   )
 }

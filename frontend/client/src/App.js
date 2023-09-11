@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
 //Static imports:
 import logo from './logo.svg';
-import { tos } from './util/textblock';
+import { tos, privacyPolicy } from './util/textblock';
 
 //Component imports:
 import HomePage from "./pages/HomePage";
@@ -52,11 +52,13 @@ export default function App() {
       
       <Route path="/signup" element={<SignUp/>}></Route>
       <Route path="/export" element={<ExportCoursesPage/>}></Route>
+{/* 
       <Route path="/calendar_testing" element={<NewCalendar/>}></Route>
       <Route path="/c/1" element={<NewCalendarContainer1/>}></Route>
+      <Route path="/cs_widget" element={<CourseSearchWidget/>}></Route> 
+      <Route path="/report" element={<ReportPage/>}></Route> 
+*/}
 
-        {/* Temporary path */}
-      <Route path="/cs_widget" element={<CourseSearchWidget/>}></Route>
       <Route path="/404" element={<PageNotFoundPage/>}></Route>
       {/* <Route path="/calendar" element={<CalendarPage/>}></Route>
       <Route path="/optimize" element={<OptimizerPage/>}></Route>
@@ -68,8 +70,9 @@ export default function App() {
       <Route path="/optimize" element={<OptimizerPageV4/>}></Route> 
       <Route path="/institutions" element={<SchoolRoutePage/>}></Route>
 
-      <Route path="/tos" element={<TextBlockPage titleStr={"Terms Of Service"} paragraphJSX={tos}/>}></Route>
-      <Route path="/report" element={<ReportPage/>}></Route>
+      <Route path="/terms-of-service" element={<TextBlockPage titleStr={"Terms Of Service | EZCampus"} paragraphJSX={tos}/>}></Route>
+      <Route path="/privacy-policy" element={<TextBlockPage titleStr={"Privacy Policy | EZCampus"} paragraphJSX={privacyPolicy}/>}></Route>
+
 
       <Route path="/executive" element={<ExecutiveCalendarPage/>}></Route>
       <Route path="/about/us" element={<AboutUsPage/>}></Route>      
