@@ -52,12 +52,11 @@ export default function App() {
       
       <Route path="/signup" element={<SignUp/>}></Route>
       <Route path="/export" element={<ExportCoursesPage/>}></Route>
-{/* 
+
       <Route path="/calendar_testing" element={<NewCalendar/>}></Route>
       <Route path="/c/1" element={<NewCalendarContainer1/>}></Route>
       <Route path="/cs_widget" element={<CourseSearchWidget/>}></Route> 
       <Route path="/report" element={<ReportPage/>}></Route> 
-*/}
 
       <Route path="/404" element={<PageNotFoundPage/>}></Route>
       {/* <Route path="/calendar" element={<CalendarPage/>}></Route>

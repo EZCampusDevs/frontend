@@ -89,12 +89,12 @@ export async function SearchCoursesByTerm(searchTerm, page, resultsPerPage, term
 }
 
 
-export async function POST_Report(osId, browserTypeId, reportTypeId, desc, descMin, descMax) {
+export async function POST_Report(osId, browserTypeId, reportTypeId, desc, descMin, descMax, setErr, setSuccess) {
 
   //! Assertions:
-  if(osId < 0 || browserTypeId < 0 || reportTypeId < 0 || desc.length < descMin || desc.length > descMax){
-    return 1;
-  }
+  // if(osId < 0 || browserTypeId < 0 || reportTypeId < 0 || desc.length < descMin || desc.length > descMax){
+  //   return 1;
+  // }
 
   const RESPONSE = await fetch(SEARCH_ENDPOINT + 'report/submit', {
     method: 'POST',
@@ -107,11 +107,19 @@ export async function POST_Report(osId, browserTypeId, reportTypeId, desc, descM
     })
   });
 
-  console.log("POSTED BUG!!!!");
+
 
   let ResponseJSON = await RESPONSE.json();
-  console.log(ResponseJSON);
-  return 0;
+
+  if(RESPONSE.status !== 200) {
+    setErr(<span className="r_font text-red-500 mt-5">
+      {ResponseJSON.message}
+      </span>);
+  } else {
+    setSuccess();
+
+  }
+  return ResponseJSON;
 }
 
 export async function GETALL_TYPES_Report(typeStr) {

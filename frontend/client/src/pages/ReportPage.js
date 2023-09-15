@@ -40,7 +40,8 @@ const ReportPage = () => {
     return generalized;
   }
 
-  //############## UTILITY ####################
+  //############## CONSTANTS & STATE VARIABLES ####################
+  // Didn't both with Redux since it's pretty simple & works
 
   const [browsers,setBrowsers] = React.useState(null);
   const [operatingSystems,setOperatingSystems] = React.useState(null);
@@ -55,7 +56,15 @@ const ReportPage = () => {
   const selectedReportType = React.useRef('');
   const descriptionField = React.useRef('');
 
+  //General Report page state:
   const[descLen, setDL] = React.useState(0);
+  const[errorMessage,setErr] = React.useState(''); 
+  const[success,setSuccess] = React.useState(false);
+
+  //CONSTANTS:
+
+  const DESC_LEN_MIN = 16;
+  const DESC_LEN_MAX = 16300;
 
   const buildReportOptions = async (type, cb) => {
     let payload = await GETALL_TYPES_Report(type);
@@ -83,16 +92,19 @@ const ReportPage = () => {
   }
 
   const lenCount = (msg, count, min, max) => {
-    //Make sure the count is between min, and max
-    let svg = (count > min && count < max ) ? checkSVG : xSVG
-
+    // Format count and max with thousands separators
+    const formattedCount = count.toLocaleString();
+    const formattedMax = max.toLocaleString();
+  
+    // Make sure the count is between min and max
+    let svg = (count > min && count < max) ? checkSVG : xSVG;
+  
     return(
       <span className="flex items-center sub_title r_font">
-      {svg} {msg} <span className="text-slate-800 dark dark:text-slate-400 ml-12"> [ {count} / {max} character limit] </span>
+        {svg} {msg} <span className="text-slate-800 dark dark:text-slate-400 ml-12"> [ {formattedCount} / {formattedMax} character limit] </span>
       </span>
     );
   }
-
 
   React.useEffect(
     () => {
@@ -104,19 +116,34 @@ const ReportPage = () => {
     } , []);
     
   //! CAUTIONS THE USER THAT IF THEY RELOAD / LEAVE, ALL INFORMATION WILL BE GONE FROM FORM  
+  const unloadCallback = (event) => {
+    event.preventDefault();
+    event.returnValue = "";
+    return "";
+    
+  };
+
   React.useEffect(() => {
-    const unloadCallback = (event) => {
-      event.preventDefault();
-      event.returnValue = "";
-      return "";
-    };
-  
     window.addEventListener("beforeunload", unloadCallback);
-    return () => window.removeEventListener("beforeunload", unloadCallback);
+    return () => window.removeEventListener("beforeunload", unloadCallback); //Updismount
   }, []); 
 
-  return (
-    <>
+  const submitPress = async () => {
+    await POST_Report(
+      selectedOperatingSystem.current.value,
+      selectedBrowser.current.value,
+      selectedReportType.current.value,
+      descriptionField.current.value, 
+      DESC_LEN_MIN, DESC_LEN_MAX, setErr, successWrapper
+    );
+  }
+
+  const successWrapper = () => { //Upon success, removes the Prevention of leaving without warning
+    setSuccess(true);
+    window.removeEventListener("beforeunload", unloadCallback);
+  }
+
+  return (<>
     <PageHeader/>
     <section class="py-5">
         <div class="container">
@@ -129,6 +156,7 @@ const ReportPage = () => {
             <div class="col-md-6 col-xl-10">
                 <div></div>
             </div>
+            {!success ? 
             <div class="row d-flex justify-content-center">
                 <div class="col">
                         {/* <div class="mb-3"><input class="medium_search_bar r_font flex-grow" type="text" id="name-1" name="name" placeholder="Name"/></div> */}
@@ -165,7 +193,7 @@ const ReportPage = () => {
                             {reportTypes}
                       </select>
                       </div> <br/>
-                      {lenCount("Report Body", descLen, 16, 512)}
+                      {lenCount("Report Body", descLen, DESC_LEN_MIN, DESC_LEN_MAX)}
                         {/* <div class="mb-3"><input class="medium_search_bar r_font flex-grow" type="email" id="email-1" name="email" placeholder="Email"/></div> */}
                         <div class="mb-3"><textarea 
                         ref={descriptionField} 
@@ -177,9 +205,18 @@ const ReportPage = () => {
                           }
                         }}
                         class="r_font medium_search_bar" id="message-1" name="message" rows="9" placeholder="Description of Report..."></textarea></div>
-                        <div><button class="btn btn-primary shadow d-block w-100" >Send</button></div>
+                        <div><button class="btn btn-primary shadow d-block w-100" 
+                        onClick={() => {
+                            submitPress();
+                        }}>Submit Report</button></div>
+
+                        {errorMessage}
                 </div>
             </div>
+            : <>
+            <h1 className="r_font step_title text-center mt-32">Thanks for taking action, we've got your report !</h1>
+            <a style={{cursor : "pointer"}} className="large_blue_btn flex items-center justify-center space-x-2 mt-4" href="/"> Go Back Home </a>
+            </> }
         </div>
     </section>
     </>
