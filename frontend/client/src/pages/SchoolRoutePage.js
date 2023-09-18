@@ -20,15 +20,15 @@ import yukonLogo from '../static/images/yukonLogo.png'
 //Try to re-use styles from index.css ! (Going for UI Uniformity where all components look the same across all pages)
 const allSchools = [
   {name: 'Ontario Tech U', redirect: 'otu', logo: otuLogo,},
-  {name: 'University of Victoria', redirect: 'uvic', logo: uvicLogo,},
   {name: 'Durham College', redirect: 'dc',  logo: dcLogo,},
-  {name: 'Humber College', redirect: 'humber',  logo: humberLogo,},
-  {name: 'Red Deer Polytechnic', redirect: 'rdpolytech',  logo: rdpolyLogo,},
-  {name: 'Okanagan College', redirect: 'okanagan',  logo: okaLogo,},
-  {name: 'Thompson Rivers Univ.', redirect: 'tru',  logo: truLogo,},
-  {name: 'Univ. of Saskatchewan', redirect: 'usask',  logo: usaskLogo,},
-  {name: 'Kwantlen Polytechnic', redirect: 'kpu',  logo: kpuLogo,},
-  {name: 'Yukon University', redirect: 'yukonu',  logo: yukonLogo,},
+  // {name: 'University of Victoria', redirect: 'uvic', logo: uvicLogo,},
+  // {name: 'Humber College', redirect: 'humber',  logo: humberLogo,},
+  // {name: 'Red Deer Polytechnic', redirect: 'rdpolytech',  logo: rdpolyLogo,},
+  // {name: 'Okanagan College', redirect: 'okanagan',  logo: okaLogo,},
+  // {name: 'Thompson Rivers Univ.', redirect: 'tru',  logo: truLogo,},
+  // {name: 'Univ. of Saskatchewan', redirect: 'usask',  logo: usaskLogo,},
+  // {name: 'Kwantlen Polytechnic', redirect: 'kpu',  logo: kpuLogo,},
+  // {name: 'Yukon University', redirect: 'yukonu',  logo: yukonLogo,},
 ];
 
 const SchoolRoutePage = () => {
