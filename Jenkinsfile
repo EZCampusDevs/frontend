@@ -16,7 +16,7 @@ chmod +x ./build.sh
 chmod +x ./deploy.sh
 ./deploy.sh USE_LOG_FILE
 ''', 
-execTimeout: 120000, flatten: false,
+execTimeout: 300000, flatten: false,
                                 makeEmptyDirs: true, noDefaultExcludes: false, patternSeparator: '[, ]+',
                                 remoteDirectory: 'frontend', remoteDirectorySDF: false, removePrefix: '', sourceFiles: '**/*'
                             )
