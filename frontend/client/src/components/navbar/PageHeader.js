@@ -64,7 +64,7 @@ const PageHeader = ({ selectedElement, slotOneJSX, slotTwoJSX, slotThreeJSX, hid
 
   const Tools = [
     <PageHeaderDropDownSection title={"ICS Download"} desc={"Download your calendar as .ics format!"} hrefProp="/ics" />,
-    <PageHeaderDropDownSection title={"Optimizer"} desc={"Get a personalized schedule in a matter of seconds!"} hrefProp="/optimizer" />,
+    <PageHeaderDropDownSection title={"Optimizer"} desc={"Get a personalized schedule in a matter of seconds!"} hrefProp="/optimize" />,
     <PageHeaderDropDownSection title={"Executive Planner"} desc={"This tool requires an elevated permission level..."} hrefProp="/executive" />,
     //  <PageHeaderDropDownSection title={"Test #4th"} desc={"This tool requires an elevated permission level..."}/>
   ]
