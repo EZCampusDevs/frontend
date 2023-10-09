@@ -42,6 +42,7 @@ import ReportPage from './pages/ReportPage';
 
 import NewCalendarContainer1 from './components/calendar/NewCalendarContainer1';
 import GoogleOAuthSuccessPage from './pages/GoogleOAuthSuccessPage';
+import ConferencePage from './pages/ConferencePage';
 
 
 export default function App() {
@@ -74,6 +75,7 @@ export default function App() {
 
 
       <Route path="/executive" element={<ExecutiveCalendarPage/>}></Route>
+      <Route path="/conference" element={<ConferencePage/>}></Route>
       <Route path="/about/us" element={<AboutUsPage/>}></Route>      
       <Route path='*' exact={true} element={<ExportCoursesPage/>}></Route>
         

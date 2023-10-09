@@ -77,7 +77,7 @@ const SchoolRoutePage = () => {
       <div className="flex flex-col items-center justify-top min-h-screen bg-black-100 mt-6">
         <div className='max-w-screen-xl' style={{marginTop: '1rem'}}>
 
-          <div className="grid grid-cols-1 items-center sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 x1:grid-cols-5 gap-4 p-4 mt-4">
+          <div className="grid grid-cols-1 items-center sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 x1:grid-cols-2 gap-4 p-4 mt-4">
 
 
 {/* ADDING THE SCHOOL ELEMENT / BUTTONS */}

@@ -57,9 +57,152 @@ const NewCalendarContainer1 = () => {
         reduxSetParameter("current_offset", 0); //Set Current view to start at beginning of list ( 0 )
     };
 
+
+    //! FAKE SET COMMAND FOR DEVELOPPEMENT PURPOSES:
     const setCalendarWithCDIs = (courseDataIds) => {
-        CalendarPlaceholder(courseDataIds, handleAPIresponse);
+        handleAPIresponse({
+          "status_code": 200,
+          "detail": [
+            {
+              "location": "OT-North Oshawa SIRC 2010",
+              "name": "Micropro. & Computer Architect (Laboratory)",
+              "description": "ELEE3450U Micropro. & Computer Architect (Laboratory)\nCRN: 44194 | Section: 002\nInstructor: N/A\nDelivery: In-Person | Campus: OT-North Oshawa\n50 / 50 students enrolled",
+              "seats_filled": 50,
+              "max_capacity": 50,
+              "is_virtual": false,
+              "colour": null,
+              "time_start": "11:10:00",
+              "time_end": "14:00:00",
+              "rrulejs_str": "DTSTART;TZID=America/Toronto:20230906T111000\n"
+            },
+            {
+              "location": "OT-North Oshawa SIRC 2010",
+              "name": "Micropro. & Computer Architect (Laboratory)",
+              "description": "ELEE3450U Micropro. & Computer Architect (Laboratory)\nCRN: 44194 | Section: 002\nInstructor: N/A\nDelivery: In-Person | Campus: OT-North Oshawa\n50 / 50 students enrolled",
+              "seats_filled": 50,
+              "max_capacity": 50,
+              "is_virtual": false,
+              "colour": null,
+              "time_start": "11:10:00",
+              "time_end": "14:00:00",
+              "rrulejs_str": "DTSTART;TZID=America/Toronto:20231004T111000\n"
+            },
+            {
+              "location": "OT-North Oshawa SIRC 2010",
+              "name": "Micropro. & Computer Architect (Laboratory)",
+              "description": "ELEE3450U Micropro. & Computer Architect (Laboratory)\nCRN: 44194 | Section: 002\nInstructor: N/A\nDelivery: In-Person | Campus: OT-North Oshawa\n50 / 50 students enrolled",
+              "seats_filled": 50,
+              "max_capacity": 50,
+              "is_virtual": false,
+              "colour": null,
+              "time_start": "11:10:00",
+              "time_end": "14:00:00",
+              "rrulejs_str": "DTSTART;TZID=America/Toronto:20231108T111000\n"
+            },
+            {
+              "location": "OT-North Oshawa SIRC 2010",
+              "name": "Micropro. & Computer Architect (Laboratory)",
+              "description": "ELEE3450U Micropro. & Computer Architect (Laboratory)\nCRN: 44194 | Section: 002\nInstructor: N/A\nDelivery: In-Person | Campus: OT-North Oshawa\n50 / 50 students enrolled",
+              "seats_filled": 50,
+              "max_capacity": 50,
+              "is_virtual": false,
+              "colour": null,
+              "time_start": "11:10:00",
+              "time_end": "14:00:00",
+              "rrulejs_str": "DTSTART;TZID=America/Toronto:20231025T111000\n"
+            },
+            {
+              "location": "OT-North Oshawa SIRC 2010",
+              "name": "Micropro. & Computer Architect (Laboratory)",
+              "description": "ELEE3450U Micropro. & Computer Architect (Laboratory)\nCRN: 44194 | Section: 002\nInstructor: N/A\nDelivery: In-Person | Campus: OT-North Oshawa\n50 / 50 students enrolled",
+              "seats_filled": 50,
+              "max_capacity": 50,
+              "is_virtual": false,
+              "colour": null,
+              "time_start": "11:10:00",
+              "time_end": "14:00:00",
+              "rrulejs_str": "DTSTART;TZID=America/Toronto:20230920T111000\n"
+            },
+            {
+              "location": "OT-North Oshawa SIRC 2010",
+              "name": "Micropro. & Computer Architect (Laboratory)",
+              "description": "ELEE3450U Micropro. & Computer Architect (Laboratory)\nCRN: 44194 | Section: 002\nInstructor: N/A\nDelivery: In-Person | Campus: OT-North Oshawa\n50 / 50 students enrolled",
+              "seats_filled": 50,
+              "max_capacity": 50,
+              "is_virtual": false,
+              "colour": null,
+              "time_start": "11:10:00",
+              "time_end": "14:00:00",
+              "rrulejs_str": "DTSTART;TZID=America/Toronto:20231122T111000\n"
+            },
+            {
+              "location": "OT-North Oshawa SIRC 1350",
+              "name": "Micropro. & Computer Architect (Tutorial)",
+              "description": "ELEE3450U Micropro. & Computer Architect (Tutorial)\nCRN: 45733 | Section: 013\nInstructor: N/A\nDelivery: In-Person | Campus: OT-North Oshawa\n49 / 50 students enrolled",
+              "seats_filled": 49,
+              "max_capacity": 50,
+              "is_virtual": false,
+              "colour": null,
+              "time_start": "11:10:00",
+              "time_end": "12:30:00",
+              "rrulejs_str": "DTSTART;TZID=America/Toronto:20230907T111000;\nRRULE:FREQ=WEEKLY;UNTIL=20231204T123000;BYDAY=TH"
+            },
+            {
+              "location": "OT-North Oshawa UA UA1350",
+              "name": "Data Management Systems (Lecture)",
+              "description": "SOFE3700U Data Management Systems (Lecture)\nCRN: 43511 | Section: 001\nInstructor: abdelhafeezkhalid (Khalid.Hafeez@ontariotechu.ca) N/A%\nDelivery: In-Person | Campus: OT-North Oshawa\n99 / 125 students enrolled",
+              "seats_filled": 99,
+              "max_capacity": 125,
+              "is_virtual": false,
+              "colour": null,
+              "time_start": "18:40:00",
+              "time_end": "20:00:00",
+              "rrulejs_str": "DTSTART;TZID=America/Toronto:20230906T184000;\nRRULE:FREQ=WEEKLY;UNTIL=20231204T200000;BYDAY=WE,FR"
+            },
+            {
+              "location": "OT-North Oshawa UA UA2120",
+              "name": "Data Management Systems (Laboratory)",
+              "description": "SOFE3700U Data Management Systems (Laboratory)\nCRN: 44213 | Section: 003\nInstructor: N/A\nDelivery: In-Person | Campus: OT-North Oshawa\n53 / 65 students enrolled",
+              "seats_filled": 53,
+              "max_capacity": 65,
+              "is_virtual": false,
+              "colour": null,
+              "time_start": "10:10:00",
+              "time_end": "12:00:00",
+              "rrulejs_str": "DTSTART;TZID=America/Toronto:20230908T101000;\nRRULE:FREQ=WEEKLY;UNTIL=20231204T120000;BYDAY=FR"
+            },
+            {
+              "location": "OT-North Oshawa SIRC 3110",
+              "name": "Design & Analys. of Algorithms (Lecture)",
+              "description": "SOFE3770U Design & Analys. of Algorithms (Lecture)\nCRN: 43513 | Section: 001\nInstructor: makrehchimasoud (Masoud.Makrehchi@ontariotechu.ca) N/A%\nDelivery: In-Person | Campus: OT-North Oshawa\n107 / 125 students enrolled",
+              "seats_filled": 107,
+              "max_capacity": 125,
+              "is_virtual": false,
+              "colour": null,
+              "time_start": "15:40:00",
+              "time_end": "17:00:00",
+              "rrulejs_str": "DTSTART;TZID=America/Toronto:20230905T154000;\nRRULE:FREQ=WEEKLY;UNTIL=20231204T170000;BYDAY=TU,FR"
+            },
+            {
+              "location": "OT-North Oshawa UA UA2140",
+              "name": "Design & Analys. of Algorithms (Tutorial)",
+              "description": "SOFE3770U Design & Analys. of Algorithms (Tutorial)\nCRN: 43514 | Section: 002\nInstructor: N/A\nDelivery: In-Person | Campus: OT-North Oshawa\n65 / 65 students enrolled",
+              "seats_filled": 65,
+              "max_capacity": 65,
+              "is_virtual": false,
+              "colour": null,
+              "time_start": "12:40:00",
+              "time_end": "14:00:00",
+              "rrulejs_str": "DTSTART;TZID=America/Toronto:20230907T124000;\nRRULE:FREQ=WEEKLY;UNTIL=20231204T140000;BYDAY=TH"
+            }
+          ],
+          "headers": null
+        });
     }
+
+    // const setCalendarWithCDIs = (courseDataIds) => {
+    //     CalendarPlaceholder(courseDataIds, handleAPIresponse);
+    // }
 
     //* ========== ========== ========== ========== ==========
     //* >> ACTUAL CONTAINER UI FUNCTIONS

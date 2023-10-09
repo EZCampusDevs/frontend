@@ -13,6 +13,7 @@ const NewCalendar = ({calendarView, viewState, EARLIEST_TIME, LATEST_TIME, THIRT
   //chatgpt : #### WROTE THIS FORMATTING HELPER FN:
       function formatDateToCalendarView(dateString) {
         const dateObj = new Date(dateString);
+        dateObj.setDate(dateObj.getDate() - 2); //! HARD CODE, this is a problem
         // Array of month names
         const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 

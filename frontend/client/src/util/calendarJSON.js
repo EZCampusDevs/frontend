@@ -1,4 +1,4 @@
-import { logVoid } from "./logger";
+import { logVoid, reduxVoid } from "./logger";
 
 import { datetime, RRule, RRuleSet, rrulestr } from 'rrule'
 
@@ -27,24 +27,25 @@ const pDateStr = (dateStart) => { //Turns string like "yearInt-monthInt-dayInt" 
 }
 
 export function cParse2(data) {
-    //First & Last mondays
 
     const rruleSet = new RRuleSet()
+    
     let meetings = data["detail"];
+    console.log(meetings);
 
     let eventRules = []; //List of lists of recurrence dates, every list for specific 
 
     for(const [mI,mV] of meetings.entries()) { // Index, Value
-        
-        let event = mV;
+        let event = {...mV};
 
+        console.log("EXTRACTING : "+mV.rrulejs_str);
         const eventRule = RRule.fromString(mV.rrulejs_str);
-        console.log(eventRule);
 
         let erall;
 
         if(eventRule.options.freq){ //If the Frequency of the Event isn't 0, get all Recurrence Dates
             erall = eventRule.all();
+            console.log(erall);
         } else {
             erall = [eventRule.options.dtstart]; 
         }
@@ -55,6 +56,7 @@ export function cParse2(data) {
 
         eventRules.push(event);
     }
+    reduxVoid("EVENT RULES!");
     console.log(eventRules);
 
     let earliestDate = null;
@@ -105,7 +107,7 @@ export function cParse2(data) {
             break;
         }
 
-        const newUnix = earliestDate.getTime()+(86400000*iter)
+        const newUnix = earliestDate.getTime()+(86400000*iter);
         const iterDate = new Date(newUnix);
         //Current Iteration's Date
 
@@ -135,8 +137,14 @@ export function cParse2(data) {
                    occurrenceDate.getMonth() === iterDate.getMonth() &&
                    occurrenceDate.getDate() === iterDate.getDate()){
 
+                    console.log("Matching event to: ");
+                    console.log(event);
+
                     let appendedEvent = {...event}; //Spread so it doesn't delete the .rall param on event
                     delete appendedEvent["rall"];
+
+                    console.log(appendedEvent["name"]);
+                    console.log(appendedEvent["time_start"]);
 
                     appendedEvent.description = parseDescription(appendedEvent.description);
                     
