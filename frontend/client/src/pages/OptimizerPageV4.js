@@ -4,8 +4,6 @@ import React from 'react'
 import PageHeader from '../components/navbar/PageHeader';
 import SchoolConfigSelect from '../components/util/SchoolConfigSelect';
 
-import Calendar from '../components/calendar/Calendar';
-
 // Optimizer Specific components:
 import AvailabilitySelectionCalendar from '../components/optimizer/AvailabilitySelectionCalendar';
 import OptimizeParameter from '../components/optimizer/OptimizeParameter';
@@ -247,19 +245,11 @@ const OptimizerPageV4 = () => {
     </a>
       
     {/* Actual Calendar Component Wrapper */}
-
-    <div className=" optimizer_result_calendar" 
-        tabIndex='0'   
-        onKeyDown={(e) => 
-          {
-          if(e.code === 'ArrowRight' ) { scrollForward() } 
-          if(e.code === 'ArrowLeft') { scrollBackward() }
-          }
-        }>
+  {/! Wrapper is definitly going soon... */}
     
-    <Calendar current={[...schedule.slice(currentWeek[0],currentWeek[1])]} personalized={false} />  
+    {/! TODO: FOR THE OPTIMIZER TO BE WORKING AGAIN, THIS NEEDS TO BE REPLACED BY A NEW CALENDAR CONTAINER */}
+    {/* <Calendar current={[...schedule.slice(currentWeek[0],currentWeek[1])]} personalized={false} />   */}
 
-    </div>
 
     {/* NEXT | RIGHT Controller */}
       <a className="optimizer-control-next" 

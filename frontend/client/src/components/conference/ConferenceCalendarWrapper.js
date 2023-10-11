@@ -1,7 +1,7 @@
 import React from 'react'
 
 //React Components
-import NewCalendar from './NewCalendar.js';
+import NewCalendar from '../calendar/NewCalendar.js';
 
 //Local Utility
 import { CalendarPlaceholder } from '../../util/requests';
@@ -11,8 +11,7 @@ import { cParse2 } from '../../util/calendarJSON';
 import { useSelector, useDispatch } from 'react-redux';
 import { leftScroll, rightScroll, setParameter } from '../../redux/features/newCalendarSlice.js';
 
-const NewCalendarContainer1 = () => {
-
+const ConferenceCalendarWrapper = () => {
     //* ========== ========== ========== ========== ==========
     //* >> REDUX DEFINITIONS & DISPATCHERS                             
     //* ========== ========== ========== ========== ==========
@@ -235,8 +234,6 @@ const NewCalendarContainer1 = () => {
 
      // 30 * 48 = 1440, (1) 10 * 144 = 1440, (3) 
     return (<>
-        <button onClick={() => {reduxScroll(false)}}>Left {"<--"}</button>
-        <button onClick={() => {reduxScroll(true)}}>Right {"-->"}</button>
         <NewCalendar 
             calendarView={full_view.slice(current_offset, current_offset+7)} 
             viewState={0}
@@ -247,4 +244,4 @@ const NewCalendarContainer1 = () => {
         </>);
 }
 
-export default NewCalendarContainer1
+export default ConferenceCalendarWrapper

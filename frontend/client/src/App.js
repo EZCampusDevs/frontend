@@ -11,12 +11,10 @@ import HomePage from "./pages/HomePage";
 import SignUp from './pages/SignUp';
 
 //Page imports:
-import CalendarPage from './pages/CalendarPage';
-
 import NewCalendar from './components/calendar/NewCalendar';
 
 import ClubUserPage from './pages/ClubUserPage';
-import ClubCreationPage from './pages/ClubCreationPage';
+
 import OptimizerPageV4 from './pages/OptimizerPageV4';
 import ClubPage from './pages/ClubPage';
 import ExportCoursesPage from './pages/ExportCoursesPage';
@@ -42,6 +40,7 @@ import ReportPage from './pages/ReportPage';
 
 import NewCalendarContainer1 from './components/calendar/NewCalendarContainer1';
 import GoogleOAuthSuccessPage from './pages/GoogleOAuthSuccessPage';
+import ConferencePage from './pages/ConferencePage';
 
 
 export default function App() {
@@ -74,6 +73,7 @@ export default function App() {
 
 
       <Route path="/executive" element={<ExecutiveCalendarPage/>}></Route>
+      <Route path="/conference" element={<ConferencePage/>}></Route>
       <Route path="/about/us" element={<AboutUsPage/>}></Route>      
       <Route path='*' exact={true} element={<ExportCoursesPage/>}></Route>
         

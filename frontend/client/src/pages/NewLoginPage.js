@@ -33,7 +33,7 @@ const denied_tmpl = (
         <div className="container">
             <div className="row mb-4 mb-lg-5">
                 <div className="col-md-8 col-xl-6 text-center mx-auto">
-                    <h2 className="main_title">Welcome to EZCampus</h2>
+                    <h2 className="night_text">Welcome to EZCampus</h2>
                 </div>
             </div>
             <div className="row d-flex justify-content-center" >

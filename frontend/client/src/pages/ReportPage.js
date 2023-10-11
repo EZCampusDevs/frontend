@@ -150,7 +150,7 @@ const ReportPage = () => {
             <div class="row mb-5">
                 <div class="col-md-8 col-xl-6 text-center mx-auto">
                     <p class="fw-bold text-success mb-2">EZCampus Reports</p>
-                    <h2 class="fw-bold main_title">Got an Inquiry?</h2>
+                    <h2 class="fw-bold night_text">Got an Inquiry?</h2>
                 </div>
             </div>
             <div class="col-md-6 col-xl-10">
