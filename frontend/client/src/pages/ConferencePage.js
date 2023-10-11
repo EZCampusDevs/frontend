@@ -26,13 +26,14 @@ const ConferencePage = () => {
     }}
 ></div>
                 <p className="mb-4">This event is powered by EZCampus</p>
-                <button
+                <button onClick={() => {setMainView(true)}}
                   className="btn btn-light btn-lg"
                   style={{ margin: "5px" }}
                 >
                   Schedule
                 </button>
-                <button className="btn btn-primary btn-lg me-2">
+                <button onClick={() => {setMainView(false)}}
+                className="btn btn-primary btn-lg me-2">
                   Additional Information
                 </button>
               </div>

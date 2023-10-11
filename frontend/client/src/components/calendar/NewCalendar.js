@@ -83,7 +83,7 @@ const NewCalendar = ({calendarView, viewState, EARLIEST_TIME, LATEST_TIME, THIRT
             
           //Adding of Switch button:
  
-          let titleBox_CSS_STR = "h-5 text-lg ml-20 w-24"
+          let titleBox_CSS_STR = "h-5 text-lg ml-20 w-24 night_text"
           let gridBox_CSS_STR = "h-2 border border-slate-400 col-span-1 col_w";
           let gridBoxT_CSS_STR = "h-2 col-span-1 col_w border-b-2 border-x-2 border-slate-300";
 
