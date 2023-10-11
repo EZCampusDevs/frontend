@@ -2,6 +2,8 @@ import React from "react";
 import PageHeader from "../components/navbar/PageHeader";
 import ConferenceInfoView from "../components/conference/ConferenceInfoView";
 
+import fyicLogo from '../static/images/FYIC.webp'
+
 const ConferencePage = () => {
   //React State
   const [mainView, setMainView] = React.useState("");
@@ -20,7 +22,7 @@ const ConferencePage = () => {
     data-bss-parallax-bg="true"
     style={{
         height: "500px",
-        backgroundImage: "url(https://cdn.bootstrapstudio.io/placeholders/1400x800.png)",
+        backgroundImage: `url(${fyicLogo})`,
         backgroundPosition: "center",
         backgroundSize: "cover",
     }}

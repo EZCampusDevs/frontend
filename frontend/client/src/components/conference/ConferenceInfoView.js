@@ -92,7 +92,7 @@ const ConferenceInfoView = ({ currentState }) => {
             
             </div>
             
-            <div class="px-3">
+            <div class="px-3 night_text">
                 <h4>{title}</h4>
                 <p>{textbody}</p>
                 

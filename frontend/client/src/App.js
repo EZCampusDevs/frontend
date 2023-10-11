@@ -11,12 +11,10 @@ import HomePage from "./pages/HomePage";
 import SignUp from './pages/SignUp';
 
 //Page imports:
-import CalendarPage from './pages/CalendarPage';
-
 import NewCalendar from './components/calendar/NewCalendar';
 
 import ClubUserPage from './pages/ClubUserPage';
-import ClubCreationPage from './pages/ClubCreationPage';
+
 import OptimizerPageV4 from './pages/OptimizerPageV4';
 import ClubPage from './pages/ClubPage';
 import ExportCoursesPage from './pages/ExportCoursesPage';
