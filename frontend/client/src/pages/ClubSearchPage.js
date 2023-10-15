@@ -27,8 +27,6 @@ const ClubSearchPage = () => {
     const reduxTermLength = useSelector((state) => state.searchStorage.length);
     const dispatch = useDispatch();  
 
-    useScript("https://kit.fontawesome.com/a076d05399.js");
-
     //Authentication State:
 
     const [auth, setAuth] = React.useState(-1);

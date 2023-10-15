@@ -24,15 +24,15 @@ const NewCalendarEvent = ({eventBlob, colStart, timeStart, timeEnd, EARLIEST_INT
 
     //! Refers to Row of the Event
     console.log("EARLIEST INCR: "+EARLIEST_INTR);
-    var verticalRowStart = (tS[0] * 6)+6 + (tS[1]/60*6) - EARLIEST_INTR; 
+    var verticalRowStart = (tS[0] * 6)+6 + (tS[1]/60*6) - EARLIEST_INTR + 2; 
 
     //! Height of Event in Rows
     let nRows = Math.floor(deltaMins / (60 / (DENOM_FACTOR*2) ));  // percentage of a day
 
-    //TODO *** REMOVE / FIX HACKS ***
-    if(tS[0] < 16) {verticalRowStart = verticalRowStart--;}
-    else if(tS[0] > 16.5) {verticalRowStart = verticalRowStart-2;}
-    //TODO *** REMOVE / FIX HACKS ***
+    //TODO: Fix Hacky If Statements:
+    if(tS[0] < 16) {verticalRowStart = verticalRowStart+2;}
+    if(tS[0] > 16.5) {verticalRowStart = verticalRowStart+1;}
+    //TODO: Fix Hacky If Statements: ^^^
 
     if(eventBlob){
  
@@ -42,7 +42,7 @@ const NewCalendarEvent = ({eventBlob, colStart, timeStart, timeEnd, EARLIEST_INT
         return <>
         {eventBlob["time_start"]} <br/>
         {eventBlob["name"]} <br/>
-        {eventBlob["time_end"]}
+        {eventBlob["time_end"]} <br/>
         </>
       }
 

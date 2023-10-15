@@ -109,10 +109,9 @@ const NewCalendar = ({
       ) {
         //Adding of Switch button:
 
-        let titleBox_CSS_STR = "h-5 text-lg ml-20 w-24 night_text";
-        let gridBox_CSS_STR = "h-2 border border-slate-400 col-span-1 col_w";
-        let gridBoxT_CSS_STR =
-          "h-2 col-span-1 col_w border-b-2 border-x-2 border-slate-300";
+        let titleBox_CSS_STR = "h-5 text-lg ml-20 w-24 night_text r_font";
+        let gridBox_CSS_STR = "h-2 border col-span-1 col_w calendar_border_1 r_font";
+        let gridBoxT_CSS_STR = "calendar_border_2";
 
         gridBox_CSS_STR += " col-start-" + String(wI + 1);
         titleBox_CSS_STR += " col-start-" + String(wI + 1);

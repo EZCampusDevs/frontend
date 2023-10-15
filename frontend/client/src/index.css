@@ -150,6 +150,27 @@
         @apply text-white;
     }
 
+
+    /** GridBox */
+    .calendar_border_1 {
+        @apply border-slate-700;
+    }
+    
+    .dark .calendar_border_1 {
+        @apply border-red-500 text-white;
+    }
+
+    /** GridBox  T*/
+    
+    .calendar_border_2 {
+        @apply h-2 col-span-1 col_w border-b-2 border-slate-400
+    }
+
+    .dark .calendar_border_2 {
+        @apply border-purple-600
+    }
+
+
 }
 
 
