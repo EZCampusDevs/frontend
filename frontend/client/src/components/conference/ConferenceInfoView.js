@@ -109,7 +109,7 @@ const ConferenceInfoView = ({ currentState }) => {
     }
 
     const SubViewMenuItem_Factory = (text,svi) => {
-      return <li className="night_text btn btn-outline-primary mb-5" onClick={() => {setSVI(svi)}}>{text}</li>
+      return <li className="night_text btn btn-outline-primary mb-5 w-full" onClick={() => {setSVI(svi)}}>{text}</li>
     }
 
 
@@ -192,7 +192,7 @@ const ConferenceInfoView = ({ currentState }) => {
         <>
         <div className="container">
             <div className="row">
-            <div className="col-md-8 col-xl-1">
+            <div className="col-md-8 col-xl-2">
                 <ul>
                 {SubViewMenuItem_Factory("About us", 1)}
                 {SubViewMenuItem_Factory("About OTU", 2)}

@@ -1,6 +1,6 @@
 import React from 'react';
 
-const NewCalendarEvent = ({eventBlob, colStart, timeStart, timeEnd, EARLIEST_INTR, LATEST_INTR , DENOM_FACTOR, onClickCallback}) => {
+const NewCalendarEvent = ({eventBlob, colStart, timeStart, timeEnd, EARLIEST_INTR , DENOM_FACTOR, onClickCallback, viewState}) => {
     
   const [isHovered, setIsHovered] = React.useState(false);
 
@@ -50,9 +50,9 @@ const NewCalendarEvent = ({eventBlob, colStart, timeStart, timeEnd, EARLIEST_INT
       return (
         <div 
             onClick={() => {onClickCallback(eventBlob)}}
-            className={`bg-blue-200`}
+            className={`bg-blue-200 rounded-lg shadow transition duration-300 cursor-pointer r_font`}
             style={{
-                gridColumnStart: colStart, 
+                gridColumnStart: viewState == 2 ? 0 : colStart, 
                 gridRowStart: verticalRowStart,
                 gridRowEnd : verticalRowStart+nRows,
                 width : "12vw"

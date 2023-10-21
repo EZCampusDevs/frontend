@@ -37,6 +37,10 @@ const ConferenceCalendarWrapper = () => {
         else {  dispatch(leftScroll());  }
     }
 
+    //React state
+    const [width, setWidth] = React.useState(window.innerWidth);
+
+
     //* ========== ========== ========== ========== ==========
     //* >> API FUNCTIONS
     //* ========== ========== ========== ========== ==========    
@@ -55,7 +59,6 @@ const ConferenceCalendarWrapper = () => {
         reduxSetParameter("full_view", serializedParsedCal); //Needs to be Seralized data
         reduxSetParameter("current_offset", 0); //Set Current view to start at beginning of list ( 0 )
     };
-
 
     //! FAKE SET COMMAND FOR DEVELOPPEMENT PURPOSES:
     const setCalendarWithCDIs = (courseDataIds) => {
@@ -229,6 +232,21 @@ const ConferenceCalendarWrapper = () => {
         console.log(full_view.slice(current_offset, current_offset+7));
 
      }, [current_offset]);
+
+
+//* ############### RESIZING OF WIDTH (onMount) ##############
+React.useEffect(() => {
+  // Function to update the width state
+  const handleResize = () => { setWidth(window.innerWidth); };
+
+  // Add event listener
+  window.addEventListener('resize', handleResize);
+
+  // Cleanup function to remove event listener when the component unmounts
+  return () => {
+      window.removeEventListener('resize', handleResize);
+  };
+}, []);
 
 
 
