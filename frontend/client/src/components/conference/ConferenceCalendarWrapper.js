@@ -233,7 +233,30 @@ const ConferenceCalendarWrapper = () => {
 
 
      // 30 * 48 = 1440, (1) 10 * 144 = 1440, (3) 
-    return (<>
+    
+    const conferenceStreamButton  = (btn_name) => {
+      return (
+        <div className="w-1/3 p-4">
+        <button type="button" className="btn btn-primary w-full">
+        {btn_name}
+        </button>
+      </div>
+      );
+    }
+    
+    
+     return (
+    
+    <>
+        <div className="flex justify-between">
+        {conferenceStreamButton("Stream A")}
+        {conferenceStreamButton("Stream B")}
+        {conferenceStreamButton("Stream C")}
+
+        </div>
+
+
+    
         <NewCalendar 
             calendarView={full_view.slice(current_offset, current_offset+7)} 
             viewState={0}

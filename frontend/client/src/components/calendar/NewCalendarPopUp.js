@@ -25,8 +25,6 @@ const eventDesc = event["description"];
 
             {eventDesc["crn"]}<br/>
             {eventDesc["section"]}
-
-
         </PopUpWrapper>
   );
 }
