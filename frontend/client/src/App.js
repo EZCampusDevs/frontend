@@ -6,6 +6,8 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import logo from './logo.svg';
 import { tos, privacyPolicy } from './util/textblock';
 
+import { extractSubdomain } from './util/browserUtil';
+
 //Component imports:
 import HomePage from "./pages/HomePage";
 import SignUp from './pages/SignUp';
@@ -44,49 +46,82 @@ import ConferencePage from './pages/ConferencePage';
 
 
 export default function App() {
+  
+  
+  //* CONFERENCE SUBDOMAIN STRICT ROUTING
+  React.useEffect(() => {
+
+ }, []);
+  
+
+  const genRoutes = (url) => {
+
+    console.log("HREF_U: ");
+    console.log(url);
+
+    const conferenceFlag = extractSubdomain(url);
+    if(conferenceFlag === "fyic") {
+      return (
+        <Routes>
+        <Route path='*' exact={true} element={<ConferencePage/>}></Route>
+                <Route path="/conference" element={<ConferencePage/>}></Route>
+                <Route path="/terms-of-service" element={<TextBlockPage titleStr={"Terms Of Service | EZCampus"} paragraphJSX={tos}/>}></Route>
+                 <Route path="/privacy-policy" element={<TextBlockPage titleStr={"Privacy Policy | EZCampus"} paragraphJSX={privacyPolicy}/>}></Route>
+        </Routes>
+      )
+    }
+
+    else {
+      return (
+        <Routes>
+        
+        {/* <Route path="/" element={<NewHomePage/>}></Route> */}
+        
+        <Route path="/signup" element={<SignUp/>}></Route>
+        <Route path="/export" element={<ExportCoursesPage/>}></Route>
+  
+        <Route path="/calendar_testing" element={<NewCalendar/>}></Route>
+        <Route path="/c/1" element={<NewCalendarContainer1/>}></Route>
+        <Route path="/cs_widget" element={<CourseSearchWidget/>}></Route> 
+        <Route path="/report" element={<ReportPage/>}></Route> 
+  
+        <Route path="/404" element={<PageNotFoundPage/>}></Route>
+        {/* <Route path="/calendar" element={<CalendarPage/>}></Route>
+        <Route path="/optimize" element={<OptimizerPage/>}></Route>
+        <Route path="/club/create" element={<ClubCreationPage/>}></Route>
+        <Route path="/club/:uuid" element={<ClubPage/>}></Route>
+        <Route path="/clubs" element={<ClubUserPage/>}></Route>
+        <Route path="/events" element={<ClubSearchPage/>}></Route>
+        */}
+        <Route path="/optimize" element={<OptimizerPageV4/>}></Route> 
+        <Route path="/institutions" element={<SchoolRoutePage/>}></Route>
+  
+        <Route path="/terms-of-service" element={<TextBlockPage titleStr={"Terms Of Service | EZCampus"} paragraphJSX={tos}/>}></Route>
+        <Route path="/privacy-policy" element={<TextBlockPage titleStr={"Privacy Policy | EZCampus"} paragraphJSX={privacyPolicy}/>}></Route>
+  
+  
+        <Route path="/executive" element={<ExecutiveCalendarPage/>}></Route>
+        <Route path="/conference" element={<ConferencePage/>}></Route>
+        <Route path="/about/us" element={<AboutUsPage/>}></Route>      
+        <Route path='*' exact={true} element={<ExportCoursesPage/>}></Route>
+          
+        {/* Bootstrapified Components: */}
+        <Route path="/login" element={<NewLoginPage/>}></Route>
+  
+  
+        {/* GOOGLE OAUTH SUCCESS ROUTE */}
+        <Route path="/google-auth-callback" element={<GoogleOAuthSuccessPage/>}></Route>      
+  
+  
+  
+        </Routes>
+      );
+    }
+  }
+  
+  
   return (<Router>
-      <Routes>
-        
-      {/* <Route path="/" element={<NewHomePage/>}></Route> */}
-      
-      <Route path="/signup" element={<SignUp/>}></Route>
-      <Route path="/export" element={<ExportCoursesPage/>}></Route>
-
-      <Route path="/calendar_testing" element={<NewCalendar/>}></Route>
-      <Route path="/c/1" element={<NewCalendarContainer1/>}></Route>
-      <Route path="/cs_widget" element={<CourseSearchWidget/>}></Route> 
-      <Route path="/report" element={<ReportPage/>}></Route> 
-
-      <Route path="/404" element={<PageNotFoundPage/>}></Route>
-      {/* <Route path="/calendar" element={<CalendarPage/>}></Route>
-      <Route path="/optimize" element={<OptimizerPage/>}></Route>
-      <Route path="/club/create" element={<ClubCreationPage/>}></Route>
-      <Route path="/club/:uuid" element={<ClubPage/>}></Route>
-      <Route path="/clubs" element={<ClubUserPage/>}></Route>
-      <Route path="/events" element={<ClubSearchPage/>}></Route>
-      */}
-      <Route path="/optimize" element={<OptimizerPageV4/>}></Route> 
-      <Route path="/institutions" element={<SchoolRoutePage/>}></Route>
-
-      <Route path="/terms-of-service" element={<TextBlockPage titleStr={"Terms Of Service | EZCampus"} paragraphJSX={tos}/>}></Route>
-      <Route path="/privacy-policy" element={<TextBlockPage titleStr={"Privacy Policy | EZCampus"} paragraphJSX={privacyPolicy}/>}></Route>
-
-
-      <Route path="/executive" element={<ExecutiveCalendarPage/>}></Route>
-      <Route path="/conference" element={<ConferencePage/>}></Route>
-      <Route path="/about/us" element={<AboutUsPage/>}></Route>      
-      <Route path='*' exact={true} element={<ExportCoursesPage/>}></Route>
-        
-      {/* Bootstrapified Components: */}
-      <Route path="/login" element={<NewLoginPage/>}></Route>
-
-
-      {/* GOOGLE OAUTH SUCCESS ROUTE */}
-      <Route path="/google-auth-callback" element={<GoogleOAuthSuccessPage/>}></Route>      
-
-
-
-      </Routes>
+      {genRoutes(window.location.href)}
      </Router>
    );
 }

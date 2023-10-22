@@ -70,7 +70,7 @@ export function getPathFromUrl() {
     return path;
 }
 
-function extractSubdomain(url) {
+export function extractSubdomain(url) {
         // Remove the protocol part (e.g., http:// or https://) from the URL
         const withoutProtocol = url.replace(/^(https?:\/\/)?/, '');
     
