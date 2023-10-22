@@ -74,7 +74,7 @@ const ConferenceCalendarWrapper = () => {
               "seats_filled": 50,
               "max_capacity": 50,
               "is_virtual": false,
-              "colour": null,
+              "colour": "bg-blue-200",
               "time_start": "11:10:00",
               "time_end": "14:00:00",
               "rrulejs_str": "DTSTART;TZID=America/Toronto:20230906T111000\n"
@@ -86,7 +86,7 @@ const ConferenceCalendarWrapper = () => {
               "seats_filled": 50,
               "max_capacity": 50,
               "is_virtual": false,
-              "colour": null,
+              "colour": "bg-purple-200",
               "time_start": "11:10:00",
               "time_end": "14:00:00",
               "rrulejs_str": "DTSTART;TZID=America/Toronto:20231004T111000\n"
@@ -98,7 +98,7 @@ const ConferenceCalendarWrapper = () => {
               "seats_filled": 50,
               "max_capacity": 50,
               "is_virtual": false,
-              "colour": null,
+              "colour": "bg-cyan-200",
               "time_start": "11:10:00",
               "time_end": "14:00:00",
               "rrulejs_str": "DTSTART;TZID=America/Toronto:20231108T111000\n"
@@ -110,7 +110,7 @@ const ConferenceCalendarWrapper = () => {
               "seats_filled": 50,
               "max_capacity": 50,
               "is_virtual": false,
-              "colour": null,
+              "colour": "bg-slate-200",
               "time_start": "11:10:00",
               "time_end": "14:00:00",
               "rrulejs_str": "DTSTART;TZID=America/Toronto:20231025T111000\n"
@@ -122,7 +122,7 @@ const ConferenceCalendarWrapper = () => {
               "seats_filled": 50,
               "max_capacity": 50,
               "is_virtual": false,
-              "colour": null,
+              "colour": "bg-yellow-200",
               "time_start": "11:10:00",
               "time_end": "14:00:00",
               "rrulejs_str": "DTSTART;TZID=America/Toronto:20230920T111000\n"
@@ -134,7 +134,7 @@ const ConferenceCalendarWrapper = () => {
               "seats_filled": 50,
               "max_capacity": 50,
               "is_virtual": false,
-              "colour": null,
+              "colour": "bg-red-200",
               "time_start": "11:10:00",
               "time_end": "14:00:00",
               "rrulejs_str": "DTSTART;TZID=America/Toronto:20231122T111000\n"
@@ -170,7 +170,7 @@ const ConferenceCalendarWrapper = () => {
               "seats_filled": 53,
               "max_capacity": 65,
               "is_virtual": false,
-              "colour": null,
+              "colour": "bg-green-300",
               "time_start": "10:10:00",
               "time_end": "12:00:00",
               "rrulejs_str": "DTSTART;TZID=America/Toronto:20230908T101000;\nRRULE:FREQ=WEEKLY;UNTIL=20231204T120000;BYDAY=FR"
@@ -182,7 +182,7 @@ const ConferenceCalendarWrapper = () => {
               "seats_filled": 107,
               "max_capacity": 125,
               "is_virtual": false,
-              "colour": null,
+              "colour": "bg-cyan-200",
               "time_start": "15:40:00",
               "time_end": "17:00:00",
               "rrulejs_str": "DTSTART;TZID=America/Toronto:20230905T154000;\nRRULE:FREQ=WEEKLY;UNTIL=20231204T170000;BYDAY=TU,FR"
@@ -194,7 +194,7 @@ const ConferenceCalendarWrapper = () => {
               "seats_filled": 65,
               "max_capacity": 65,
               "is_virtual": false,
-              "colour": null,
+              "colour": "bg-red-200",
               "time_start": "12:40:00",
               "time_end": "14:00:00",
               "rrulejs_str": "DTSTART;TZID=America/Toronto:20230907T124000;\nRRULE:FREQ=WEEKLY;UNTIL=20231204T140000;BYDAY=TH"
@@ -256,7 +256,7 @@ React.useEffect(() => {
     
     const conferenceStreamButton  = (btn_name) => {
       return (
-        <div className="w-1/3 p-4">
+        <div className="w-1/3 p-2">
         <button type="button" className="btn btn-primary w-full">
         {btn_name}
         </button>
@@ -273,9 +273,10 @@ React.useEffect(() => {
         return (
         <>
 
-      <button onClick={() => {reduxScroll(false, 7)}}>Left {"<--"}</button>
-      <button onClick={() => {reduxScroll(true, 7)}}>Right {"-->"}</button>
-       
+{/* <div className="flex">
+  <button className="large_warning_btn" onClick={() => {reduxScroll(false, 7)}}>Left {"<--"}</button>
+  <button className="large_warning_btn" onClick={() => {reduxScroll(true, 7)}}>Right {"-->"}</button>
+      </div> */}
 
           <NewCalendar 
           calendarView={full_view.slice(current_offset, current_offset+7)} 
@@ -293,9 +294,11 @@ React.useEffect(() => {
         return (
           <>
           
-        <button onClick={() => {reduxScroll(false, 1)}}>Left {"<--"}</button>
-        <button onClick={() => {reduxScroll(true, 1)}}>Right {"-->"}</button>
           
+          <div className="flex space-x-4 justify-center">
+  <button className="widget_btn" onClick={() => {reduxScroll(false, 1)}}>Left {"<--"}</button>
+  <button className="widget_btn" onClick={() => {reduxScroll(true, 1)}}>Right {"-->"}</button>
+      </div>
           <NewCalendar 
           calendarView={full_view.slice(current_offset, current_offset+1)} 
           viewState={2}

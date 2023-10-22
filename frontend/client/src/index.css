@@ -170,6 +170,13 @@
         @apply border-purple-600
     }
 
+    
+    .main_pop_title {
+        @apply text-xl font-semibold text-center mb-4;
+    }
+    
+    
+    
 
 }
 

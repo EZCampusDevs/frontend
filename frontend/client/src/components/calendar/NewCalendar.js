@@ -60,7 +60,7 @@ const NewCalendar = ({
       gridSpan = 4;
     } else if (viewState === 2) {
       //! 1 DAY VIEW (mobile view)
-      weekdays = ["Times", "P.H"];
+      weekdays = ["Times", "Today's View"];
       gridSpan = 2;
       bg = OneDayView(weekdays, EARLIEST_TIME, LATEST_TIME, CALENDAR_TOP_ROW_OFFSET, THIRTY_FRAC_DENOM, calendarView);
     }
@@ -93,11 +93,15 @@ const NewCalendar = ({
 
       const timeStart = event["time_start"];
       const timeEnd = event["time_end"];
+      
+      const color = event["colour"];
+
       const colStart = dateObject.getDay() + 1; //!
 
       jsxEvents.push(
         <NewCalendarEvent
           viewState={viewState}
+          color={color}
           onClickCallback={PopUpCallback}
           eventBlob={event}
           colStart={colStart}
