@@ -162,7 +162,7 @@ export function OneDayView(weekdays, EARLIEST_TIME, LATEST_TIME, CALENDAR_TOP_RO
     let bg = [];
 
     //! MOBILE CONSTANTS FOR CAL:
-    const MOBILE_TIME_WIDTH = "20vw";
+    const MOBILE_TIME_WIDTH = "10vw";
 
     for (let wI = 0; wI <= weekdays.length - 1; wI++) {
         // Start from 1 since you have a time column
@@ -229,7 +229,7 @@ export function OneDayView(weekdays, EARLIEST_TIME, LATEST_TIME, CALENDAR_TOP_RO
           } else if (depth === 0) {
             //! Adding DAYs OF THE WEEK
   
-            let w = "150vw";
+            let w = "100vw";
   
             bgCol.push(
               <span

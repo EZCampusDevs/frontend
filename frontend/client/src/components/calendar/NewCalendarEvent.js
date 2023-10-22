@@ -52,10 +52,10 @@ const NewCalendarEvent = ({eventBlob, colStart, timeStart, timeEnd, EARLIEST_INT
             onClick={() => {onClickCallback(eventBlob)}}
             className={`bg-blue-200 rounded-lg shadow transition duration-300 cursor-pointer r_font`}
             style={{
-                gridColumnStart: viewState == 2 ? 0 : colStart, 
+                gridColumnStart: viewState === 2 ? 2 : colStart, 
                 gridRowStart: verticalRowStart,
                 gridRowEnd : verticalRowStart+nRows,
-                width : "12vw"
+                width : viewState === 2 ? "60vw" : "12vw"
             }}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}

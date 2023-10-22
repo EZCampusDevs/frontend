@@ -53,6 +53,7 @@ const NewCalendar = ({
       //! DEFAULT VIEW
       weekdays = ["Times", "MON", "TUE", "WED", "THU", "FRI", "SAT", "SUN"];
       gridSpan = 8;
+      bg = SevenDayView(weekdays, EARLIEST_TIME, LATEST_TIME, CALENDAR_TOP_ROW_OFFSET, THIRTY_FRAC_DENOM, calendarView);
     } else if (viewState === 1) {
       //! 3 DAY VIEW
       weekdays = ["Times", "P.H", "P.H", "P.H"];
@@ -61,9 +62,9 @@ const NewCalendar = ({
       //! 1 DAY VIEW (mobile view)
       weekdays = ["Times", "P.H"];
       gridSpan = 2;
+      bg = OneDayView(weekdays, EARLIEST_TIME, LATEST_TIME, CALENDAR_TOP_ROW_OFFSET, THIRTY_FRAC_DENOM, calendarView);
     }
 
-    bg = SevenDayView(weekdays, EARLIEST_TIME, LATEST_TIME, CALENDAR_TOP_ROW_OFFSET, THIRTY_FRAC_DENOM, calendarView);
 
     let cols = (
       <div className={"grid grid-cols-" + gridSpan + " gap-1"}>
@@ -96,7 +97,7 @@ const NewCalendar = ({
 
       jsxEvents.push(
         <NewCalendarEvent
-          viewState={0}
+          viewState={viewState}
           onClickCallback={PopUpCallback}
           eventBlob={event}
           colStart={colStart}

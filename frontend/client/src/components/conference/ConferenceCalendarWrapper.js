@@ -31,10 +31,12 @@ const ConferenceCalendarWrapper = () => {
 
     }
 
-    //Function Accepts a boolean Paramter, and scrolls Right or Left accordingly
-    const reduxScroll = (s) => { 
-        if(s) { dispatch(rightScroll()); } 
-        else {  dispatch(leftScroll());  }
+
+
+    //Function Accepts a boolean Paramter, and size of scroll (N. Elements forward or back)
+    const reduxScroll = (s, size) => { 
+        if(s) { dispatch(rightScroll({scroll_size : size})); } 
+        else {  dispatch(leftScroll({scroll_size : size}));  }
     }
 
     //React state
@@ -263,6 +265,53 @@ React.useEffect(() => {
     }
     
     
+    const viewportScaleCalendar = (width) => {
+
+      //& Larger Viewport (Laptop / Desktop)
+      if(width > 640) {
+
+        return (
+        <>
+
+      <button onClick={() => {reduxScroll(false, 7)}}>Left {"<--"}</button>
+      <button onClick={() => {reduxScroll(true, 7)}}>Right {"-->"}</button>
+       
+
+          <NewCalendar 
+          calendarView={full_view.slice(current_offset, current_offset+7)} 
+          viewState={0}
+          THIRTY_FRAC_DENOM={3}
+          EARLIEST_TIME={36}
+          LATEST_TIME={144}
+          />
+
+       </>
+        );
+
+      //& Larger Viewport (Laptop / Desktop)
+      } else {
+        return (
+          <>
+          
+        <button onClick={() => {reduxScroll(false, 1)}}>Left {"<--"}</button>
+        <button onClick={() => {reduxScroll(true, 1)}}>Right {"-->"}</button>
+          
+          <NewCalendar 
+          calendarView={full_view.slice(current_offset, current_offset+1)} 
+          viewState={2}
+          THIRTY_FRAC_DENOM={3}
+          EARLIEST_TIME={36}
+          LATEST_TIME={144}
+          />
+
+          </>
+        );
+      }
+
+    }
+
+
+
      return (
     
     <>
@@ -270,18 +319,9 @@ React.useEffect(() => {
         {conferenceStreamButton("Stream A")}
         {conferenceStreamButton("Stream B")}
         {conferenceStreamButton("Stream C")}
-
         </div>
 
-
-    
-        <NewCalendar 
-            calendarView={full_view.slice(current_offset, current_offset+7)} 
-            viewState={0}
-            THIRTY_FRAC_DENOM={3}
-            EARLIEST_TIME={36}
-            LATEST_TIME={144}
-            />
+        {viewportScaleCalendar(width)}
         </>);
 }
 

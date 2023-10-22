@@ -23,16 +23,20 @@ export const newCalendarSlice = createSlice(
 
             //chatgpt generated left & right scroll fns: 
 
-            leftScroll: (state) => {
-                if (state.current_offset - 7 >= 0) {  // Ensure we don't go below 0
-                    state.current_offset -= 7;
+            leftScroll: (state, action) => {
+                const s_size = action.payload.scroll_size;
+
+                if (state.current_offset - s_size >= 0) {  // Ensure we don't go below 0
+                    state.current_offset -= s_size;
                     reduxVoid(`Left Scroll: New offset is ${state.current_offset}`);
                 }
             },
     
-            rightScroll: (state) => {
-                if (state.current_offset + 7 < state.full_view.length) {  // Ensure we don't exceed `full_view` length
-                    state.current_offset += 7;
+            rightScroll: (state, action) => {
+                const s_size = action.payload.scroll_size;
+
+                if (state.current_offset + s_size < state.full_view.length) {  // Ensure we don't exceed `full_view` length
+                    state.current_offset += s_size;
                     reduxVoid(`Right Scroll: New offset is ${state.current_offset}`);
                 }
             }
