@@ -96,7 +96,13 @@ const NewCalendar = ({
       
       const color = event["colour"];
 
-      const colStart = dateObject.getDay() + 1; //!
+      console.log("WTF: "+String(dateObject))
+      console.log("WTF: "+String(dateObject.getDay()))
+
+      //NOTE: SUNDAY IS 0, for .getDay() but infact, for us it's 8
+
+      let colStart = dateObject.getDay() + 1; //!
+      if(colStart === 1){colStart = 8;}
 
       jsxEvents.push(
         <NewCalendarEvent

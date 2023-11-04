@@ -3,7 +3,7 @@ import React from "react";
   //chatgpt : #### WROTE THIS FORMATTING HELPER FN:
   function formatDateToCalendarView(dateString) {
     const dateObj = new Date(dateString);
-    dateObj.setDate(dateObj.getDate() - 2); //! HARD CODE, this is a problem
+    dateObj.setDate(dateObj.getDate() - 4); //! HARD CODE, this is a problem
     // Array of month names
     const monthNames = [
       "January",

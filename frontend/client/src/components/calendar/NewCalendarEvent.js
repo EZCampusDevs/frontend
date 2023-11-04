@@ -46,13 +46,16 @@ const NewCalendarEvent = ({eventBlob, colStart, timeStart, timeEnd, color, EARLI
         </>
       }
 
+      
+      // If View State is Desktop Mode, colStart is itself, if mobile, it's 2
+      const columnStart = viewState === 2 ? 2 : colStart;
 
       return (
         <div 
             onClick={() => {onClickCallback(eventBlob)}}
             className={`${color ? color : "bg-blue-300"} rounded-lg shadow transition duration-300 cursor-pointer r_font`}
             style={{
-                gridColumnStart: viewState === 2 ? 2 : colStart, 
+                gridColumnStart: columnStart, 
                 gridRowStart: verticalRowStart,
                 gridRowEnd : verticalRowStart+nRows,
                 width : viewState === 2 ? "60vw" : "12vw"

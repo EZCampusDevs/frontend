@@ -4,7 +4,8 @@ import Cookies from 'universal-cookie';
 import { general_ics, notion_csv } from "./constant";
 
 //ENDPOINT DEFINITIONS
-let ENDPOINT = "https://api.ezcampus.org/"
+// let ENDPOINT = "https://api.ezcampus.org/"
+let ENDPOINT = "http://localhost:8000";
 let SEARCH_ENDPOINT = `https://search.ezcampus.org/searchIndex/`;
 
 // Requests Console Logger
@@ -209,14 +210,14 @@ export async function tryExecutiveAuth() {
 
 // ######################### Calendar-Related Requests #########################
 
-export async function CalendarPlaceholder(course_data_ids, callback) {
+export async function CalendarPlaceholder(stream, callback) {
 
   //course_data_ids is supposed to be Array of Ints
 
-  const RESPONSE = await fetch(ENDPOINT + 'placeholder/events', {
+  const RESPONSE = await fetch(ENDPOINT + 'fyic2023/events', {
     method: 'POST',
     headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({"course_data_ids": course_data_ids, "course_ids": []})
+    body: JSON.stringify({"stream": stream})
   });
 
   let ResponseJSON = await RESPONSE.json();
