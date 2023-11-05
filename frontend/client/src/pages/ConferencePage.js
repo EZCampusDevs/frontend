@@ -2,7 +2,7 @@ import React from "react";
 import PageHeader from "../components/navbar/PageHeader";
 import ConferenceInfoView from "../components/conference/ConferenceInfoView";
 
-import fyicLogo from '../static/images/FYIC.webp'
+import fyicLogo from '../static/fyic/FYIC_BANNER.png'
 
 const ConferencePage = () => {
   //React State
@@ -17,7 +17,7 @@ const ConferencePage = () => {
           <section className="py-4 py-xl-5">
             <div className="container">
               <div className="text-white bg-dark border rounded border-0 p-4 p-md-5">
-                <h2 className="fw-bold text-white mb-3">FYIC</h2>
+                <h2 className="fw-bold text-white mb-3 text-center">FYIC | First Year Integration Conference</h2>
                 <div
     data-bss-parallax-bg="true"
     style={{
@@ -27,7 +27,8 @@ const ConferencePage = () => {
         backgroundSize: "cover",
     }}
 ></div>
-                <p className="mb-4">This event is powered by EZCampus</p>
+                {/* <p className="mb-4 text-gray-600"></p> */}
+                <br></br>
                 <button onClick={() => {setMainView(true)}}
                   className="btn btn-light btn-lg"
                   style={{ margin: "5px" }}

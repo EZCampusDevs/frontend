@@ -180,6 +180,13 @@
 
 }
 
+.profile-image {
+    width: 130px;   /* Fixed width */
+    height: 500px;  /* Fixed height */
+    object-fit: cover; /* Cover the area without stretching. */
+    border-radius: 50%; /* Optional: if you want round images */
+}
+
 
 /* For scroll */
 .height_cap {

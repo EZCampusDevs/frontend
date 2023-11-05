@@ -1,21 +1,28 @@
 import React from "react";
 import ConferenceCalendarWrapper from "./ConferenceCalendarWrapper";
 
-//This Component will
+//* Static Imports for FYIC
+
+import Abida from '../../static/fyic/Abida.jpeg';
+import Ali from '../../static/fyic/Ali.jpeg';
+ import Blake from '../../static/fyic/Blake.jpg';
+ import Siobhan from '../../static/fyic/Siobhan.JPG'
+ import Fiona from '../../static/fyic/Fiona.jpg';
+ import Nassim from '../../static/fyic/Nassim.JPG';
 
 const ConferenceInfoView = ({ currentState }) => {
   
-    const twitIcon = (
+    const linkedInIcon = (
         <div class="d-flex flex-column align-items-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="1em"
             height="1em"
             fill="currentColor"
-            viewBox="0 0 16 16"
-            class="bi bi-twitter"
+            viewBox="0 0 24 24"
+            class="bi bi-linkedin"
           >
-            <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"></path>
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
           </svg>
         </div>
       );
@@ -54,32 +61,30 @@ const ConferenceInfoView = ({ currentState }) => {
 //##     Element Factories                        ##
 //##################################################
 
-    const teamProfile_Factory = (name, position, icon, twitterLink, instaLink, facebookLink) => {
+    const teamProfile_Factory = (name, position, linkedInLink, IMAGE_SOURCE) => {
         return (
             <div className="col">
             <div className="card border-0 shadow-none">
               <div class="card border-0 shadow-none">
                 <div class="card-body text-center d-flex flex-column align-items-center p-0">
                   <img
-                    class="rounded-circle mb-3 fit-cover"
+                    className="card-img-top profile-image"
                     width="130"
                     height="130"
-                    src="https://cdn.bootstrapstudio.io/placeholders/1400x800.png"
+                    src={IMAGE_SOURCE}
                   />
                   <h5 class="fw-bold text-primary card-title mb-0">
                     <strong>{name}</strong>
                   </h5>
                   <p class="text-muted card-text mb-2">{position}</p>
                   <ul class="list-inline fs-6 text-muted w-100 mb-0">
-                    <li class="list-inline-item text-center" href={twitterLink}>{twitIcon}</li>
-                    <li class="list-inline-item text-center" href={instaLink}>{igIcon}</li>
-                    <li class="list-inline-item text-center" href={facebookLink}>{fbIcon}</li>
+                    <li class="list-inline-item text-center" href={linkedInLink}>{linkedInIcon}</li>
                   </ul>
                 </div>
               </div>
             </div>
           </div>
-        )
+        );
     }
 
     const talkingPoint_Factory = (title, textbody, call_to_action_caption, call_to_action_link, SVG_JSX) => {
@@ -128,22 +133,22 @@ const ConferenceInfoView = ({ currentState }) => {
                 <h2 className="night_text">Our Team</h2>
                 
                 <p className="w-lg-50 night_text">
-                  Curae hendrerit donec commodo hendrerit egestas tempus, turpis
-                  facilisis nostra nunc. Vestibulum dui eget ultrices.
+                Our dedicated team of engineering students from OntarioTech University's First Year Integration Conference (FYIC) 
+                organizing committee has tirelessly worked with unwavering passion and commitment to bring this extraordinary conference to first-year engineering students 
+                from across Canada. Through collaboration, innovation, and hard work, we've created an inspiring platform where young engineers can connect, learn, and flourish.
+                Join us at FYIC, where our diverse talents and shared vision come together to empower the next generation of engineers.
                 </p>
 
               </div>
             </div>
 
               <div className="row gy-4 row-cols-2 row-cols-md-4">
-                {teamProfile_Factory("Employee 1", "Manager")}
-                {teamProfile_Factory("Employee 2", "Member")}
-                {teamProfile_Factory("Employee 3", "Member")}
-                {teamProfile_Factory("Employee 4", "Member")}
-                {teamProfile_Factory("Employee 10", "Manager")}
-                {teamProfile_Factory("Employee 20", "Member")}
-                {teamProfile_Factory("Employee 30", "Member")}
-                {teamProfile_Factory("Employee 40", "Member")}
+                {teamProfile_Factory("Fiona Kirby", "Co-Chair", "", Fiona)}
+                {teamProfile_Factory("Siobhan Anderson", "Co-Chair", "", Siobhan)}
+                {teamProfile_Factory("Blake Pezzarello", "VP Finance", "", Blake)}
+                {teamProfile_Factory("Abida Choudhury", "VP Logistics", "", Abida)}
+                {teamProfile_Factory("Nassim Assaf", "VP Marketing", "", Nassim)}
+                {teamProfile_Factory("Ali Hakkani", "VP Marketing", "", Ali)}
               </div>
           
           </div>
@@ -154,36 +159,40 @@ const ConferenceInfoView = ({ currentState }) => {
             <div class="row mb-5">
             <div className="col-md-8 col-xl-6 text-center mx-auto">
                 
-                <h2 className="night_text">Our Team</h2>
+                <h2 className="night_text">About FYIC 2023</h2>
                 
                 <p className="w-lg-50 night_text">
-                  Curae hendrerit donec commodo hendrerit egestas tempus, turpis
-                  facilisis nostra nunc. Vestibulum dui eget ultrices.
+                The Ontario Society of Professional Engineers (OSPE) is hosting the First Year Integration Conference (FYIC) on our campus in November 2023. The FYIC is an annual event designed to integrate first-year students into student leadership roles. For this year's conference, Ontario Tech has been granted the opportunity to host it. The primary aim is to ensure that every student who attends gains a clear understanding of the responsibilities of engineers towards the environment and how to lead while prioritizing these values.
                 </p>
 
               </div>
             </div>
-
-            <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
-
-                {talkingPoint_Factory("Call to Action #1","blah blah blah","Learn More!", "https://google.com", <svg class="bi bi-bell" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
-                    <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"></path>
-                </svg>
-                )}
-
-                {talkingPoint_Factory("Call to Action #1","blah blah blah","Learn More!", "https://google.com", <svg class="bi bi-bezier" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M0 10.5A1.5 1.5 0 0 1 1.5 9h1A1.5 1.5 0 0 1 4 10.5v1A1.5 1.5 0 0 1 2.5 13h-1A1.5 1.5 0 0 1 0 11.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zm10.5.5A1.5 1.5 0 0 1 13.5 9h1a1.5 1.5 0 0 1 1.5 1.5v1a1.5 1.5 0 0 1-1.5 1.5h-1a1.5 1.5 0 0 1-1.5-1.5v-1zm1.5-.5a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1zM6 4.5A1.5 1.5 0 0 1 7.5 3h1A1.5 1.5 0 0 1 10 4.5v1A1.5 1.5 0 0 1 8.5 7h-1A1.5 1.5 0 0 1 6 5.5v-1zM7.5 4a.5.5 0 0 0-.5.5v1a.5.5 0 0 0 .5.5h1a.5.5 0 0 0 .5-.5v-1a.5.5 0 0 0-.5-.5h-1z"></path>
-                                <path d="M6 4.5H1.866a1 1 0 1 0 0 1h2.668A6.517 6.517 0 0 0 1.814 9H2.5c.123 0 .244.015.358.043a5.517 5.517 0 0 1 3.185-3.185A1.503 1.503 0 0 1 6 5.5v-1zm3.957 1.358A1.5 1.5 0 0 0 10 5.5v-1h4.134a1 1 0 1 1 0 1h-2.668a6.517 6.517 0 0 1 2.72 3.5H13.5c-.123 0-.243.015-.358.043a5.517 5.517 0 0 0-3.185-3.185z"></path>
-                            </svg>
-                )}
-
-                {talkingPoint_Factory("Call to Action #1","blah blah blah","Learn More!", "https://google.com", <svg class="bi bi-flag" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
-                                <path d="M14.778.085A.5.5 0 0 1 15 .5V8a.5.5 0 0 1-.314.464L14.5 8l.186.464-.003.001-.006.003-.023.009a12.435 12.435 0 0 1-.397.15c-.264.095-.631.223-1.047.35-.816.252-1.879.523-2.71.523-.847 0-1.548-.28-2.158-.525l-.028-.01C7.68 8.71 7.14 8.5 6.5 8.5c-.7 0-1.638.23-2.437.477A19.626 19.626 0 0 0 3 9.342V15.5a.5.5 0 0 1-1 0V.5a.5.5 0 0 1 1 0v.282c.226-.079.496-.17.79-.26C4.606.272 5.67 0 6.5 0c.84 0 1.524.277 2.121.519l.043.018C9.286.788 9.828 1 10.5 1c.7 0 1.638-.23 2.437-.477a19.587 19.587 0 0 0 1.349-.476l.019-.007.004-.002h.001M14 1.221c-.22.078-.48.167-.766.255-.81.252-1.872.523-2.734.523-.886 0-1.592-.286-2.203-.534l-.008-.003C7.662 1.21 7.139 1 6.5 1c-.669 0-1.606.229-2.415.478A21.294 21.294 0 0 0 3 1.845v6.433c.22-.078.48-.167.766-.255C4.576 7.77 5.638 7.5 6.5 7.5c.847 0 1.548.28 2.158.525l.028.01C9.32 8.29 9.86 8.5 10.5 8.5c.668 0 1.606-.229 2.415-.478A21.317 21.317 0 0 0 14 7.655V1.222z"></path>
-                            </svg>
-                )}
-                
-            </div>
         </div>
+        }
+
+        if(svi === 3){
+          return <div class="container py-4 py-xl-5">
+          <div class="row mb-5">
+          <div className="col-md-8 col-xl-6 text-center mx-auto">
+              
+              <h2 className="night_text">About Ontario Tech University</h2>
+              
+              <p className="w-lg-50 night_text">
+              The Ontario Society of Professional Engineers (OSPE) is hosting the First Year Integration Conference (FYIC) on our campus in November 2023. The FYIC is an annual event designed to integrate first-year students into student leadership roles. For this year's conference, Ontario Tech has been granted the opportunity to host it. The primary aim is to ensure that every student who attends gains a clear understanding of the responsibilities of engineers towards the environment and how to lead while prioritizing these values.
+              </p>
+
+            </div>
+          </div>
+
+          {/* <div class="row gy-4 row-cols-1 row-cols-md-2 row-cols-xl-3">
+
+              {talkingPoint_Factory("Call to Action #1","blah blah blah","Learn More!", "https://google.com", <svg class="bi bi-bell" xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" fill="currentColor" viewBox="0 0 16 16">
+                  <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zM8 1.918l-.797.161A4.002 4.002 0 0 0 4 6c0 .628-.134 2.197-.459 3.742-.16.767-.376 1.566-.663 2.258h10.244c-.287-.692-.502-1.49-.663-2.258C12.134 8.197 12 6.628 12 6a4.002 4.002 0 0 0-3.203-3.92L8 1.917zM14.22 12c.223.447.481.801.78 1H1c.299-.199.557-.553.78-1C2.68 10.2 3 6.88 3 6c0-2.42 1.72-4.44 4.005-4.901a1 1 0 1 1 1.99 0A5.002 5.002 0 0 1 13 6c0 .88.32 4.2 1.22 6z"></path>
+              </svg>
+              )}
+          </div> */}
+
+      </div>
         }
 
     }
@@ -195,10 +204,9 @@ const ConferenceInfoView = ({ currentState }) => {
             <div className="row">
             <div className="col-md-8 col-xl-2">
                 <ul>
-                {SubViewMenuItem_Factory("About us", 1)}
-                {SubViewMenuItem_Factory("About OTU", 2)}
-                {SubViewMenuItem_Factory("About Oshawa", 3)}
-                {SubViewMenuItem_Factory("Useful Links", 4)}
+                {SubViewMenuItem_Factory("Our Team", 1)}
+                {SubViewMenuItem_Factory("About FYIC 2023", 2)}
+                {SubViewMenuItem_Factory("About Ontario Tech", 3)}
                 </ul>
             </div>
             <div className="col-md-6 col-xl-10">
