@@ -273,6 +273,8 @@ React.useEffect(() => {
         return (
         <>
 
+{/* DISALBED FOR CONFERENCE,. BUT IDEALLY IT'S THIS */}
+
 {/* <div className="flex">
   <button className="large_warning_btn" onClick={() => {reduxScroll(false, 7)}}>Left {"<--"}</button>
   <button className="large_warning_btn" onClick={() => {reduxScroll(true, 7)}}>Right {"-->"}</button>

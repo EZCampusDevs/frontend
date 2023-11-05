@@ -1,9 +1,15 @@
 import React from "react";
 
   //chatgpt : #### WROTE THIS FORMATTING HELPER FN:
-  function formatDateToCalendarView(dateString) {
+  function formatDateToCalendarView(dateString, view) {
     const dateObj = new Date(dateString);
-    dateObj.setDate(dateObj.getDate() - 4); //! HARD CODE, this is a problem
+    
+    if(!view) {
+      dateObj.setDate(dateObj.getDate() - 4); //! HARD CODE, this is a problem
+    }
+
+
+    
     // Array of month names
     const monthNames = [
       "January",
@@ -124,7 +130,7 @@ export function SevenDayView(weekdays, EARLIEST_TIME, LATEST_TIME, CALENDAR_TOP_
                 {wI === 0
                   ? ""
                   : calendarView[wI - 1]
-                  ? formatDateToCalendarView(calendarView[wI - 1].date)
+                  ? formatDateToCalendarView(calendarView[wI - 1].date, 0)
                   : ""}
                 <br />
                 {weekdays[wI]}
@@ -245,7 +251,7 @@ export function OneDayView(weekdays, EARLIEST_TIME, LATEST_TIME, CALENDAR_TOP_RO
                 {wI === 0
                   ? ""
                   : calendarView[wI - 1]
-                  ? formatDateToCalendarView(calendarView[wI - 1].date)
+                  ? formatDateToCalendarView(calendarView[wI - 1].date, 1)
                   : ""}
                 <br />
                 {weekdays[wI]}
