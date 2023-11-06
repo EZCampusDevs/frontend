@@ -78,7 +78,9 @@ const ConferenceInfoView = ({ currentState }) => {
                   </h5>
                   <p class="text-muted card-text mb-2">{position}</p>
                   <ul class="list-inline fs-6 text-muted w-100 mb-0">
-                    <li class="list-inline-item text-center" href={linkedInLink}>{linkedInIcon}</li>
+                    <li class="list-inline-item text-center">
+                      <a href={linkedInLink} target="_blank">{linkedInIcon}</a>
+                      </li>
                   </ul>
                 </div>
               </div>
@@ -143,11 +145,11 @@ const ConferenceInfoView = ({ currentState }) => {
             </div>
 
               <div className="row gy-4 row-cols-2 row-cols-md-4">
-                {teamProfile_Factory("Fiona Kirby", "Co-Chair", "", Fiona)}
-                {teamProfile_Factory("Siobhan Anderson", "Co-Chair", "", Siobhan)}
-                {teamProfile_Factory("Blake Pezzarello", "VP Finance", "", Blake)}
-                {teamProfile_Factory("Abida Choudhury", "VP Logistics", "", Abida)}
-                {teamProfile_Factory("Nassim Assaf", "VP Marketing", "", Nassim)}
+                {teamProfile_Factory("Fiona Kirby", "Co-Chair", "https://www.linkedin.com/in/fiona-kirby0/", Fiona)}
+                {teamProfile_Factory("Siobhan Anderson", "Co-Chair", "https://www.linkedin.com/in/siobhan-catherine-anderson/", Siobhan)}
+                {teamProfile_Factory("Blake Pezzarello", "VP Finance", "https://www.linkedin.com/in/blakepezzarello/", Blake)}
+                {teamProfile_Factory("Abida Choudhury", "VP Logistics", "https://www.linkedin.com/in/abida-ishrat-choudhury/", Abida)}
+                {teamProfile_Factory("Nassim Assaf", "VP Marketing", "https://www.linkedin.com/in/nassimassaf/", Nassim)}
                 {teamProfile_Factory("Ali Hakkani", "VP Marketing", "", Ali)}
               </div>
           
@@ -178,7 +180,7 @@ const ConferenceInfoView = ({ currentState }) => {
               <h2 className="night_text">About Ontario Tech University</h2>
               
               <p className="w-lg-50 night_text">
-              The Ontario Society of Professional Engineers (OSPE) is hosting the First Year Integration Conference (FYIC) on our campus in November 2023. The FYIC is an annual event designed to integrate first-year students into student leadership roles. For this year's conference, Ontario Tech has been granted the opportunity to host it. The primary aim is to ensure that every student who attends gains a clear understanding of the responsibilities of engineers towards the environment and how to lead while prioritizing these values.
+              Our institution's mission is to drive knowledge discovery and application, fostering economic growth, regional development, and social innovation. We prepare our students for success in a tech-focused world by providing a technology-rich learning environment. Our academic programs span diverse fields, including automotive design, business and IT, sustainable energy, and more. We offer extensive experiential and work-integrated learning opportunities, such as capstone projects, internships, co-ops, and research. These experiences help students apply theoretical knowledge to real-world settings. In the vibrant job market of Oshawa, we're ranked #1 in Canada for jobs and a top-5 tech talent growth market. Our commitment goes beyond the classroom; we provide the necessary support and connections to personalize your student journey.
               </p>
 
             </div>
