@@ -51,7 +51,7 @@ const ConferenceCalendarWrapper = () => {
         
         // Handle the response data here
         console.log(response);
-        let parsedCal = cParse2(response);
+        let parsedCal = cParse2(response, false); //*Calendar Parse, on Event Mode
 
         console.log("Before Serialization: ");
         console.log(parsedCal);

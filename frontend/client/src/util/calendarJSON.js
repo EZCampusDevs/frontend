@@ -2,7 +2,7 @@ import { logVoid, reduxVoid } from "./logger";
 
 import { datetime, RRule, RRuleSet, rrulestr } from "rrule";
 
-export function parseDescription(desc) {
+export function parseCourseDescription(desc) {
   let lines = desc.split("\n");
   let obj = {};
 
@@ -31,7 +31,7 @@ export function parseDescription(desc) {
   }
 
   return obj;
-} //chatgpt: Generated parseDescription ###
+} //chatgpt: Generated parseCourseDescription
 
 const pDateStr = (dateStart) => {
   //Turns string like "yearInt-monthInt-dayInt" into  [ yearInt , monthInt, dayInt ]
@@ -41,7 +41,11 @@ const pDateStr = (dateStart) => {
   });
 };
 
-export function cParse2(data) {
+//! Course Mode (For description parsing): 
+//* TRUE - Courses
+//* FALSE - Events (Conference, or Custom Events)
+
+export function cParse2(data, courseMode) {
   const rruleSet = new RRuleSet();
 
   let meetings = data["detail"];
@@ -155,11 +159,13 @@ export function cParse2(data) {
 
           console.log(appendedEvent["name"]);
           console.log(appendedEvent["time_start"]);
+          
 
-          appendedEvent.description = parseDescription(
-            appendedEvent.description
-          );
-
+          if(courseMode){
+            appendedEvent.description = parseCourseDescription(
+              appendedEvent.description
+            );
+          }
           e.push(appendedEvent);
         }
       }
@@ -408,7 +414,7 @@ export function cParse(crn_inp, cal_inp) {
               end: mK["time_end"],
               location: mK["location"],
               title: pK["title"],
-              description: parseDescription(pK["description"]),
+              description: parseCourseDescription(pK["description"]),
               bg_color: entryColor,
             };
 
@@ -437,7 +443,7 @@ export function cParse(crn_inp, cal_inp) {
             end: mK["time_end"],
             location: mK["location"],
             title: pK["title"],
-            description: parseDescription(pK["description"]),
+            description: parseCourseDescription(pK["description"]),
             bg_color: entryColor,
           };
 
