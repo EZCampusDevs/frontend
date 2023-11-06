@@ -31,8 +31,7 @@ const ConferencePage = () => {
                 <br></br>
                 <button onClick={() => {setMainView(true)}}
                   className="btn btn-light btn-lg"
-                  style={{ margin: "5px" }}
-                >
+                  style={{ margin: "5px" }}>
                   Schedule
                 </button>
                 <button onClick={() => {setMainView(false)}}

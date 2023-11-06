@@ -237,47 +237,46 @@ const ConferenceCalendarWrapper = () => {
 
 
 //* ############### RESIZING OF WIDTH (onMount) ##############
-React.useEffect(() => {
-  // Function to update the width state
-  const handleResize = () => { setWidth(window.innerWidth); };
+  React.useEffect(() => {
+    // Function to update the width state
+    const handleResize = () => { setWidth(window.innerWidth); };
 
-  // Add event listener
-  window.addEventListener('resize', handleResize);
+    // Add event listener
+    window.addEventListener('resize', handleResize);
 
-  // Cleanup function to remove event listener when the component unmounts
-  return () => {
-      window.removeEventListener('resize', handleResize);
-  };
-}, []);
-
-
+    // Cleanup function to remove event listener when the component unmounts
+    return () => {
+        window.removeEventListener('resize', handleResize);
+    };
+  }, []);
 
      // 30 * 48 = 1440, (1) 10 * 144 = 1440, (3) 
     
-    const conferenceStreamButton  = (btn_name) => {
+    const conferenceStreamButton  = (btn_name, stream) => {
       return (
         <div className="w-1/3 p-2">
-        <button type="button" className="btn btn-primary w-full">
+        <button type="button" className="btn btn-primary w-full" 
+        onClick={() => {
+          setCalendarWithStream(stream);
+        }}
+        >
         {btn_name}
         </button>
       </div>
-      );
-    }
-    
+      );}
     
     const viewportScaleCalendar = (width) => {
 
       //& Larger Viewport (Laptop / Desktop)
       if(width > 640) {
 
-        return (
-        <>
+      return (<>
 
-{/* DISALBED FOR CONFERENCE,. BUT IDEALLY IT'S THIS */}
+      {/* DISALBED FOR CONFERENCE,. BUT IDEALLY IT'S THIS */}
 
-{/* <div className="flex">
-  <button className="large_warning_btn" onClick={() => {reduxScroll(false, 7)}}>Left {"<--"}</button>
-  <button className="large_warning_btn" onClick={() => {reduxScroll(true, 7)}}>Right {"-->"}</button>
+      {/* <div className="flex">
+      <button className="large_warning_btn" onClick={() => {reduxScroll(false, 7)}}>Left {"<--"}</button>
+      <button className="large_warning_btn" onClick={() => {reduxScroll(true, 7)}}>Right {"-->"}</button>
       </div> */}
 
           <NewCalendar 
@@ -312,22 +311,17 @@ React.useEffect(() => {
           </>
         );
       }
-
     }
 
-
-
-     return (
-    
-    <>
+     return (<>
         <div className="flex justify-between">
-        {conferenceStreamButton("Stream A")}
-        {conferenceStreamButton("Stream B")}
-        {conferenceStreamButton("Stream C")}
+          {conferenceStreamButton("Leadership Stream", "Leadership")}
+          {conferenceStreamButton("Sustainability Stream", "Sustainability")}
+          {conferenceStreamButton("VPX Stream", "VPX")}
         </div>
 
         {viewportScaleCalendar(width)}
-        </>);
+    </>);
 }
 
 export default ConferenceCalendarWrapper
