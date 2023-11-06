@@ -16,6 +16,7 @@ import NewCalendarPopUp from "./NewCalendarPopUp";
 const NewCalendar = ({
   calendarView,
   viewState,
+  courseMode,
   EARLIEST_TIME,
   LATEST_TIME,
   THIRTY_FRAC_DENOM,
@@ -130,7 +131,7 @@ const NewCalendar = ({
   const PopUpCallback = (eventBlob) => {
     setPopUp(
       <NewCalendarPopUp onClose={() => setPopUp(null)} 
-                      event={eventBlob} />
+                      event={eventBlob} courseMode={courseMode} />
     );
   };
 

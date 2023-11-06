@@ -166,6 +166,9 @@ export function cParse2(data, courseMode) {
               appendedEvent.description
             );
           }
+          // else { appendedEvent.description = appendedEvent.description}
+
+  
           e.push(appendedEvent);
         }
       }
