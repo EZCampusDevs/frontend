@@ -12,6 +12,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { leftScroll, rightScroll, setParameter } from '../../redux/features/newCalendarSlice.js';
 
 const ConferenceCalendarWrapper = () => {
+    
+    //* ========== ========== ========== ========== ==========
+    //* >> Constants for Wrapper
+    //* ========== ========== ========== ========== ========== 
+
+    const COURSE_MODE = false; //Events mode
+  
     //* ========== ========== ========== ========== ==========
     //* >> REDUX DEFINITIONS & DISPATCHERS                             
     //* ========== ========== ========== ========== ==========
@@ -31,8 +38,6 @@ const ConferenceCalendarWrapper = () => {
 
     }
 
-
-
     //Function Accepts a boolean Paramter, and size of scroll (N. Elements forward or back)
     const reduxScroll = (s, size) => { 
         if(s) { dispatch(rightScroll({scroll_size : size})); } 
@@ -51,7 +56,7 @@ const ConferenceCalendarWrapper = () => {
         
         // Handle the response data here
         console.log(response);
-        let parsedCal = cParse2(response, false); //*Calendar Parse, on Event Mode
+        let parsedCal = cParse2(response, COURSE_MODE); //*Calendar Parse, on Event Mode
 
         console.log("Before Serialization: ");
         console.log(parsedCal);
@@ -209,12 +214,6 @@ const ConferenceCalendarWrapper = () => {
     }
 
     //* ========== ========== ========== ========== ==========
-    //* >> ACTUAL CONTAINER UI FUNCTIONS
-    //* ========== ========== ========== ========== ========== 
-
-    //...
-
-    //* ========== ========== ========== ========== ==========
     //* >> REACT useEffect & return
     //* ========== ========== ========== ========== ========== 
 
@@ -283,6 +282,7 @@ React.useEffect(() => {
           <NewCalendar 
           calendarView={full_view.slice(current_offset, current_offset+7)} 
           viewState={0}
+          courseMode={COURSE_MODE}
           THIRTY_FRAC_DENOM={3}
           EARLIEST_TIME={36}
           LATEST_TIME={144}
@@ -298,12 +298,14 @@ React.useEffect(() => {
           
           
           <div className="flex space-x-4 justify-center">
-  <button className="widget_btn" onClick={() => {reduxScroll(false, 1)}}>Left {"<--"}</button>
-  <button className="widget_btn" onClick={() => {reduxScroll(true, 1)}}>Right {"-->"}</button>
-      </div>
+            <button className="widget_btn" onClick={() => {reduxScroll(false, 1)}}>Left {"<--"}</button>
+            <button className="widget_btn" onClick={() => {reduxScroll(true, 1)}}>Right {"-->"}</button>
+          </div>
+          
           <NewCalendar 
           calendarView={full_view.slice(current_offset, current_offset+1)} 
           viewState={2}
+          courseMode={COURSE_MODE}
           THIRTY_FRAC_DENOM={3}
           EARLIEST_TIME={36}
           LATEST_TIME={144}
@@ -315,11 +317,8 @@ React.useEffect(() => {
 
     }
 
-
-
-     return (
-    
-    <>
+  //! MAIN RETURN STATEMENT:  
+    return (<>
         <div className="flex justify-between">
         {conferenceStreamButton("Stream A")}
         {conferenceStreamButton("Stream B")}

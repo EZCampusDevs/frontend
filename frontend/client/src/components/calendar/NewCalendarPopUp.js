@@ -4,10 +4,41 @@ import React from 'react'
 
 import PopUpWrapper from '../util/PopUpWrapper'
 
-const NewCalendarPopUp = ({onClose, event}) => {
+const NewCalendarPopUp = ({onClose, event, courseMode}) => {
+
+//* courseCode: True is Courses, False is Events
 
 const eventDesc = event["description"];
 
+const DescriptionRenderer = (courseMode) => {
+    
+    if(courseMode){
+        return(
+            <>
+
+            <p className="font-semibold">Seats Filled:</p>
+              <p>{event["seats_filled"]}</p>
+
+            <p className="font-semibold">Campus:</p>
+            <p>{eventDesc["campus"]}</p>
+
+            <p className="font-semibold">Delivery:</p>
+            <p>{eventDesc["delivery"]}</p>
+
+            <p className="font-semibold">CRN:</p>
+            <p>{eventDesc["crn"]}</p>
+
+            <p className="font-semibold">Section:</p>
+            <p>{eventDesc["section"]}</p>
+            </>
+        );
+    } else {
+        return(<>
+            <p className="font-semibold">Event Description:</p>
+            <p>{eventDesc}</p>
+        </>)
+    }
+}
 
 //!BAD DESIGN ? : OnClose is Prop Drilled
     return (
@@ -27,20 +58,12 @@ const eventDesc = event["description"];
               <p className="font-semibold">Time End:</p>
               <p>{event["time_end"]}</p>
 
-              <p className="font-semibold">Seats Filled:</p>
-              <p>{event["seats_filled"]}</p>
+              <p className="font-semibold">Location</p>
+              <p>{event["location"]}</p>
 
-              <p className="font-semibold">Campus:</p>
-              <p>{eventDesc["campus"]}</p>
+                {/* COURSE DESCRIPTION BREAKDOWN: */}
 
-              <p className="font-semibold">Delivery:</p>
-              <p>{eventDesc["delivery"]}</p>
-
-              <p className="font-semibold">CRN:</p>
-              <p>{eventDesc["crn"]}</p>
-
-              <p className="font-semibold">Section:</p>
-              <p>{eventDesc["section"]}</p>
+                {DescriptionRenderer(courseMode)}
           </div>
       </div>
   </PopUpWrapper>
