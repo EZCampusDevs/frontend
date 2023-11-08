@@ -15,10 +15,42 @@ const NewCalendarEvent = ({eventBlob, colStart, timeStart, timeEnd, color, EARLI
     return diffHours + diffMinutes + diffSeconds;
   };
 
+  //TODO: move this to utility module
+  function convertTo12HourFormat(timeString) {
+    // Split the time string by ':' to get hours, minutes, and seconds
+    let [hours, minutes, seconds] = timeString.split(':');
+
+    // Convert the hours to a number so we can perform calculations
+    hours = parseInt(hours, 10);
+
+    // Determine the suffix and adjust hours if necessary
+    const suffix = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12 || 12; // Convert hour 00 and 12 to 12
+
+    // Return the formatted time string
+    return `${hours}:${minutes} ${suffix}`;
+  }
+
   const tS = parseTime(timeStart);
   const tE = parseTime(timeEnd);
   let deltaMins = computeDelta(tS, tE);
 
+  const nameCrop = (string, delta) => {
+    // Calculate the maximum number of characters allowed
+    let charMax = Math.floor(28 + delta / 2);
+    let croppedString = string.substring(0, charMax);
+
+    // Split the string into words
+    let words = croppedString.split(' ');
+
+    // If the last word is less than 3 characters, remove it
+    if (words.length > 1 && words[words.length - 1].length < 3) {
+        words.pop();
+    }
+
+    // Rejoin the words into a single string and return
+    return words.join(' ');
+};
 
   const generateEvent = () => {
 
@@ -40,9 +72,12 @@ const NewCalendarEvent = ({eventBlob, colStart, timeStart, timeEnd, color, EARLI
 
       const genHovered = () => {
         return <>
-        {eventBlob["time_start"]} <br/>
-        {eventBlob["name"]} <br/>
-        {eventBlob["time_end"]} <br/>
+          {nameCrop(eventBlob["name"],deltaMins)} <br/>
+          <p>
+          {convertTo12HourFormat(eventBlob["time_start"])+" - "} 
+          {convertTo12HourFormat(eventBlob["time_end"])} 
+          </p>
+          <br/>
         </>
       }
 
@@ -63,12 +98,10 @@ const NewCalendarEvent = ({eventBlob, colStart, timeStart, timeEnd, color, EARLI
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
-            {isHovered ? genHovered() : eventBlob["name"]}
+            {isHovered ? genHovered() : nameCrop(eventBlob["name"],deltaMins)}
         </div>
     );
-
     }
-
   };
 
   return generateEvent();
