@@ -4,8 +4,8 @@ import Cookies from 'universal-cookie';
 import { general_ics, notion_csv } from "./constant";
 
 //ENDPOINT DEFINITIONS
-// let ENDPOINT = "https://api.ezcampus.org/"
-let ENDPOINT = "http://localhost:8000";
+let ENDPOINT = "https://api.ezcampus.org/"
+//let ENDPOINT = "http://localhost:8000";
 let SEARCH_ENDPOINT = `https://search.ezcampus.org/searchIndex/`;
 
 // Requests Console Logger

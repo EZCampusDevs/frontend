@@ -88,19 +88,21 @@ const NewCalendarEvent = ({eventBlob, colStart, timeStart, timeEnd, color, EARLI
       return (
         <div 
             onClick={() => {onClickCallback(eventBlob)}}
-            className={`${color ? color : "bg-blue-300"} rounded-lg shadow transition duration-300 cursor-pointer r_font`}
+            className={`rounded-lg shadow transition duration-300 cursor-pointer r_font`}
             style={{
                 gridColumnStart: columnStart, 
                 gridRowStart: verticalRowStart,
                 gridRowEnd : verticalRowStart+nRows,
-                width : viewState === 2 ? "60vw" : "12vw"
+                width : viewState === 2 ? "60vw" : "12vw",
+                backgroundColor: color ? color : '#b8daff' // Using HEX color if available, otherwise a default value
             }}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
         >
             {isHovered ? genHovered() : nameCrop(eventBlob["name"],deltaMins)}
         </div>
-    );
+      );
+      
     }
   };
 

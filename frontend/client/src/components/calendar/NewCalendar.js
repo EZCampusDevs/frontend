@@ -97,6 +97,7 @@ const NewCalendar = ({
       
       const color = event["colour"];
 
+      console.log("COLOR "+color)
       console.log("WTF: "+String(dateObject))
       console.log("WTF: "+String(dateObject.getDay()))
 
