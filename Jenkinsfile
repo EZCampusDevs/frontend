@@ -7,7 +7,7 @@ pipeline {
             steps {
                 dir("frontend") {
                     sshPublisher(publishers: [
-                        sshPublisherDesc(configName: '2GB_Glassfish_VPS', transfers: [
+                        sshPublisherDesc(configName: "${SSH_SERVER}", transfers: [
                             sshTransfer(
                                 cleanRemote: true, excludes: '', execCommand: '''
 cd ~/frontend
